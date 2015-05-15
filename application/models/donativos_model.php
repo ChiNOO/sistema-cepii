@@ -4,7 +4,7 @@ class Donativos_model extends CI_Model{
         parent::__construct();
     }
   
-    public function get_appointment(){
+    public function get_Cursos_taller(){
       
        $this->db->order_by('fecha_ini', 'asc');
         $query = $this->db->get('donativo_curso_taller');
@@ -12,10 +12,47 @@ class Donativos_model extends CI_Model{
         if($query->num_rows() > 0){
             return $query->result();
         }
- 
-
+}
+   public function get_Jornadas(){
+      
+       $this->db->order_by('nombreJornadaD', 'asc');
+        $query = $this->db->get('donativo_jornadas');
+        
+        if($query->num_rows() > 0){
+            return $query->result();
+        }
+    }
+     public function get_Citas(){
+      
+       $this->db->order_by('año', 'asc');
+        $query = $this->db->get('donativo_citas');
+        
+        if($query->num_rows() > 0){
+            return $query->result();
+        }
 
     }
+        public function agregarDonativoCitaPeriodo($año,$mes){
+          
+
+        $this->db->select();
+        $this->db->where('mes', $mes);
+        $query = $this->db->get('donativo_citas');
+        
+        if($query->num_rows() == 0){
+         
+          $datos = array('año' => $año,
+                        'mes' => $mes,
+                        'monto_monetario' => 0,
+                        'monto_especie'=> 0);
+          $this->db->insert('donativo_citas', $datos);
+          redirect(base_url().'donativos');
+        }else {
+          redirect(base_url().'donativos');
+            # code...
+        }
+
+}
 
     public function agregarDonativoMonetario($id, $fecha, $cantidad_monetario){
 

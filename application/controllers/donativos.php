@@ -16,8 +16,10 @@ class Donativos extends CI_Controller {
 		
 	 //$servicioDonaciones = $this->input->post('servicioDonaciones');
 	// $data ['query'] = $this->donativos_model->get_appointment();
-	 $data ['query'] = $this->donativos_model->get_appointment();
-     $this->load->model('donativos_model');
+	 $data ['cargaCurTall'] = $this->donativos_model->get_Cursos_taller();
+   $data ['cargaJornadas'] = $this->donativos_model->get_Jornadas();
+   $data ['cargaCitas'] = $this->donativos_model->get_Citas();
+   $this->load->model('donativos_model');
 	 $data['arrServicios'] = $this->donativos_model->get_servicios();
    
 	 $this->load->view('admin/view_control_donativos', $data);
@@ -85,8 +87,14 @@ class Donativos extends CI_Controller {
         $insert = $this->donativos_model->agregarDonativoEspecie($id, $fecha, $cantidad_especie,$descripcion);  
   
   }
+  public function PeriodoCita(){
+        $año = date('Y');
+        $mes=date('m');
+        $periodo=$año."-".$mes;
+        $this->load->model('donativos_model');
+        $insert = $this->donativos_model->agregarDonativoCitaPeriodo($año,$mes);  
+  
 
-
-
+  }
 
 }

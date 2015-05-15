@@ -131,13 +131,23 @@
 <div class="content-wrapper" style="background-color: #e5e5e5; margin-top: 0px;">
     <br>
     <div id="exTab3" class="tab"> 
+      
       <ul  class="nav nav-pills">
         <li  data-toggle="tab">
           <a href="#1b" data-toggle="tab">
-            <i class="fa fa-usd"></i>     Donativos
+            <i class="fa fa-usd"></i>     Peridos Citas
           </a>
         </li>
-
+       <li  data-toggle="tab">
+          <a href="#2b" data-toggle="tab">
+            <i class="fa fa-usd"></i>     Jornadas
+          </a>
+        </li> 
+<li  data-toggle="tab">
+          <a href="#3b" data-toggle="tab">
+            <i class="fa fa-usd"></i>     Cursos y Talleres
+          </a>
+        </li>
           
       </ul>
       <!-- 1a Margen entre barra Donativo y egistra donativo y tablas -->
@@ -147,45 +157,119 @@
       <div class="tab-content clearfix">
          <!-- Tabla de consulta donativos --> 
            <div class="tab-pane active" id="1b">
-               <?=  form_open(base_url().'Donativos/')?> 
+                 <div>
+                <input type="submit" value="Nuevo periodo" onclick="registrar_donativo('<?=base_url()?>donativos/PeriodoCita');" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
+               </div> 
+              <?=  form_open(base_url().'Donativos/')?> 
+               <table class="table">
+                 <tr>
+                 <td>
+                   <table class="table" style="margin-left:5px">
+                 <!-- Titulos de columnas -->
+                     <thead>
+                        <th>Periodo de citas</th>
+                         <th>Monto monetario</th>
+                         <th>Monto especie</th>
+                        <th> </th>
+                        <th> </th>
+                    </thead>
+                
+                  <?php foreach($cargaCitas as $row): ?>
+                      <tr style="margin-top:7px; margin-bottom:7px;">
+                       <td >
+                           <?php echo $row->mes." del ".$row->año; ?>
+                      </td> 
+                      <td >
+                         <?php echo $row->Monto_monetario; ?>
+                      </td>   
+
+                      <td >
+                         <?php echo $row->Monto_especie; ?>
+                      </td>   
+                      <td>
+                      <a href='#' onclick="registrar_donativo('<?=base_url()?>donativos/hacerAlgo/<?=$row->id_donativo_cita?>');"><i class='glyphicon glyphicon-piggy-bank'></i></a>
+                      </td>
+                      <td>
+                       <a href='#' onclick="registrar_donativo('<?=base_url()?>donativos/Registrar_Mespecie/<?=$row->id_donativo_cita?>');"><i class='glyphicon glyphicon-trash'></i></a>
+                      </td>
+                  </tr>
+                  <?php endforeach; ?>
+                   </table>
+                  </td>
+                 </tr>
+               </table>
+                <?=form_close()?> 
+           
+
+           </div>
+
+           <!-- fin Table -->
+          <div class="tab-pane" id="2b">
+              <?=  form_open(base_url().'Donativos/')?> 
+               <table class="table">
+                 <tr>
+                 <td>
+                   <table class="table" style="margin-left:5px">
+                 <!-- Titulos de columnas -->
+                     <thead>
+                        <th>Nombre jormada</th>
+                         <th>Servicio</th>
+                         <th>Detalles</th>
+                         <th>Periodo</th>
+                         <th>Monto monetario</th>
+                         <th>Monto especie</th>
+                        <th> </th>
+                        <th> </th>
+                    </thead>
+                
+                  <?php foreach($cargaJornadas as $row): ?>
+                  <tr style="margin-top:7px; margin-bottom:7px;">
+                      <td >
+                         <?php echo $row->nombreJornadaD; ?>
+                      </td>   
+                      <td >
+                         <?php echo $row->tipoServicioD; ?>
+                      </td> 
+                      <td >
+                         <?php echo $row->detalleD; ?>
+                      </td> 
+                      <td >
+                        <?php echo $row->añoD."-".$row->mesD; ?>
+                      </td> 
+                      <td >
+                         <?php echo $row->Monto_monetario; ?>
+                      </td> 
+                      <td >
+                         <?php echo $row->Monto_especie; ?>
+                      </td> 
+                        <td>
+                      <a href='#' onclick="registrar_donativo('<?=base_url()?>donativos/hacerAlgo/<?=$row->id_donativo_jornada?>');"><i class='glyphicon glyphicon-piggy-bank'></i></a>
+                      </td>
+                      <td>
+                       <a href='#' onclick="registrar_donativo('<?=base_url()?>donativos/Registrar_Mespecie/<?=$row->id_donativo_jornada?>');"><i class='glyphicon glyphicon-trash'></i></a>
+                      </td>
+                  </tr>
+                  <?php endforeach; ?>
+                   </table>
+                  </td>
+                 </tr>
+               </table>
+                <?=form_close()?> 
+             </div>
+
+
+            
+
+              <div class="tab-pane" id="3b">
+                <?=  form_open(base_url().'Donativos/')?> 
                <table class="table">
                  <tr>
                      
               <!-- Campo de busqueda -->
                  <td>
                 <div style="margin-left:0px; margin-right:0px;">
-                <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
-                
-                  <div class="col-xs-2">
-                     <span class="input-group-addon" >Buscar por tipo</span>
-                        <select type="text" class="form-control" onchange="habilitarDescripcion(this)" aria-describedby="sizing-addon2" id="TipoBusquedaDonativo" name="TipoBusquedaDonativo">
-                            <option value="0" disabled selected style="display: none;">Selecione...</option>
-                           <?php 
-                            foreach ($arrServicios as $i) {
-                             echo '<option value="'. $i->id_servicio .'">'. $i->Nombre .'</option>';
-                          }  ?>
-                         </select>
-                  </div>
-
-        
-                 <div class="col-xs-2">
-                  <span class="input-group-addon" >Perido anual</span>
-                    <select type="text" class="form-control" aria-describedby="sizing-addon2" name="TipoBusquedaDonativoCita" id="TipoBusquedaDonativoCita" disabled="false">
-                    </select>
-                  </div>
-
-
-                 <div class="col-xs-2" style="margin-left: 300px; ">
-                    <div class="input-group-addon">
-                      <label>Buscar por Fecha: </label>
-                      <input type="date" class="form-control;" aria-describedby="sizing-addon2" name="fechaBusquedaDonativo" disabled ="false">
-                      <input type="submit" style="margin-left:6px" value="Buscar" id="Buscar" name="Buscar" class="btn btn-primary btn-lg;" disabled ="false">
-                    </div>
-                  </div>
                
-              </div>
             </div>
-            <h1>Taller</h1>
             <br>
                    <table class="table" style="margin-left:5px">
                  <!-- Titulos de columnas -->
@@ -199,14 +283,14 @@
                         
                     </thead>
                 
-                  <?php foreach($query as $row): ?>
+                  <?php foreach($cargaCurTall as $row): ?>
                   <tr style="margin-top:7px; margin-bottom:7px;">
                      
                       <td >
                          <?php echo $row->Tipo; ?>
                       </td>   
                       <td >
-                         <?php echo $row->fecha_ini; ?>
+                        <?php echo $row->fecha_ini; ?>
                       </td>   
                       <td>
                          <?php echo $row->Monto_monetario; ?>
@@ -228,10 +312,10 @@
                  </tr>
                </table>
                 <?=form_close()?> 
-           </div>
+               
+             </div>
 
-           <h1>Cursos</h1>
-           <!-- fin Table -->
+
 
       </div>
     </div>
