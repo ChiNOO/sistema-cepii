@@ -53,19 +53,59 @@ class Donativos_model extends CI_Model{
         }
 
 }
+///////////////////////////////////////////////////////////7
+    public function agregarDonativoMonetarioCita($id, $fecha, $cantidad_monetario){
 
-    public function agregarDonativoMonetario($id, $fecha, $cantidad_monetario){
+          $datos = array('id_donativo_cita' => $id,
+                        'fecha' => $fecha,
+                        'cantidad'=> $cantidad_monetario);
+       $this->db->insert('monto_monetario_cita', $datos);
+         redirect(base_url().'donativos');
+     
+    }
+    public function agregarDonativoMonetarioJornada($id, $fecha, $cantidad_monetario){
+
+          $datos = array('id_donativo_jornada' => $id,
+                        'fecha' => $fecha,
+                        'cantidad'=> $cantidad_monetario);
+       $this->db->insert('monto_monetario_jornada', $datos);
+         redirect(base_url().'donativos');
+     
+    }
+    public function agregarDonativoMonetarioCurso($id, $fecha, $cantidad_monetario){
 
           $datos = array('id_donativo_cur_tall' => $id,
                         'fecha' => $fecha,
                         'cantidad'=> $cantidad_monetario);
        $this->db->insert('monto_monetario_cur_tall', $datos);
-        redirect(base_url().'donativos');
+         redirect(base_url().'donativos');
+     
+    }
+///////////////////////////////////////////////////////////////////////
 
+    public function agregarDonativoEspecieCita($id, $fecha, $cantidad_especie,$descripcion){
+
+          $datos = array('id_donativo_cita' => $id,
+                        'fecha' => $fecha,
+                        'cantidad' => $cantidad_especie,
+                        'descripcion'=> $descripcion);
+       $this->db->insert('monto_especie_cita', $datos);
+        redirect(base_url().'donativos');
 
     }
 
-    public function agregarDonativoEspecie($id, $fecha, $cantidad_especie,$descripcion){
+     public function agregarDonativoEspecieJornada($id, $fecha, $cantidad_especie,$descripcion){
+
+          $datos = array('id_donativo_jornada' => $id,
+                        'fecha' => $fecha,
+                        'cantidad' => $cantidad_especie,
+                        'descripcion'=> $descripcion);
+       $this->db->insert('monto_especie_jornada', $datos);
+        redirect(base_url().'donativos');
+
+    }
+
+     public function agregarDonativoEspecieCurso($id, $fecha, $cantidad_especie,$descripcion){
 
           $datos = array('id_donativo_cur_tall' => $id,
                         'fecha' => $fecha,
@@ -77,19 +117,52 @@ class Donativos_model extends CI_Model{
     }
 
 
-    public function getDonativoId($id){
+
+
+///////////////////Obtener id curso o taller//////////////////////
+    public function getDonativoCursoIDmon($id){
         $this->db->select();
         $this->db->where('id_donativo_cur_tall', $id);
         $query = $this->db->get('donativo_curso_taller');
         return $query->result();
     }
 
-    public function getDonativoIdEs($id){
+    public function getDonativoCursoIDesp($id){
         $this->db->select();
         $this->db->where('id_donativo_cur_tall', $id);
         $query = $this->db->get('donativo_curso_taller');
         return $query->result();
     }
+//////////////////////////////////////////7
+public function getDonativoJornadaIDmon($id){
+        $this->db->select();
+        $this->db->where('id_donativo_jornada', $id);
+        $query = $this->db->get('donativo_jornadas');
+        return $query->result();
+}
+public function getDonativoJornadaIDesp($id){
+        $this->db->select();
+        $this->db->where('id_donativo_jornada', $id);
+        $query = $this->db->get('donativo_jornadas');
+        return $query->result();
+}
+////////////////////7////////////////////
+////////////////////////////////////////
+public function getDonativoCitaIDmon($id){
+        $this->db->select();
+        $this->db->where('id_donativo_cita', $id);
+        $query = $this->db->get('donativo_citas');
+        return $query->result();
+}
+public function getDonativoCitaIDesp($id){
+        $this->db->select();
+        $this->db->where('id_donativo_cita', $id);
+        $query = $this->db->get('donativo_citas');
+        return $query->result();
+}
+///////////////////////////////////////
+
+
 
 
 
