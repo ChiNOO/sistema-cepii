@@ -54,6 +54,12 @@
 
 })
 
+
+function elimina(url){
+	if (confirm("Estas seguro que desea eliminar el espacio?") ){
+		location.href=url;
+	}
+}
     </script>
 </head>
 <body style="background-color:#e5e5e5;">
@@ -167,7 +173,7 @@
         <div class="tab-content clearfix">
           <div class="tab-pane" id="1b">
           <form id="formulario" action="<?=base_url()?>index.php/espacios/agregarEspacio" method="post" accept-charset="utf-8">
-            <h3>Registro de espacios</h3>
+            <h3 style="padding-left:2%;">Registro de espacios</h3>
             <h2 style="text-align:center;">Datos del espacio</h2>
             <div style="margin-left:20px; margin-right:20px;">
               <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
@@ -193,7 +199,7 @@
           </div>
 
         <div class="tab-pane active" id="2b">
-          <h4>Búsqueda de espacios</h4>
+          <h4 style="padding-left:2%;">Búsqueda de espacios</h4>
           <br/>
           <div class="col-xs-4">
             <input type="text" class="form-control autocompletar"  name="autocompletar" id="autocompletar" onpaste="return false"  aria-describedby="sizing-addon2" placeholder="Nombre del Espacio">
@@ -203,7 +209,7 @@
           </table>
           </div>
           <div class="tab-pane" id="3b">
-              <h3>Espacios registrados</h3>
+              <h3 style="padding-left:2%;">Espacios registrados</h3>
               <?php
               if ($enlaces!=FALSE){
               echo "  <table class='table table-hover table-responsive'>";
@@ -217,13 +223,17 @@
                   echo "<td>".$row->Nombre."</td>";
                   echo "<td>".$row->Capacidad."</td>";
                   echo "<td>".$row->Tipo_Servicio."</td>";
-                  echo "<td><a href='".base_url()."espacios/editar/$row->idEspacio'> <i class='glyphicon glyphicon-pencil'></i></a></td>";
-                  echo "<td><a href='".base_url()."espacios/eliminar/$row->idEspacio'> <i class='glyphicon glyphicon-remove'></i></a></td>";
+                  echo "<td><a href='".base_url()."espacios/editar/$row->idEspacio' > <i class='glyphicon glyphicon-pencil'></i></a></td>";
+                  ?>
+                  <td><a href='#' onclick="elimina('<?=base_url()?>espacios/eliminar/<?=$row->idEspacio?>');"><i class='glyphicon glyphicon-trash'></i></a></td>
+                  <?php
                   echo "</tr>";
+
+
                 }
                   echo "</table>";
               }else{
-	               echo "No hay registros";
+                 echo "<div class='alert alert-warning'><p class='text-center'>No hay espacios registrados</p></div>";
               }
 
               ?>
