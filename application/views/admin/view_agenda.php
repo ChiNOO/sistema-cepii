@@ -159,6 +159,11 @@
             <i class="fa fa-heart"></i>     Dar cita
           </a>
         </li>
+        <div>
+          <a href="">
+            <input type="submit" href="http://www.google.col-md-12"  value="Nuevo Paciente" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
+          </a>
+        </div> 
       </ul>
 
       <div style="background-color:#e5e5e5; height:3px;"></div>
