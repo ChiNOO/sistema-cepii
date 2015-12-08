@@ -54,7 +54,7 @@
           <div class="navbar-collapse collapse ">
             <ul id="menu-top" class="nav navbar-nav navbar-right">
               <li>
-                <a class="menu-top-active" href="<?php echo base_url().'Agenda'; ?>">
+                <a href="<?php echo base_url().'Agenda'; ?>">
                   <div>
                     <i class="fa fa-calendar"></i>     Agenda
                   </div>
@@ -68,7 +68,7 @@
                 </a>
               </li>
               <li>
-                 <a href="<?php echo base_url().'Donativos'; ?>">
+                 <a class="menu-top-active" href="<?php echo base_url().'Donativos'; ?>">
                   <div>
                     <i class="fa fa-money"></i>     Donativos
                   </div>
