@@ -20,7 +20,7 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header" style="margin:5px;">
-        <img src="assets/img/logo.png">
+        <img src="<?=base_url()?>assets/img/logo.png">
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav" style="margin:5px;">
@@ -81,10 +81,11 @@
                       <span class="caret"></span>
                   </div>
                 </a>
-                <ul class="dropdown-menu">
+               <ul class="dropdown-menu">
                   <li><a href="<?php echo base_url().'Profesionales'; ?>">Profesionales</a></li>
                   <li><a href="<?=base_url()?>espacios/">Espacios</a></li>
                   <li><a href="<?=base_url()?>conferencias/">Conferencias</a></li>
+                  <li><a href="<?=base_url()?>cursos_taller/">Cursos</a></li>
                 </ul>
               </li>
               <li>
