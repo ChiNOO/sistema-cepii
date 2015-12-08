@@ -19,7 +19,7 @@
     <script>
     $(document).ready(function($){
      $('#nombreP').autocomplete({
-      source:'<?php echo base_url('Persona/show_persona');?>',
+      source:'<?php echo base_url('Paciente/show_Paciente');?>',
       minLength:2,
       // optional
       html: true,
@@ -89,7 +89,7 @@
                 </a>
               </li>
               <li>
-                <a href="">
+                <a href="<?php echo base_url().'Paciente'; ?>">
                   <div>
                     <i class="fa fa-users"></i>     Pacientes
                   </div>
@@ -162,7 +162,7 @@
           </a>
         </li>
         <div>
-          <a href="<?php echo base_url().'Paciente/nuevoPaciente'; ?>">
+          <a href="<?php echo base_url().'Paciente'; ?>">
             <input type="submit" href="http://www.google.col-md-12"  value="Nuevo Paciente" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
           </a>
         </div> 
@@ -215,10 +215,10 @@
                       </td>
                     <?php endif; ?>
                     <td>
-                      <?php echo $row->nombrePersona." ".$row->amaPersona." ".$row->apaPersona; ?>
+                      <?php echo $row->nombrePaciente." ".$row->amaPaciente." ".$row->apaPaciente; ?>
                       <?php echo "<br>"; ?>
                       <a>
-                        <i class="fa fa-mobile"></i>     <?php echo $row->celPersona; ?>
+                        <i class="fa fa-mobile"></i>     <?php echo $row->celPaciente; ?>
                       </a>
                     </td>
                     <td>

@@ -103,70 +103,147 @@
     </div>
   </section>
 
+
   <div class="content-wrapper" style="background-color: #e5e5e5; margin-top:0px;">
+   
     <br>
-    <div id="exTab3" class="tab"> 
-      <?=  form_open(base_url().'citas/new_appointment')?>
-      <br>
+    <div id="exTab3" class="tab">
+      
+      <ul  class="nav nav-pills">
+        <li class="active" data-toggle="tab">
+          <a href="#1b" data-toggle="tab">
+            <i class="fa fa-list"></i>     Registro de Paciente
+          </a>
+        </li>
+        <li data-toggle="tab">
+          <a href="#3b" data-toggle="tab">
+            <i class="fa fa-table"></i>     Pacientes Registrados
+          </a>
+        </li>
+      </ul>
+
+      <div style="background-color:#e5e5e5; height:3px;"></div>
+
+      <div class="tab-content clearfix">
+        
+        <div class="tab-pane active" id="1b">
+          <?=  form_open(base_url().'Paciente/agregarPaciente')?>
+          <br>
           <h2 style="text-align:center;">Datos del paciente</h2>
+          
           <div style="margin-left:20px; margin-right:20px;">
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-4">
                 <span class="input-group-addon">Nombre Paciente</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" id="nombreP" name="nombreP">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombre">
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Apellido Paterno</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" id="nombreP" name="nombreP">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="paterno">
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Apellido Materno</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" id="claveP" name="claveP">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="materno">
               </div>
             </div>
           </div>
+          
           <br><br>
+          
           <div style="margin-left:20px; margin-right:20px;">
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-5">
                 <span class="input-group-addon">Calle</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" id="nombreP" name="nombreP">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="calle">
               </div>
               <div class="col-xs-3">
                 <span class="input-group-addon">Número</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" id="nombreP" name="nombreP">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="numero">
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Colonia</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" id="claveP" name="claveP">
-              </div>        
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="colonia">
+              </div>
+            </div>        
           </div>
+
           <br><br>
+
           <div style="margin-left:20px; margin-right:20px;">
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-2">
                 <span class="input-group-addon" id="sizing-addon2">Fecha</span>
                 <input type="text" class="form-control" aria-describedby="sizing-addon2" data-provide="datepicker" id="datepicker" name="fecha">
               </div>
-              <div class="col-xs-2">
-                <span class="input-group-addon" id="sizing-addon2">Hora</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="hora">
+              <div class="col-xs-1">
+                <span class="input-group-addon" id="sizing-addon2">Sexo</span>
+                <select class="form-control" name="sexo">
+                  <option></option>
+                  <option value="M">M</option>
+                  <option value="F">F</option>
+                </select>
               </div>
-              <div class="col-xs-2">
-                <span class="input-group-addon" id="sizing-addon2">Consultorio</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="consultorio">
+              <div class="col-xs-5">
+                <span class="input-group-addon" id="sizing-addon2">Correo</span>
+                <input type="email" class="form-control" aria-describedby="sizing-addon2" name="correo">
               </div>
-              <div class="col-xs-6">
-                <span class="input-group-addon" id="sizing-addon2">Información Adicional</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="info">
+              <div class="col-xs-4">
+                <span class="input-group-addon" id="sizing-addon2">Teléfono</span>
+                <input type="tel" class="form-control" aria-describedby="sizing-addon2" name="telefono">
               </div>
             </div>
           </div>
-          <input type="submit"  value="Guardar" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
-          <br><br>
+
+          <div style="margin-left:20px; margin-right:20px;">
+            <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
+              <input type="submit"  value="Guardar" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
+            </div>
+          </div>
+
+          <br>
           <?=form_close()?>
+        </div>
+
+        <div class="tab-pane" id="3b">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Calle</th>
+                <th>Colonia</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>Sexo</th>
+                <th>Edad</th>
+              </tr>
+            </thead>
+            <?php foreach($query as $row): ?>
+              <tr>
+                <td><?php echo $row->nombrePersona.' '.$row->apaPersona.' '.$row->amaPersona; ?></td>
+                <td><?php echo $row->callePersona.' #'.$row->numDirPersona; ?></td>
+                <td><?php echo $row->coloniaPersona; ?></td>
+                <td><?php echo $row->celPersona; ?></td>
+                <td><?php echo $row->correoPersona; ?></td>
+                <td><?php echo $row->sexo; ?></td>
+                <td>
+                  <?php
+                    $then = date('Ymd', strtotime($row->fechaNa));
+                    $diff = date('Ymd') - $then;
+                    echo substr($diff, 0, -4);
+                  ?>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+          </table>
+
+        </div>
+
+      </div>
+
     </div>
+
   </div>
+
   <!-- CONTENT-WRAPPER SECTION END-->
   
   <footer style="width: 100%;border-top: 2px solid #fff;bottom: 0; position: fixed; padding: 1rem;">
@@ -182,9 +259,5 @@ jQuery(document).ready(function() {
     jQuery("#datepicker").datepicker();
 });
 </script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('input[name="hora"]').ptTimeSelect();
-    });
-</script>
+
 </html>
