@@ -61,7 +61,7 @@ ALTER TABLE `espacio`
 CREATE TABLE IF NOT EXISTS `cita` (
 `idcita` int(11) NOT NULL,
   `persona_idpersona` int(11) NOT NULL,
-  `profesional_cedulaProfesional` int(11) NOT NULL,
+  `profesional_idProfesional` int(11) NOT NULL,
   `hora` varchar(45) DEFAULT NULL,
   `fecha` varchar(45) DEFAULT NULL,
   `consultorio` varchar(45) DEFAULT NULL,
@@ -71,12 +71,6 @@ CREATE TABLE IF NOT EXISTS `cita` (
 --
 -- Volcado de datos para la tabla `cita`
 --
-
-INSERT INTO `cita` (`idcita`, `persona_idpersona`, `profesional_cedulaProfesional`, `hora`, `fecha`, `consultorio`, `estado`) VALUES
-(1, 1, 1, '8:00', '2015-10-26', '4', 'Sin Atender'),
-(2, 2, 1, '9:00', '2015-11-11', '3', 'Sin Atender'),
-(3, 3, 1, '7:30', '12/17/2015', '4', NULL),
-(4, 1, 2, '7:15', '12/19/2015', '2', NULL);
 
 -- --------------------------------------------------------
 
@@ -144,19 +138,14 @@ CREATE TABLE IF NOT EXISTS `persona` (
 -- Volcado de datos para la tabla `persona`
 --
 
-INSERT INTO `persona` (`idpersona`, `nombrePersona`, `amaPersona`, `apaPersona`, `dirPersona`, `celPersona`, `email`, `sexo`, `fechaNa`) VALUES
-(1, 'Christian', 'Vargas', 'Saavedra', 'Apeninos #8', '2281404359', 'lirical_niggar@hotmail.com', 'M', '1992-02-29'),
-(2, 'Lizeth', 'Rodríguez', 'Ramírez', 'Calle 3 #12', '2281456987', 'lizeth.sa@gmail.com', 'F', '1992-06-02'),
-(3, 'Alberto', 'Flores', 'Marcial', '20 Nov #45', '2281987563', 'albert_mar@hotmail.com', 'M', '1985-11-10');
 
--- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `profesional`
 --
 
 CREATE TABLE IF NOT EXISTS `profesional` (
-`cedulaProfesional` int(11) NOT NULL,
+`idProfesional` int(11) NOT NULL,
   `nombrePro` varchar(45) DEFAULT NULL,
   `apaPro` varchar(45) DEFAULT NULL,
   `amaPro` varchar(45) DEFAULT NULL,
@@ -171,9 +160,6 @@ CREATE TABLE IF NOT EXISTS `profesional` (
 -- Volcado de datos para la tabla `profesional`
 --
 
-INSERT INTO `profesional` (`cedulaProfesional`, `nombrePro`, `amaPro`, `apaPro`, `celPro`, `ramaMedica`, `usuario`, `contraseña`) VALUES
-(1, 'Azucena', 'Lopez', 'Lopez', '2315478', 'Psicología', 'admin', 'admin'),
-(2, 'Roberto', 'Martinez', 'Pardo', '2548753', 'Medicina', 'robert', 'robert');
 
 --
 -- Índices para tablas volcadas
@@ -183,7 +169,7 @@ INSERT INTO `profesional` (`cedulaProfesional`, `nombrePro`, `amaPro`, `apaPro`,
 -- Indices de la tabla `cita`
 --
 ALTER TABLE `cita`
- ADD PRIMARY KEY (`idcita`), ADD KEY `fk_cita_persona1_idx` (`persona_idpersona`), ADD KEY `fk_cita_profesional1_idx` (`profesional_cedulaProfesional`);
+ ADD PRIMARY KEY (`idcita`), ADD KEY `fk_cita_persona1_idx` (`persona_idpersona`), ADD KEY `fk_cita_profesional1_idx` (`profesional_idProfesional`);
 
 --
 -- Indices de la tabla `donativo`
@@ -213,7 +199,7 @@ ALTER TABLE `persona`
 -- Indices de la tabla `profesional`
 --
 ALTER TABLE `profesional`
- ADD PRIMARY KEY (`cedulaProfesional`);
+ ADD PRIMARY KEY (`idProfesional`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -238,7 +224,7 @@ MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT de la tabla `profesional`
 --
 ALTER TABLE `profesional`
-MODIFY `cedulaProfesional` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `idProfesional` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- Restricciones para tablas volcadas
 --
@@ -246,10 +232,6 @@ MODIFY `cedulaProfesional` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- Filtros para la tabla `cita`
 --
-ALTER TABLE `cita`
-ADD CONSTRAINT `fk_cita_persona1` FOREIGN KEY (`persona_idpersona`) REFERENCES `persona` (`idpersona`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_cita_profesional1` FOREIGN KEY (`profesional_cedulaProfesional`) REFERENCES `profesional` (`cedulaProfesional`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
 --
 -- Filtros para la tabla `donativo`
 --
