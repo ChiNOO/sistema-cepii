@@ -85,6 +85,7 @@
                   <li><a href="<?php echo base_url().'Profesionales'; ?>">Profesionales</a></li>
                   <li><a href="<?=base_url()?>espacios/">Espacios</a></li>
                   <li><a href="<?=base_url()?>conferencias/">Conferencias</a></li>
+                  <li><a href="<?=base_url()?>cursos_taller/">Cursos</a></li>
                 </ul>
               </li>
               <li>

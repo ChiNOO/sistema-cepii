@@ -13,48 +13,10 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script>
-    <script type="text/javascript" src="<?php echo base_url('js/funciones.js') ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('js/encuentra.js') ?>"></script>
     <link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>/assets/img/icon.png">
 
-    <script type="text/javascript">
-      $(document).ready(function(){
-  //utilizamos el evento keyup para coger la información
-  //cada vez que se pulsa alguna tecla con el foco en el buscador
 
-  $(".autocompletar").keyup(function(){
-  //alert("Hello! I am an alert box!!");
-    //en info tenemos lo que vamos escribiendo en el buscador
-    var info = $(this).val();
-
-    //hacemos la petición al método autocompletado del controlador home
-    //pasando la variable info
-    $.post('<?php echo base_url().'espacios/autocompletar' ?>',{ info : info }, function(data){
-
-      //si autocompletado nos devuelve algo
-      if(data != '')
-      {
-        //$('.contenedor').show();
-        $(".table").html(data);
-
-      }else{
-
-        $(".table").html('');
-
-      }
-      })
-
-    })
-
-
-  //buscamos el elemento pulsado con live y mostramos un alert
-  $(".contenedor").find("a").live('click',function(e){
-    e.preventDefault();
-    alert($(this).html());
-  });
-
-})
-
-    </script>
 </head>
 <body style="background-color:#e5e5e5;">
   <nav class="navbar navbar-default">
@@ -93,7 +55,7 @@
           <div class="navbar-collapse collapse ">
             <ul id="menu-top" class="nav navbar-nav navbar-right">
               <li>
-                <a href="<?php echo base_url().'Agenda'; ?>">
+                <a href="<?=base_url()?>agenda/">
                   <div>
                     <i class="fa fa-calendar"></i>     Agenda
                   </div>
@@ -107,7 +69,7 @@
                 </a>
               </li>
               <li>
-                <a href="">
+                <a href="<?=base_url()?>Donativos/">
                   <div>
                     <i class="fa fa-money"></i>     Donativos
                   </div>
@@ -147,12 +109,12 @@
         <ul  class="nav nav-pills">
           <li>
             <a href="#1b" data-toggle="tab">
-              <i class="glyphicon glyphicon-list-alt"></i>     Registro de espacios
+              <i class="glyphicon glyphicon-list-alt"></i>     Registro de cursos y talleres
             </a>
           </li>
           <li class="active" data-toggle="tab">
             <a href="#2b" data-toggle="tab">
-              <i class="glyphicon glyphicon-search"></i>     Consulta
+              <i class="glyphicon glyphicon-search"></i>     Consulta de cursos y talleres
             </a>
           </li>
         </ul>
@@ -161,22 +123,53 @@
 
         <div class="tab-content clearfix">
           <div class="tab-pane" id="1b">
-          <form id="formulario" action="<?=base_url()?>index.php/espacios/agregarEspacio" method="post" accept-charset="utf-8">
-            <h3>Registro de espacios</h3>
-            <h2 style="text-align:center;">Datos del espacio</h2>
+          <form id="formulario" action="<?=base_url()?>index.php/cursos_taller/agrega" method="post" accept-charset="utf-8">
+            <h3>Registro de cursos y talleres</h3>
+            <h2 style="text-align:center;">Datos del curso/taller</h2>
             <div style="margin-left:20px; margin-right:20px;">
               <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
-                <div class="col-xs-5">
-                  <span class="input-group-addon" id="sizing-addon2">Nombre del espacio</span>
-                  <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombre_espacio" id="nombre_espacio" required="required">
-                </div>
-                <div class="col-xs-3">
-                  <span class="input-group-addon" id="sizing-addon2">Capacidad</span>
-                  <input type="number" class="form-control" aria-describedby="sizing-addon2" name="capacidad" id="capacidad" required="required">
+                <div class="col-xs-2">
+                  <span class="input-group-addon" id="sizing-addon2">Tipo</span>                  
+                  <input list="browsers" class="form-control" aria-describedby="sizing-addon2" name="tipo" id="tipo" required="required">
+                    <datalist id="browsers">
+                      <option value="Curso">
+                      <option value="Taller">                      
+                    </datalist> 
                 </div>
                 <div class="col-xs-2">
-                  <span class="input-group-addon" id="sizing-addon2">Tipo del servicio</span>
-                  <input type="text" class="form-control" aria-describedby="sizing-addon2" name="tipo_servicio" id="tipo_servicio" required="required">
+                  <span class="input-group-addon" id="sizing-addon2">Profesional que lo imparte</span>
+                  <input type="text" class="form-control" aria-describedby="sizing-addon2" name="profesional" id="profesional" required="required">
+                </div>
+                <div class="col-xs-5">
+                  <span class="input-group-addon" id="sizing-addon2">Lugar disponible</span>
+                  <input type="text" class="form-control" aria-describedby="sizing-addon2" name="lugar" id="lugar" required="required">
+                </div>
+                <div class="col-xs-3">
+                  <span class="input-group-addon" id="sizing-addon2">Dirección</span>
+                  <input type="text" class="form-control" aria-describedby="sizing-addon2" name="direccion" id="direccion" required="required">
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <div class="col-xs-2">
+                  <span class="input-group-addon" id="sizing-addon2">Numero de horas</span>
+                  <input type="number" class="form-control" aria-describedby="sizing-addon2" name="n_horas" id="n_horas" required="required">
+                </div>                
+                <div class="col-xs-2">
+                  <span class="input-group-addon" id="sizing-addon2">Fecha de inicio</span>
+                  <input type="date" class="form-control" aria-describedby="sizing-addon2" name="f_inicio" id="f_inicio" required="required">
+                </div>
+                <div class="col-xs-2">
+                  <span class="input-group-addon" id="sizing-addon2">Fecha de fin</span>
+                  <input type="date" class="form-control" aria-describedby="sizing-addon2" name="f_fin" id="f_fin" required="required">
+                </div>
+                <div class="col-xs-2">
+                  <span class="input-group-addon" id="sizing-addon2">Hora de inicio</span>
+                  <input type="time" class="form-control" aria-describedby="sizing-addon2" name="h_inicio" id="h_inicio" required="required">
+                </div>
+                <div class="col-xs-2">
+                  <span class="input-group-addon" id="sizing-addon2">Hora de fin</span>
+                  <input type="time" class="form-control" aria-describedby="sizing-addon2" name="h_fin" id="h_fin" required="required">
                 </div>
               </div>
             </div>
@@ -188,13 +181,42 @@
           </div>
 
         <div class="tab-pane active" id="2b">
-          <h4>Búsqueda de espacios</h4>
+          
           <br/>
-          <div class="col-xs-4">
-            <input type="text" class="form-control autocompletar"  name="autocompletar" id="autocompletar" onpaste="return false"  aria-describedby="sizing-addon2" placeholder="Nombre del Espacio">
-            <br/>
+          <div class="col-xs-4">    
+            
           </div>
           <table class="table table-hover table-responsive">
+            <?php
+              echo "<tr>";
+              echo "<th>Tipo</th>";
+              echo "<th>Personal que lo imparte</th>";
+              echo "<th>Dirección</th>";
+              echo "<th>Numero de horas</th>";
+              echo "<th>Fecha de inicio</th>";
+              echo "<th>Fecha de fin</th>";
+              echo "<th>Hora de inicio</th>";
+              echo "<th>Hora de fin</th>";
+              echo "</tr>";
+
+              //$this->db->like('tipo',$abuscar,'after');
+              $abuscar = $this->security->xss_clean($this->input->post('info'));
+      
+              $search = $this->cursos_taller_model->buscador();
+              foreach($search->result() as $fila) {
+                echo "<tr>";
+                  echo "<td>".$fila->tipo."</td>";
+                  echo "<td>".$fila->profesional."</td>";
+                  echo "<td>".$fila->direccion."</td>";
+                  echo "<td>".$fila->num_horas."</td>";
+                  echo "<td>".$fila->f_inicio."</td>";
+                  echo "<td>".$fila->f_fin."</td>";
+                  echo "<td>".$fila->h_inicio."</td>";
+                  echo "<td>".$fila->h_fin."</td>";           
+                echo "</tr>";
+              }       
+
+            ?>
           </table>
           </div>
           <div class="tab-pane" id="3b">
@@ -223,7 +245,4 @@
       jQuery("#datepicker").datepicker();
   });
 </script>
-
-
-
 </html>

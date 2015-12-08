@@ -82,7 +82,7 @@
           <div class="navbar-collapse collapse ">
             <ul id="menu-top" class="nav navbar-nav navbar-right">
               <li>
-                <a class="menu-top-active">
+                <a class="menu-top-active" href="<?php echo base_url().'Agenda'; ?>">
                   <div>
                     <i class="fa fa-calendar"></i>     Agenda
                   </div>
@@ -113,6 +113,7 @@
                   <li><a href="<?php echo base_url().'Profesionales'; ?>">Profesionales</a></li>
                   <li><a href="<?=base_url()?>espacios/">Espacios</a></li>
                   <li><a href="<?=base_url()?>conferencias/">Conferencias</a></li>
+                  <li><a href="<?=base_url()?>cursos_taller/">Cursos</a></li>
                 </ul>
               </li>
               <li>
