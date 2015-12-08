@@ -26,6 +26,24 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `cita`
 --
 
+CREATE TABLE `curso_taller` (
+  `id` int(11) NOT NULL,
+  `tipo` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  `profesional` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  `lugar` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  `num_horas` int(11) DEFAULT NULL,
+  `cantidad_personas` int(11) NOT NULL,
+  `f_inicio` date NOT NULL,
+  `f_fin` date NOT NULL,
+  `h_inicio` time NOT NULL,
+  `h_fin` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+ALTER TABLE `curso_taller`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `curso_taller`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 CREATE TABLE `espacio` (
   `idEspacio` int(11) NOT NULL,

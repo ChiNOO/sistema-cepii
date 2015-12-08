@@ -9,7 +9,7 @@ class Cursos_taller_model extends CI_Model{
   }
 
   function buscador(){
-    $this->db->select('tipo, profesional, lugar, direccion, num_horas, f_inicio, f_fin, h_inicio, h_fin');
+    $this->db->select('tipo, profesional, lugar, num_horas, cantidad_personas, f_inicio, f_fin, h_inicio, h_fin');
     //$this->db->like('tipo',$abuscar,'after');
     $this->db->order_by("f_inicio","desc");
     $resultados = $this->db->get('curso_taller', 22);

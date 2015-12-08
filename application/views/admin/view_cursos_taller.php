@@ -187,28 +187,25 @@
             
           </div>
           <table class="table table-hover table-responsive">
-            <?php
-              echo "<tr>";
-              echo "<th>Tipo</th>";
-              echo "<th>Personal que lo imparte</th>";
-              echo "<th>Dirección</th>";
-              echo "<th>Numero de horas</th>";
-              echo "<th>Fecha de inicio</th>";
-              echo "<th>Fecha de fin</th>";
-              echo "<th>Hora de inicio</th>";
-              echo "<th>Hora de fin</th>";
-              echo "</tr>";
-
-              //$this->db->like('tipo',$abuscar,'after');
-              $abuscar = $this->security->xss_clean($this->input->post('info'));
-      
+            
+          <tr>
+            <th>Tipo</th>
+            <th>Personal que lo imparte</th>
+            <th>Numero de horas</th>
+            <th>Cantidad de personas</th>
+            <th>Fecha de inicio</th>
+            <th>Fecha de fin</th>
+            <th>Hora de inicio</th>
+            <th>Hora de fin</th>
+          </tr>
+            <?php                   
               $search = $this->cursos_taller_model->buscador();
               foreach($search->result() as $fila) {
                 echo "<tr>";
                   echo "<td>".$fila->tipo."</td>";
                   echo "<td>".$fila->profesional."</td>";
-                  echo "<td>".$fila->direccion."</td>";
                   echo "<td>".$fila->num_horas."</td>";
+                  echo "<td>".$fila->cantidad_personas."</td>";
                   echo "<td>".$fila->f_inicio."</td>";
                   echo "<td>".$fila->f_fin."</td>";
                   echo "<td>".$fila->h_inicio."</td>";
