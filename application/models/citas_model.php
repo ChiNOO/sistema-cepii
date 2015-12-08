@@ -15,17 +15,17 @@ class Citas_model extends CI_Model{
                 $id = $row->idPersona;
             }
         }
-        $this->db->select('cedulaProfesional, CONCAT(nombrePro," ", amaPro," ",apaPro) AS name', FALSE);
+        $this->db->select('idProfesional, CONCAT(nombrePro," ", amaPro," ",apaPro) AS name', FALSE);
         $this->db->from('profesional');
         $query2 = $this->db->get();
         foreach ($query2->result() as $row2) {
             if ($row2->name == $nombrePRO) {
-                $idP = $row2->cedulaProfesional;
+                $idP = $row2->idProfesional;
             }
         }
         $array = array(
             'persona_idpersona' => $id,
-            'profesional_cedulaProfesional' => $idP,
+            'profesional_idProfesional' => $idP,
             'hora' => $hora,
             'fecha' => $fecha,
             'consultorio' => $consultorio
@@ -40,7 +40,7 @@ class Citas_model extends CI_Model{
                             persona.apaPersona, persona.celPersona');
         $this->db->from('cita');
         $this->db->join('persona', 'persona.idpersona = cita.persona_idpersona');
-        $this->db->join('profesional', 'profesional.cedulaProfesional = cita.profesional_cedulaProfesional');
+        $this->db->join('profesional', 'profesional.idProfesional = cita.profesional_idProfesional');
         $query = $this->db->get();
         return $query->result();
     }
@@ -51,8 +51,8 @@ class Citas_model extends CI_Model{
                             persona.apaPersona, persona.celPersona');
         $this->db->from('cita');
         $this->db->join('persona', 'persona.idpersona = cita.persona_idpersona');
-        $this->db->join('profesional', 'profesional.cedulaProfesional = cita.profesional_cedulaProfesional');
-        $this->db->where('profesional_cedulaProfesional', $id);
+        $this->db->join('profesional', 'profesional.idProfesional = cita.profesional_idProfesional');
+        $this->db->where('profesional_idProfesional', $id);
         $this->db->order_by('hora'); 
         $query = $this->db->get();
         return $query->result();      

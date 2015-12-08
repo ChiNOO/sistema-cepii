@@ -34,7 +34,7 @@ class Profesional_model extends CI_Model{
 
         if($query->num_rows > 0){
             foreach ($query->result() as $row){
-                $new_row['id'] = htmlentities(stripslashes($row->cedulaProfesional));
+                $new_row['id'] = htmlentities(stripslashes($row->idProfesional));
                 $new_row['value'] = htmlentities(stripslashes($row->nombrePro.' '.$row->amaPro.' '.$row->apaPro));
                 $row_set[] = $new_row;
             }
