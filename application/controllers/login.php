@@ -24,6 +24,10 @@ class Login extends CI_Controller {
 
 	}
 
+	public function logout(){
+		redirect(base_url());
+	}
+
 	public function login_webService(){
 		$usuario = $this->input->post('usuario');
 		$contraseña = $this->input->post('contraseña');

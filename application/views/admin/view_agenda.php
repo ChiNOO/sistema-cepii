@@ -64,11 +64,9 @@
                 </div>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="#">Action1</a></li>
-                <li><a href="#">Action2</a></li>
-                <li><a href="#">Action3</a></li>
+                <li><a href="#">Perfil</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">Action4</a></li>
+                <li><a href="<?php echo base_url().'login/logout'?>">Cerrar Sesión</a></li>
               </ul>
             </li>
           </ul>
@@ -78,7 +76,7 @@
 
 
   <section class="menu-section">
-    <div class="container">
+    <div >
       <div class="row">
         <div class="col-md-12">
           <div class="navbar-collapse collapse ">
@@ -114,7 +112,7 @@
                 <ul class="dropdown-menu">
                   <li><a href="<?php echo base_url().'Profesionales'; ?>">Profesionales</a></li>
                   <li><a href="<?=base_url()?>espacios/">Espacios</a></li>
-                  <li><a href="#">Action3</a></li>
+                  <li><a href="<?=base_url()?>conferencias/">Conferencias</a></li>
                 </ul>
               </li>
               <li>
@@ -306,7 +304,7 @@
   </div>
   <!-- CONTENT-WRAPPER SECTION END-->
 
-  <footer style="width: 100%;border-top: 2px solid #fff;bottom: 0; position: absolute; padding: 1rem;">
+  <footer style="width: 100%;border-top: 2px solid #fff;bottom: 0; position: fixed; padding: 1rem;">
     <div class="container">
           &copy; 2015 SISTEMA CEPII | BY : <a href="http://www.uv.mx/Fei/" target="_blank">FEI UV</a>
     </div>

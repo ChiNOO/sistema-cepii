@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Sistema CEPII</title>
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <title>Sistema CEPII_control_conferencias</title>
+    <link href="<?=base_url()?>assets/css/bootstrap.css" rel="stylesheet" />
 
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
-    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="<?=base_url()?>assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="<?=base_url()?>assets/css/style.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>css/jquery-ui.min.css" rel="stylesheet" />
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-    <link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/img/icon.png">
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script>
+    <script type="text/javascript" src="<?php echo base_url('js/funciones.js') ?>"></script>
+    <link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>/assets/img/icon.png">
 </head>
 <body style="background-color:#e5e5e5;">
   <nav class="navbar navbar-default">
@@ -67,12 +67,13 @@
                 </a>
               </li>
               <li>
-                <a href="" class="menu-top-active">
+               <a href="<?php echo base_url().'Donativos'; ?>">
                   <div>
                     <i class="fa fa-money"></i>     Donativos
                   </div>
                 </a>
               </li>
+              <li>
               <li class="dropdown">
                 <a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <div>
@@ -104,17 +105,17 @@
 
 <div class="content-wrapper" style="background-color: #e5e5e5; margin-top: 0px;">
     <br>
-    <div id="exTab3" class="tab">
+    <div id="Conferencias" class="tab">
       <ul  class="nav nav-pills">
         <li  data-toggle="tab">
           <a href="#2b" data-toggle="tab">
-            <i class="fa fa-usd"></i>     Donativos
+            <i class="fa fa-microphone"></i>     Conferencias
           </a>
         </li>
 
         <li data-toggle="tab" >
           <a href="#5b" data-toggle="tab">
-            <i class="fa fa-table"></i>     Registrar Donativo
+            <i class="fa fa-file-text-o"></i>     Registrar Conferencias
           </a>
         </li>
       </ul>
@@ -130,70 +131,26 @@
           <table class="table">
             <tr>
               <td>
-                <input data-provide="datepicker">
+                <input data-provide="datepicker" data-provide="timepicker">
 
               </td>
               <td>
                 <table class="table">
                   <thead>
                     <tr>
+                      <th>Tema Conferencia</th>
+                      <th>Descripcion</th>
+                      <th>Ponentes</th>
+                      <th>Numero Asistentes</th>
+                      <th>Lugar</th>
+                      <th>Fecha</th>
                       <th>Hora</th>
-                      <th>Paciente</th>
-                      <th>Profesional</th>
-                      <th>Consultorio</th>
-                      <th>Estado de la lista</th>
-                      <th></th>
+                      <th>Direccion</th>
                     </tr>
-                  </thead>
-
-                  <?php foreach($query as $row): ?>
-                  <tr style="margin-top:5px; margin-bottom:5px;">
-                    <?php if($row->ramaMedica == "Psicología"): ?>
-                      <td style="background-color:#F2DEDE">
-                        <?php echo $row->hora; ?>
-                      </td>
-                    <?php endif; ?>
-
-                    <?php if($row->ramaMedica == "Nutrición"): ?>
-                      <td style="background-color:#BCE8F1">
-                        <?php echo $row->rama; ?>
-                      </td>
-                    <?php endif; ?>
-
-                    <?php if($row->ramaMedica == "Medicina"): ?>
-                      <td style="background-color:#DFF0D8">
-                        <?php echo $row->hora; ?>
-                      </td>
-                    <?php endif; ?>
-                    <td>
-                      <?php echo $row->nombrePersona." ".$row->amaPersona." ".$row->apaPersona; ?>
-                      <?php echo "<br>"; ?>
-                      <a>
-                        <i class="fa fa-mobile"></i>     <?php echo $row->celPersona; ?>
-                      </a>
-                    </td>
-                    <td>
-                      <a>
-                        <i class="fa fa-user-md"></i>     Dr.(a) <?php echo $row->nombrePro." ".$row->amaPro." ".$row->apaPro; ?>
-                      </a>
-                    </td>
-                    <td>
-                      <?php echo $row->consultorio; ?>
-                    </td>
-                    <td>
-                      <select>
-                        <option>Atendido</option>
-                        <option>holo</option>
-                        <option>casa</option>
-                        <option>holo</option>
-                        <option>casa</option>
-                      </select>
-                    </td>
-                    <td>
-                      <button style="background-color:#f4d2e1">Cancelar</button>
-                    </td>
-                  </tr>
-                  <?php endforeach; ?>
+                  </thead>  
+                  <tbody>
+                    <td>Constelacion Familiar</td><td>Una conferencia hermosa</td><td>Uzziel Ojeda</td><td>43</td><td>FEI</td><td>24 Octubre 2015</td><td>12:30 AM</td><td>Av. Xalapa S/N</td>                
+                  </tbody>             
                 </table>
               </td>
             </tr>
@@ -211,62 +168,64 @@
 
 
         <div class="tab-pane" id="5b">
-          <?=  form_open(base_url().'Donativos/new_appointment')?>
-          <h2 style="text-align:center;">Datos de Donativos</h2>
+          <?=  form_open(base_url().'Conferencias/new_conference')?>
+          <h2 style="text-align:center;">Datos Conferencia</h2>
           <br>
 
-          <div style="margin-left:30px; margin-right:5px;">
+          <div style="margin-left:5px; margin-right:5px;">
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
 
+              <div class="col-xs-4">
+              <span class="input-group-addon" id="sizing-addon1" >Tema de Conferencia</span>
+              <input type="text" class="form-control" aria-describedby="sizing-addon1" name="TemaConferencia" placeholder="Ejemplo: Constelaciones Familiares">
+              </div>
+
+              <div class="col-xs-4">
+              <span class="input-group-addon" id="sizing-addon2">Descripción</span>
+               <textarea class="form-control" rows="2"></textarea>
+              </div>
+              
+              <div class="col-xs-4">
+              <span class="input-group-addon" id="sizing-addon3" >Nombre Ponente</span>
+              <input type="text" class="form-control" aria-describedby="sizing-addon3" name="TemaConferencia" placeholder="Ejemplo: Uzziel Asafmin Ojeda González">
+              </div>
+              
+            </div>
+          </div>
+
+          <div style="margin-left:5px; margin-right:5px;">
+            <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
+
+              <div class="col-xs-4">
+              <span class="input-group-addon" id="sizing-addon4" >Numero de Asistentes</span>
+              <input type="text" class="form-control" aria-describedby="sizing-addon4" name="TemaConferencia" placeholder="Ejemplo: 25">
+              </div>
 
              <div class="col-xs-4">
-              <span class="input-group-addon" id="sizing-addon2">Tipo
-               </span>
-                <select type="text" class="form-control" aria-describedby="sizing-addon2" name="Tipo">
-                 <option>Monetario</option>
-                 <option>Material</option>
-               </select>
+              <span class="input-group-addon" id="sizing-addon5" >Lugar</span>
+              <input type="text" class="form-control" aria-describedby="sizing-addon5" name="TemaConferencia" placeholder="Ejemplo: Facultad de Estadística e Informática">
               </div>
 
               <div class="col-xs-4">
-                <span class="input-group-addon" id="sizing-addon2">Fecha</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" data-provide="datepicker" id="datepicker" name="fecha">
-              </div>
-              <div class="col-xs-4">
-              <span class="input-group-addon" id="sizing-addon2">Cantidad</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombreP" placeholder="$">
-            </div>
-
-            </div>
-          </div>
-
-          <div style="margin-left:30px; margin-right:5px;">
-            <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
-
-            <div class="col-xs-6">
-              <span class="input-group-addon" id="sizing-addon2" >Nombre Paciente</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombreP" placeholder="Ejemplo: Enrique Rodrìguez Becerra">
-            </div>
-
-              <div class="col-xs-6">
-              <span class="input-group-addon" id="sizing-addon2">Nombre Taller, Curso o Terapia</span>
-                <select type="text" class="form-control" aria-describedby="sizing-addon2" name="Tipo">
-                 <option>Monetario</option>
-                 <option>Material</option>
-               </select>
+                <span class="input-group-addon bootstrap-timepicker timepicker" id="sizing-addon6">Fecha</span>
+                <input type="text" class="form-control" aria-describedby="sizing-addon6" data-provide="datepicker" id="datepicker" name="fecha">
               </div>
 
             </div>
           </div>
 
-          <div style="margin-left:30px; margin-right:5px;">
+          <div style="margin-left:5px; margin-right:5px;">
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
 
-            <div class="col-xs-6">
-              <span class="input-group-addon" id="sizing-addon2">Descripción</span>
-            <textarea class="form-control" rows="3"></textarea>
-            </div>
+            <div class="col-xs-4">
+              <span class="input-group-addon" id="sizing-addon4" >Hora</span>
+              <input type="text" class="form-control" aria-describedby="sizing-addon4" name="TemaConferencia" placeholder="Ejemplo: 8:00 AM">
+              </div>
 
+              <div class="col-xs-4">
+              <span class="input-group-addon" id="sizing-addon4" >Dirección</span>
+              <input type="text" class="form-control" aria-describedby="sizing-addon4" name="TemaConferencia" placeholder="Ejemplo: Av. Xalapa, s/n">
+              </div>
 
             </div>
           </div>
@@ -284,7 +243,7 @@
 
   <!-- Pie de página-->
 
-  <footer style="width: 100%;border-top: 2px solid #fff;bottom: 0; position: fixed; padding: 1rem;">
+  <footer style="width: 100%;border-top: 1px solid #fff;bottom: 0; position: fixed; padding: 0rem;">
     <div class="container">
           &copy; 2015 SISTEMA CEPII | BY : <a href="http://www.uv.mx/Fei/" target="_blank">FEI UV</a>
     </div>
@@ -292,14 +251,12 @@
 
 </body>
 <script type="text/javascript">
+            $('#timepicker1').timepicker();
+        </script>
+<script type="text/javascript">
 jQuery.noConflict();
 jQuery(document).ready(function() {
     jQuery("#datepicker").datepicker();
 });
-</script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('input[name="hora"]').ptTimeSelect();
-    });
 </script>
 </html>
