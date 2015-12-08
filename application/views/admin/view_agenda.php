@@ -4,10 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>Sistema CEPII</title>
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap.css" rel="stylesheet" />
 
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
-    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>css/jquery-ui.min.css" rel="stylesheet" />
 
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -49,7 +49,7 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header" style="margin:5px;">
-        <img src="assets/img/logo.png">
+        <img src="<?php echo base_url(); ?>assets/img/logo.png">
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav" style="margin:5px;">
@@ -160,7 +160,7 @@
           </a>
         </li>
         <div>
-          <a href="">
+          <a href="<?php echo base_url().'Paciente/nuevoPaciente'; ?>">
             <input type="submit" href="http://www.google.col-md-12"  value="Nuevo Paciente" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
           </a>
         </div> 

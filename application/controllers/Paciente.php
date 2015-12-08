@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Persona extends CI_Controller {
+class Paciente extends CI_Controller {
 	
 	public function __construct(){
 		parent::__construct();
@@ -15,6 +15,10 @@ class Persona extends CI_Controller {
 	    	//echo "<li id=' $row[nombre']'></li>";
 	    	echo "<li>$row->nombre</li>";
 	    } 
+	}
+
+	public function nuevoPaciente(){
+		$this->load->view('admin/view_new_persona');
 	}
 
 	public function show_persona(){
