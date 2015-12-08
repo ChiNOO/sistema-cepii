@@ -53,6 +53,8 @@ CREATE TABLE `espacio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `espacio`
+  ADD PRIMARY KEY (`idEspacio`);
+ALTER TABLE `espacio`
   MODIFY `idEspacio` int(11) NOT NULL AUTO_INCREMENT;
 
 
