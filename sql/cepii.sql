@@ -5,7 +5,7 @@
 -- Servidor: 127.0.0.1
 -- Tiempo de generación: 01-12-2015 a las 08:42:07
 -- Versión del servidor: 5.6.21
--- Versión de PHP: 5.5.19
+-- Versión de PHP: 5.5.19 HOLA! jajajaja
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -154,6 +154,7 @@ CREATE TABLE IF NOT EXISTS `profesional` (
   `amaPro` varchar(45) DEFAULT NULL,
   `apaPro` varchar(45) DEFAULT NULL,
   `celPro` varchar(45) DEFAULT NULL,
+  `correo` varchar(45) DEFAULT NULL,
   `ramaMedica` varchar(45) DEFAULT NULL,
   `usuario` varchar(45) DEFAULT NULL,
   `contraseña` varchar(45) DEFAULT NULL
