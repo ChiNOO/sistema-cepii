@@ -205,30 +205,29 @@
           <div class="tab-pane" id="3b">
               <h3>Espacios registrados</h3>
               <?php
+              if ($enlaces!=FALSE){
               echo "  <table class='table table-hover table-responsive'>";
               echo "<tr>";
               echo "<th>Nombre del espacio</th>";
               echo "<th>Capacidad</th>";
               echo "<th>Tipo de servicio en el espacio</th>";
               echo "</tr>";
-              foreach ($enlaces->result() as $row) {
-                echo "<tr>";
-                echo "<td>".$row->Nombre."</td>";
-                echo "<td>".$row->Capacidad."</td>";
-                echo "<td>".$row->Tipo_Servicio."</td>";
-                echo "<td><a href='".base_url()."espacios/editar/$row->idEspacio'> <i class='glyphicon glyphicon-pencil'></i></a></td>";
-                echo "<td><a href='".base_url()."espacios/eliminar/$row->idEspacio'> <i class='glyphicon glyphicon-remove'></i></a></td>";
-                echo "</tr>";
+                foreach ($enlaces->result() as $row) {
+                  echo "<tr>";
+                  echo "<td>".$row->Nombre."</td>";
+                  echo "<td>".$row->Capacidad."</td>";
+                  echo "<td>".$row->Tipo_Servicio."</td>";
+                  echo "<td><a href='".base_url()."espacios/editar/$row->idEspacio'> <i class='glyphicon glyphicon-pencil'></i></a></td>";
+                  echo "<td><a href='".base_url()."espacios/eliminar/$row->idEspacio'> <i class='glyphicon glyphicon-remove'></i></a></td>";
+                  echo "</tr>";
+                }
+                  echo "</table>";
+              }else{
+	               echo "No hay registros";
               }
-                echo "</table>";
+
               ?>
             </div>
-          <div class="tab-pane" id="4b">
-            <h3>We use css to change the background color of the content to be equal to the tab</h3>
-          </div>
-          <div class="tab-pane" id="5b">
-          <h3>We use css to change the background color of the content to be equal to the tab</h3>
-          </div>
         </div>
       </div>
     </div>
