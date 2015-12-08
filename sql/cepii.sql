@@ -5,7 +5,7 @@
 -- Servidor: 127.0.0.1
 -- Tiempo de generación: 01-12-2015 a las 08:42:07
 -- Versión del servidor: 5.6.21
--- Versión de PHP: 5.5.19 HOLA! jajajaja
+-- Versión de PHP: 5.5.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -51,6 +51,9 @@ CREATE TABLE `espacio` (
   `Capacidad` int(11) NOT NULL,
   `Tipo_Servicio` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `espacio`
+  MODIFY `idEspacio` int(11) NOT NULL AUTO_INCREMENT;
 
 
 CREATE TABLE IF NOT EXISTS `cita` (
@@ -124,11 +127,13 @@ CREATE TABLE IF NOT EXISTS `hojareferencia` (
 CREATE TABLE IF NOT EXISTS `persona` (
 `idpersona` int(11) NOT NULL,
   `nombrePersona` varchar(45) DEFAULT NULL,
-  `amaPersona` varchar(45) DEFAULT NULL,
   `apaPersona` varchar(45) DEFAULT NULL,
-  `dirPersona` varchar(45) DEFAULT NULL,
+  `amaPersona` varchar(45) DEFAULT NULL,
+  `callePersona` varchar(45) DEFAULT NULL,
+  `numDirPersona` int(10) DEFAULT NULL,
+  `coloniaPersona` varchar(45) DEFAULT NULL,
   `celPersona` varchar(45) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
+  `correoPersona` varchar(45) DEFAULT NULL,
   `sexo` varchar(45) DEFAULT NULL,
   `fechaNa` date NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
@@ -151,10 +156,10 @@ INSERT INTO `persona` (`idpersona`, `nombrePersona`, `amaPersona`, `apaPersona`,
 CREATE TABLE IF NOT EXISTS `profesional` (
 `cedulaProfesional` int(11) NOT NULL,
   `nombrePro` varchar(45) DEFAULT NULL,
-  `amaPro` varchar(45) DEFAULT NULL,
   `apaPro` varchar(45) DEFAULT NULL,
+  `amaPro` varchar(45) DEFAULT NULL,
   `celPro` varchar(45) DEFAULT NULL,
-  `correo` varchar(45) DEFAULT NULL,
+  `correoPro` varchar(45) DEFAULT NULL,
   `ramaMedica` varchar(45) DEFAULT NULL,
   `usuario` varchar(45) DEFAULT NULL,
   `contraseña` varchar(45) DEFAULT NULL
