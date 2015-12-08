@@ -136,25 +136,26 @@
                       <option value="Taller">                      
                     </datalist> 
                 </div>
-                <div class="col-xs-2">
+                 <div class="col-xs-5">
                   <span class="input-group-addon" id="sizing-addon2">Profesional que lo imparte</span>
                   <input type="text" class="form-control" aria-describedby="sizing-addon2" name="profesional" id="profesional" required="required">
-                </div>
+                </div>   
                 <div class="col-xs-5">
                   <span class="input-group-addon" id="sizing-addon2">Lugar disponible</span>
                   <input type="text" class="form-control" aria-describedby="sizing-addon2" name="lugar" id="lugar" required="required">
-                </div>
-                <div class="col-xs-3">
-                  <span class="input-group-addon" id="sizing-addon2">Dirección</span>
-                  <input type="text" class="form-control" aria-describedby="sizing-addon2" name="direccion" id="direccion" required="required">
-                </div>
-                <br/>
-                <br/>
-                <br/>
+                </div>                
+                <br>
+                <br>
+                <br>
                 <div class="col-xs-2">
                   <span class="input-group-addon" id="sizing-addon2">Numero de horas</span>
                   <input type="number" class="form-control" aria-describedby="sizing-addon2" name="n_horas" id="n_horas" required="required">
-                </div>                
+                </div>  
+                
+                 <div class="col-xs-2">
+                  <span class="input-group-addon" id="sizing-addon2">Cantidad de personas</span>
+                  <input type="number" class="form-control" aria-describedby="sizing-addon2" name="cantidad_personas" id="cantidad_personas" required="required">
+                </div>             
                 <div class="col-xs-2">
                   <span class="input-group-addon" id="sizing-addon2">Fecha de inicio</span>
                   <input type="date" class="form-control" aria-describedby="sizing-addon2" name="f_inicio" id="f_inicio" required="required">
@@ -200,18 +201,20 @@
           </tr>
             <?php                   
               $search = $this->cursos_taller_model->buscador();
-              foreach($search->result() as $fila) {
-                echo "<tr>";
-                  echo "<td>".$fila->tipo."</td>";
-                  echo "<td>".$fila->profesional."</td>";
-                  echo "<td>".$fila->num_horas."</td>";
-                  echo "<td>".$fila->cantidad_personas."</td>";
-                  echo "<td>".$fila->f_inicio."</td>";
-                  echo "<td>".$fila->f_fin."</td>";
-                  echo "<td>".$fila->h_inicio."</td>";
-                  echo "<td>".$fila->h_fin."</td>";           
-                echo "</tr>";
-              }       
+              if ($search != null){
+                foreach($search->result() as $fila) {
+                  echo "<tr>";
+                    echo "<td>".$fila->tipo."</td>";
+                    echo "<td>".$fila->profesional."</td>";
+                    echo "<td>".$fila->num_horas."</td>";
+                    echo "<td>".$fila->cantidad_personas."</td>";
+                    echo "<td>".$fila->f_inicio."</td>";
+                    echo "<td>".$fila->f_fin."</td>";
+                    echo "<td>".$fila->h_inicio."</td>";
+                    echo "<td>".$fila->h_fin."</td>";           
+                  echo "</tr>";
+                }   
+              }    
 
             ?>
           </table>
