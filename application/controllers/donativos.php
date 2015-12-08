@@ -3,16 +3,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Donativos extends CI_Controller {
 
+
+  public function __construct(){
+    		parent::__construct();
+            $this->load->helper(array('url', 'form'));       
+  		    $this->load->database('default');
+    		$this->load->model('donativos_model');
 	
-	public function construc(){
-		parent :: __construct();
-		$this->load->helper(array('url', 'form'));       
-  		$this->load->model('login_model');
-  		$this->load->database('default');
+	
   	}
 	public function index(){
-	$this->load->database('default');
-	$this->load->view('admin/view_control_donativos');
+	
+	 $data ['query'] = $this->donativos_model->get_appointment();
+	 $this->load->view('admin/view_control_donativos', $data);
+	
+
+	//$this->load->database('default');
+	//$this->load->view('admin/view_control_donativos');
 	}
+
+	
+
 
 }
