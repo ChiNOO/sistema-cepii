@@ -155,6 +155,11 @@
               <i class="glyphicon glyphicon-search"></i>     Consulta
             </a>
           </li>
+          <li data-toggle="tab">
+            <a href="#3b" data-toggle="tab">
+              <i class="glyphicon glyphicon-tag"></i>     Espacios registrados
+            </a>
+          </li>
         </ul>
 
         <div style="background-color:#e5e5e5; height:3px;"></div>
@@ -198,8 +203,26 @@
           </table>
           </div>
           <div class="tab-pane" id="3b">
-            <h3>We applied clearfix to the tab-content to rid of the gap between the tab and the content</h3>
-          </div>
+              <h3>Espacios registrados</h3>
+              <?php
+              echo "  <table class='table table-hover table-responsive'>";
+              echo "<tr>";
+              echo "<th>Nombre del espacio</th>";
+              echo "<th>Capacidad</th>";
+              echo "<th>Tipo de servicio en el espacio</th>";
+              echo "</tr>";
+              foreach ($enlaces->result() as $row) {
+                echo "<tr>";
+                echo "<td>".$row->Nombre."</td>";
+                echo "<td>".$row->Capacidad."</td>";
+                echo "<td>".$row->Tipo_Servicio."</td>";
+                echo "<td><a href='".base_url()."espacios/editar/$row->idEspacio'> <i class='glyphicon glyphicon-pencil'></i></a></td>";
+                echo "<td><a href='".base_url()."espacios/eliminar/$row->idEspacio'> <i class='glyphicon glyphicon-remove'></i></a></td>";
+                echo "</tr>";
+              }
+                echo "</table>";
+              ?>
+            </div>
           <div class="tab-pane" id="4b">
             <h3>We use css to change the background color of the content to be equal to the tab</h3>
           </div>

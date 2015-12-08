@@ -12,7 +12,8 @@ class Espacios extends CI_Controller {
 
 	public function index(){
 		//$data ['query'] = $this->citas_model->get_appointment();
-		$this->load->view('admin/view_espacios');
+		$todos_datos = array('enlaces' =>	$this->espacios_model->verTodos());
+		$this->load->view('admin/view_espacios',$todos_datos);
 	}
 
   public function agregarEspacio(){

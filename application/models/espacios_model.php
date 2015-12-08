@@ -8,6 +8,14 @@ class Espacios_model extends CI_Model{
       $this->db->insert('Espacio', $datos);
     }
 
+    function verTodos() {
+      $query = $this->db->get('espacio');
+  		if ($query->num_rows() > 0){
+  		  return $query;
+  		}else{
+  		  return FALSE;
+  		}
+  	}
     public function getEspacio($id){
       $this->db->select('idEspacio,Nombre, Capacidad, Tipo_Servicio');
 		  $this->db->from('Espacio AS A');
