@@ -131,6 +131,7 @@ function elimina(url){
                   <li><a href="<?=base_url()?>espacios/">Espacios</a></li>
                   <li><a href="<?=base_url()?>conferencias/">Conferencias</a></li>
                   <li><a href="<?=base_url()?>cursos_taller/">Cursos</a></li>
+                  <li><a href="<?=base_url()?>jornadas/">Jornadas</a></li>
                 </ul>
               </li>
               <li>
