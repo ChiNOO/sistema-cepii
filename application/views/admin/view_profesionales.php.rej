@@ -1,0 +1,100 @@
+diff a/application/views/admin/view_profesionales.php b/application/views/admin/view_profesionales.php	(rejected hunks)
+@@ -125,75 +125,45 @@
+       <div style="background-color:#e5e5e5; height:3px;"></div>
+ 
+       <div class="tab-content clearfix">
+-        <div class="tab-pane" id="1b">
+-          <h3>We use the class nav-pills instead of nav-tabs which automatically creates a background color for the tab</h3>
+-        </div>
+-        <div class="tab-pane active" id="2b">
++        <div class="tab-pane active" id="1b">
+           <!-- Table -->
+           <table class="table">
+             <tr>
+               <td>
+-                <input data-provide="datepicker"> 
+-
+-              </td>
+-              <td>
+                 <table class="table">
+-                  <thead>
+-                    <tr>  
+-                      <th>Hora</th>
+-                      <th>Paciente</th>
+-                      <th>Profesional</th>
+-                      <th>Consultorio</th>
+-                      <th>Estado de la lista</th>
+-                      <th></th>
+-                    </tr>
+-                  </thead>
+-                  
+                   <?php foreach($query as $row): ?>
+                   <tr style="margin-top:5px; margin-bottom:5px;">
+-                    <?php if($row->area == "Psicología"): ?>
+-                      <td style="background-color:#F2DEDE">
+-                        <?php echo $row->hora; ?>
+-                      </td>
+-                    <?php endif; ?>
+-
+-                    <?php if($row->area == "Nutrición"): ?>
+-                      <td style="background-color:#BCE8F1">
+-                        <?php echo $row->hora; ?>
+-                      </td>
+-                    <?php endif; ?>
+-
+-                    <?php if($row->area == "Medicina"): ?>
+-                      <td style="background-color:#DFF0D8">
+-                        <?php echo $row->hora; ?>
+-                      </td>   
+-                    <?php endif; ?>
+                     <td>
+-                      <?php echo $row->paciente; ?>
+-                      <?php echo "<br>"; ?>
+-                      <a>
+-                        <i class="fa fa-mobile"></i>     <?php echo $row->telefonoPa; ?>
+-                      </a>
++                      <?php echo $row->cedulaProfesional; ?>
++                    </td>
++                    <td>
++                      <i class="fa fa-user-md"></i>     Dr.(a) <?php echo $row->nombrePro.' '.$row->apaPro.' '.$row->amaPro; ?>                      
++                    </td>
++                    <td>
++                      <i class="fa fa-mobile"></i>     <?php echo $row->celPro; ?>
++                    </td>
++                    <td>
++                      <i class="fa fa-envelope-o"></i>    <?php echo $row->correo; ?>
+                     </td>
+                     <td>
+-                      <a>
+-                        <i class="fa fa-user-md"></i>     Dr.(a) <?php echo $row->profesional; ?>
+-                      </a>
++                      <?php echo $row->ramaMedica; ?>
+                     </td>
+                     <td>
+-                      <?php echo $row->consultorio; ?>
++                      <?php echo $row->usuario; ?>
+                     </td>
+                     <td>
+-                      <select>
+-                        <option>Atendido</option>
+-                        <option>holo</option>
+-                        <option>casa</option>
+-                        <option>holo</option>
+-                        <option>casa</option>
+-                      </select>
++                      <button style="background-color:#f4d2e1">
++                        <i class="fa fa-pencil-square-o">
++                          Editar Datos
++                        </i>
++                      </button>
+                     </td>
+                     <td>
+-                      <button style="background-color:#f4d2e1">Cancelar</button>
++                      <button style="background-color:#F30000; color:#FFF">
++                        <i class="fa fa-trash-o">
++                          Eliminar
++                        </i>
++                      </button>
+                     </td>
+                   </tr>
+                   <?php endforeach; ?>
