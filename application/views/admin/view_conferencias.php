@@ -164,7 +164,7 @@
                       }   
                     }    
                     else{
-                      echo "No hay registros";
+                       echo "<div class='alert alert-warning'><p class='text-center'>No hay conferencias registradas</p></div>";
                         }
                   ?>            
                 </table>

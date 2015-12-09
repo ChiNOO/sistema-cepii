@@ -134,7 +134,7 @@
                   <?php foreach($query as $row): ?>
                   <tr style="margin-top:5px; margin-bottom:5px;">
                     <td>
-                      <?php echo $row->cedulaProfesional; ?>
+                      <?php echo $row->idProfesional; ?>
                     </td>
                     <td>
                       <i class="fa fa-user-md"></i>     Dr.(a) <?php echo $row->nombrePro.' '.$row->apaPro.' '.$row->amaPro; ?>                      
@@ -143,7 +143,7 @@
                       <i class="fa fa-mobile"></i>     <?php echo $row->celPro; ?>
                     </td>
                     <td>
-                      <i class="fa fa-envelope-o"></i>    <?php echo $row->correo; ?>
+                      <i class="fa fa-envelope-o"></i>    <?php echo $row->correoPro; ?>
                     </td>
                     <td>
                       <?php echo $row->ramaMedica; ?>
