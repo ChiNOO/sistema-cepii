@@ -128,11 +128,18 @@
             <tr>
               <td>
                 <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Teléfono</th>
+                      <th>Correo</th>
+                      <th>Area</th>
+                      <th>Usuario</th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
                   <?php foreach($query as $row): ?>
-                  <tr style="margin-top:5px; margin-bottom:5px;">
-                    <td>
-                      <?php echo $row->idProfesional; ?>
-                    </td>
                     <td>
                       <i class="fa fa-user-md"></i>     Dr.(a) <?php echo $row->nombrePro.' '.$row->apaPro.' '.$row->amaPro; ?>                      
                     </td>

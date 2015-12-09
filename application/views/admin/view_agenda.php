@@ -179,8 +179,12 @@
           <table class="table">
             <tr>
               <td>
-                <input data-provide="datepicker">
-
+                <?=  form_open(base_url().'Agenda')?>
+                  <label>Buscar citas por fecha</label>
+                  <input type="date" class="form-control" value="<?php echo $fecha; ?>" aria-describedby="sizing-addon2" data-provide="datepicker" name="fechaSearch" id="fechaSearch">
+                  <br>
+                  <input type="submit" value="Buscar" id="Buscar" name="Buscar" class="btn btn-primary btn-lg">
+                <?=form_close()?> 
               </td>
               <td>
                 <table class="table">
@@ -305,7 +309,7 @@
           </div>
           <input type="submit"  value="Guardar" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
           <br><br>
-          <?=form_close()?>
+        <?=form_close()?>
         </div>
       </div>
     </div>

@@ -11,7 +11,14 @@ class Agenda extends CI_Controller {
 	}
 
 	public function index(){
-		$data ['query'] = $this->citas_model->get_appointment();
+		$fecha = date('Y-m-d');
+		
+		if ($this->input->post('Buscar')){
+			$fecha = $this->input->post('fechaSearch');
+		}
+
+		$data ['fecha'] = $fecha;
+		$data ['query'] = $this->citas_model->get_appointment($fecha);
 		$this->load->view('admin/view_agenda', $data);
 	}
 

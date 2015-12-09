@@ -13,7 +13,6 @@ class Citas extends CI_Controller {
 	public function new_appointment(){
 		$nombreP = $this->input->post('nombreP');
 		$claveP = $this->input->post('claveP');
-		
 		$nombrePRO = $this->input->post('nombrePRO');
 		$fecha = $this->input->post('fecha');
 		$hora = $this->input->post('hora');

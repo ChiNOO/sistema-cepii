@@ -33,13 +33,14 @@ class Citas_model extends CI_Model{
         $this->db->insert('cita', $array);
     }
 
-    public function get_appointment(){
+    public function get_appointment($fecha){
         $this->db->select('cita.hora, cita.fecha, cita.consultorio, cita.estado, profesional.nombrePro, profesional.amaPro,
                             profesional.apaPro, profesional.ramaMedica, persona.nombrePersona, persona.amaPersona,
                             persona.apaPersona, persona.celPersona');
         $this->db->from('cita');
         $this->db->join('persona', 'persona.idpersona = cita.persona_idpersona');
         $this->db->join('profesional', 'profesional.idProfesional = cita.profesional_idProfesional');
+        $this->db->where('fecha', $fecha);
         $query = $this->db->get();
         return $query->result();
     }
