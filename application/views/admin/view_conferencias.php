@@ -81,15 +81,12 @@
                       <span class="caret"></span>
                   </div>
                 </a>
-               <ul class="dropdown-menu">
+                <ul class="dropdown-menu">
                   <li><a href="<?php echo base_url().'Profesionales'; ?>">Profesionales</a></li>
                   <li><a href="<?=base_url()?>espacios/">Espacios</a></li>
                   <li><a href="<?=base_url()?>conferencias/">Conferencias</a></li>
                   <li><a href="<?=base_url()?>cursos_taller/">Cursos</a></li>
-<<<<<<< HEAD
-=======
                   <li><a href="<?=base_url()?>jornadas/">Jornadas</a></li>
->>>>>>> origin/master
                 </ul>
               </li>
               <li>
@@ -136,11 +133,7 @@
           <table class="table">
             <tr>
               <td>
-                <input data-provide="datepicker" data-provide="timepicker">
-
-              </td>
-              <td>
-                <table class="table">
+                <table class="table table-hover table-responsive">
                   <thead>
                     <tr>
                       <th>Tema Conferencia</th>
@@ -153,9 +146,27 @@
                       <th>Direccion</th>
                     </tr>
                   </thead>  
-                  <tbody>
-                    <td>Constelacion Familiar</td><td>Una conferencia hermosa</td><td>Uzziel Ojeda</td><td>43</td><td>FEI</td><td>24 Octubre 2015</td><td>12:30 AM</td><td>Av. Xalapa S/N</td>                
-                  </tbody>             
+                  <?php                   
+                    if ($enlaces!=FALSE){
+                      foreach ($enlaces->result() as $row) {
+                      echo "<tr>";
+                      echo "<td>".$row->tema."</td>";
+                      echo "<td>".$row->descripcion."</td>";
+                      echo "<td>".$row->nombrePonente."</td>";
+                      echo "<td>".$row->numAsistentes."</td>";
+                      echo "<td>".$row->lugar."</td>";
+                      echo "<td>".$row->fecha."</td>";
+                      echo "<td>".$row->hora."</td>";
+                      echo "<td>".$row->direccion."</td>";
+                      echo "<td><a href='".base_url()."conferencias/editar/$row->idConferencia'> <i class='fa fa-pencil'></i></a></td>";
+                      echo "<td><a href='".base_url()."conferencias/eliminar/$row->idConferencia'> <i class='fa fa-times'></i></a></td>";        
+                      echo "</tr>";
+                      }   
+                    }    
+                    else{
+                      echo "No hay registros";
+                        }
+                  ?>            
                 </table>
               </td>
             </tr>
@@ -173,7 +184,7 @@
 
 
         <div class="tab-pane" id="5b">
-          <?=  form_open(base_url().'Conferencias/new_conference')?>
+          <?=  form_open(base_url().'Conferencias/agregarConferencia')?>
           <h2 style="text-align:center;">Datos Conferencia</h2>
           <br>
 
@@ -187,12 +198,12 @@
 
               <div class="col-xs-4">
               <span class="input-group-addon" id="sizing-addon2">Descripción</span>
-               <textarea class="form-control" rows="2"></textarea>
+               <textarea class="form-control" rows="2" name="Descripcion"></textarea>
               </div>
               
               <div class="col-xs-4">
               <span class="input-group-addon" id="sizing-addon3" >Nombre Ponente</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon3" name="TemaConferencia" placeholder="Ejemplo: Uzziel Asafmin Ojeda González">
+              <input type="text" class="form-control" aria-describedby="sizing-addon3" name="NombrePonente" placeholder="Ejemplo: Uzziel Asafmin Ojeda González">
               </div>
               
             </div>
@@ -203,17 +214,17 @@
 
               <div class="col-xs-4">
               <span class="input-group-addon" id="sizing-addon4" >Numero de Asistentes</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon4" name="TemaConferencia" placeholder="Ejemplo: 25">
+              <input type="text" class="form-control" aria-describedby="sizing-addon4" name="NumAsistentes" placeholder="Ejemplo: 25">
               </div>
 
              <div class="col-xs-4">
               <span class="input-group-addon" id="sizing-addon5" >Lugar</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon5" name="TemaConferencia" placeholder="Ejemplo: Facultad de Estadística e Informática">
+              <input type="text" class="form-control" aria-describedby="sizing-addon5" name="Lugar" placeholder="Ejemplo: Facultad de Estadística e Informática">
               </div>
 
               <div class="col-xs-4">
                 <span class="input-group-addon bootstrap-timepicker timepicker" id="sizing-addon6">Fecha</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon6" data-provide="datepicker" id="datepicker" name="fecha">
+                <input type="text" class="form-control" aria-describedby="sizing-addon6" data-provide="datepicker" id="datepicker" name="Fecha">
               </div>
 
             </div>
@@ -224,12 +235,12 @@
 
             <div class="col-xs-4">
               <span class="input-group-addon" id="sizing-addon4" >Hora</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon4" name="TemaConferencia" placeholder="Ejemplo: 8:00 AM">
+              <input type="text" class="form-control" aria-describedby="sizing-addon4" name="Hora" placeholder="Ejemplo: 8:00 AM">
               </div>
 
               <div class="col-xs-4">
               <span class="input-group-addon" id="sizing-addon4" >Dirección</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon4" name="TemaConferencia" placeholder="Ejemplo: Av. Xalapa, s/n">
+              <input type="text" class="form-control" aria-describedby="sizing-addon4" name="Direccion" placeholder="Ejemplo: Av. Xalapa, s/n">
               </div>
 
             </div>
