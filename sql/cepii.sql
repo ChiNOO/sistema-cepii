@@ -150,6 +150,22 @@ CREATE TABLE `profesional` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- -----------------------------------------------------------------------------
+-- Creación de la tabla conferencias
+
+CREATE TABLE `conferencias` ( 
+  `idConferencia` int(11) NOT NULL,
+ `tema` varchar(50) DEFAULT NULL, 
+ `descripcion` varchar(255) DEFAULT NULL, 
+ `nombrePonente` varchar(50) DEFAULT NULL, 
+ `numAsistentes` int(10) DEFAULT NULL, 
+ `lugar` varchar(50) DEFAULT NULL, 
+ `fecha` date DEFAULT NULL, 
+ `hora` time DEFAULT NULL, 
+ `direccion` varchar(60) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1; 
+
+------------------------------------------------------------------------------
 -- Índices para tablas volcadas
 --
 
@@ -205,7 +221,11 @@ ALTER TABLE `persona`
 --
 ALTER TABLE `profesional`
   ADD PRIMARY KEY (`idProfesional`);
-
+--
+--
+-- auto increment de conferencias
+ALTER TABLE `conferencias`
+  ADD PRIMARY KEY (`idConferencia`);
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
@@ -240,6 +260,11 @@ ALTER TABLE `persona`
 --
 ALTER TABLE `profesional`
   MODIFY `idProfesional` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT de la tabla `conferencias`
+--
+ALTER TABLE `conferencias`
+  MODIFY `idConferencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Restricciones para tablas volcadas
 --
