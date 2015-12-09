@@ -135,9 +135,12 @@
                     <datalist id="browsers">
                       <option value="Curso">
                       <option value="Taller">                      
+                      <option value="Certificación">
+                      <option value="Dilplomado">
                     </datalist> 
                 </div>
-                 <div class="col-xs-5">
+                
+                <div class="col-xs-5">
                   <span class="input-group-addon" id="sizing-addon2">Profesional que lo imparte</span>
                   <input type="text" class="form-control" aria-describedby="sizing-addon2" name="profesional" id="profesional" required="required">
                 </div>   
@@ -182,52 +185,164 @@
             </form>
           </div>
 
-        <div class="tab-pane active" id="2b">
-          
-          <br/>
-          <div class="col-xs-4">    
-            
-          </div>
-          <table class="table table-hover table-responsive">
-            
-          <tr>
-            <th>Tipo</th>
-            <th>Personal que lo imparte</th>
-            <th>Numero de horas</th>
-            <th>Cantidad de personas</th>
-            <th>Fecha de inicio</th>
-            <th>Fecha de fin</th>
-            <th>Hora de inicio</th>
-            <th>Hora de fin</th>
-          </tr>
-            <?php                   
-              $search = $this->cursos_taller_model->buscador();
-              if ($search != null){
-                foreach($search->result() as $fila) {
-                  echo "<tr>";
-                    echo "<td>".$fila->tipo."</td>";
-                    echo "<td>".$fila->profesional."</td>";
-                    echo "<td>".$fila->num_horas."</td>";
-                    echo "<td>".$fila->cantidad_personas."</td>";
-                    echo "<td>".$fila->f_inicio."</td>";
-                    echo "<td>".$fila->f_fin."</td>";
-                    echo "<td>".$fila->h_inicio."</td>";
-                    echo "<td>".$fila->h_fin."</td>";           
-                  echo "</tr>";
-                }   
-              }    
 
-            ?>
-          </table>
+        <div class="tab-pane active" id="2b">
+          <div class="content-wrapper" style="background-color: #e5e5e5; margin-top:0px;">
+            <div id="exTab2" class="tab">
+              <ul class="nav nav-pills">
+                <li>
+                  <a href="#todos" data-toggle="tab">
+                    <i class="fa fa-calendar"></i>     Todos
+                  </a>
+                </li>
+                <li>
+                  <a href="#terminados" data-toggle="tab">
+                    <i class="fa fa-calendar"></i>     Concluidos
+                  </a>
+                </li>
+                <li>
+                  <a href="#vigentes" data-toggle="tab">
+                    <i class="fa fa-calendar"></i>     Vigentes
+                  </a>
+                </li>
+                <li>
+                  <a href="#proximos" data-toggle="tab">
+                    <i class="fa fa-calendar"></i>     Por comenzar
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="tab-pane" id="3b">
-            <h3>We applied clearfix to the tab-content to rid of the gap between the tab and the content</h3>
+
+      
+
+
+          <div class="tab-content clearfix">
+            <div class="tab-pane" id="todos"> 
+              <table class="table table-hover table-responsive">                
+              <tr>
+                <th>Tipo</th>
+                <th>Personal que lo imparte</th>
+                <th>Numero de horas</th>
+                <th>Cantidad de personas</th>
+                <th>Fecha de inicio</th>
+                <th>Fecha de fin</th>
+                <th>Hora de inicio</th>
+                <th>Hora de fin</th>
+              </tr>
+                <?php    
+                  if ($search != null){
+                    foreach($search->result() as $fila) {
+                      echo "<tr>";
+                        echo "<td>".$fila->tipo."</td>";
+                        echo "<td>".$fila->profesional."</td>";
+                        echo "<td>".$fila->num_horas."</td>";
+                        echo "<td>".$fila->cantidad_personas."</td>";
+                        echo "<td>".$fila->f_inicio."</td>";
+                        echo "<td>".$fila->f_fin."</td>";
+                        echo "<td>".$fila->h_inicio."</td>";
+                        echo "<td>".$fila->h_fin."</td>";           
+                      echo "</tr>";
+                    }   
+                  }  
+                ?>
+              </table>
+            </div>
+
+            <div class="tab-pane" id="terminados">              
+              <table class="table table-hover table-responsive">                
+              <tr>
+                <th>Tipo</th>
+                <th>Personal que lo imparte</th>
+                <th>Numero de horas</th>
+                <th>Cantidad de personas</th>
+                <th>Fecha de inicio</th>
+                <th>Fecha de fin</th>
+                <th>Hora de inicio</th>
+                <th>Hora de fin</th>
+              </tr>
+                <?php    
+                  if ($searchTerminados != null){
+                    foreach($searchTerminados->result() as $fila) {
+                      echo "<tr>";
+                        echo "<td>".$fila->tipo."</td>";
+                        echo "<td>".$fila->profesional."</td>";
+                        echo "<td>".$fila->num_horas."</td>";
+                        echo "<td>".$fila->cantidad_personas."</td>";
+                        echo "<td>".$fila->f_inicio."</td>";
+                        echo "<td>".$fila->f_fin."</td>";
+                        echo "<td>".$fila->h_inicio."</td>";
+                        echo "<td>".$fila->h_fin."</td>";           
+                      echo "</tr>";
+                    }   
+                  }  
+                ?>
+              </table>
+            </div>
+
+            <div class="tab-pane" id="vigentes">              
+              <table class="table table-hover table-responsive">                
+              <tr>
+                <th>Tipo</th>
+                <th>Personal que lo imparte</th>
+                <th>Numero de horas</th>
+                <th>Cantidad de personas</th>
+                <th>Fecha de inicio</th>
+                <th>Fecha de fin</th>
+                <th>Hora de inicio</th>
+                <th>Hora de fin</th>
+              </tr>
+                <?php    
+                  if ($searchVigentes != null){
+                    foreach($searchVigentes->result() as $fila) {
+                      echo "<tr>";
+                        echo "<td>".$fila->tipo."</td>";
+                        echo "<td>".$fila->profesional."</td>";
+                        echo "<td>".$fila->num_horas."</td>";
+                        echo "<td>".$fila->cantidad_personas."</td>";
+                        echo "<td>".$fila->f_inicio."</td>";
+                        echo "<td>".$fila->f_fin."</td>";
+                        echo "<td>".$fila->h_inicio."</td>";
+                        echo "<td>".$fila->h_fin."</td>";           
+                      echo "</tr>";
+                    }   
+                  }  
+                ?>
+              </table>
+            </div>
+
+            <div class="tab-pane" id="proximos">              
+              <table class="table table-hover table-responsive">                
+              <tr>
+                <th>Tipo</th>
+                <th>Personal que lo imparte</th>
+                <th>Numero de horas</th>
+                <th>Cantidad de personas</th>
+                <th>Fecha de inicio</th>
+                <th>Fecha de fin</th>
+                <th>Hora de inicio</th>
+                <th>Hora de fin</th>
+              </tr>
+                <?php    
+                  if ($searchProximos != null){
+                    foreach($searchProximos->result() as $fila) {
+                      echo "<tr>";
+                        echo "<td>".$fila->tipo."</td>";
+                        echo "<td>".$fila->profesional."</td>";
+                        echo "<td>".$fila->num_horas."</td>";
+                        echo "<td>".$fila->cantidad_personas."</td>";
+                        echo "<td>".$fila->f_inicio."</td>";
+                        echo "<td>".$fila->f_fin."</td>";
+                        echo "<td>".$fila->h_inicio."</td>";
+                        echo "<td>".$fila->h_fin."</td>";           
+                      echo "</tr>";
+                    }   
+                  }  
+                ?>
+              </table>
+            </div>
+
           </div>
-          <div class="tab-pane" id="4b">
-            <h3>We use css to change the background color of the content to be equal to the tab</h3>
-          </div>
-          <div class="tab-pane" id="5b">
-          <h3>We use css to change the background color of the content to be equal to the tab</h3>
           </div>
         </div>
       </div>

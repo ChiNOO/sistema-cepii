@@ -8,12 +8,19 @@ class Cursos_taller extends CI_Controller {
     	$this->load->helper(array('url', 'form'));
   		$this->load->model('cursos_taller_model');
   		$this->load->database('default');
-  		//$this->load->model('citas_model');
 	}
 
 	public function index(){
 		$this->load->database('default');
-		$this->load->view('admin/view_cursos_taller');
+		$search = $this->cursos_taller_model->buscador(); 
+		$searchTerminados =$this->cursos_taller_model->buscadorTerminados(); 
+		$searchVigentes =$this->cursos_taller_model->buscadorVigentes(); 
+		$searchProximos =$this->cursos_taller_model->buscadorProximos(); 
+		$data['search'] = $search;
+		$data['searchTerminados'] = $searchTerminados;
+		$data['searchVigentes'] = $searchVigentes;
+		$data['searchProximos'] = $searchProximos;
+		$this->load->view('admin/view_cursos_taller',$data);
 	}
 
 	public function agrega() {
@@ -32,6 +39,6 @@ class Cursos_taller extends CI_Controller {
 		$this->cursos_taller_model->guardar_curso_taller($datos);
     	redirect('cursos_taller/');
 	}
-	
+
 	
 }
