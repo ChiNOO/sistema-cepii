@@ -15,7 +15,18 @@
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   
     <link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/img/icon.png">
-    
+  
+      <script type="text/javascript"> 
+      function habilitar(obj) { 
+        var hab; 
+        frm=obj.form; 
+        num=obj.selectedIndex; 
+        if (num==1) hab=true; 
+        else if (num==2) hab=false; 
+        frm.descri.disabled=hab; 
+      } 
+       </script> 
+
 </head>
 <body style="background-color:#e5e5e5;">
  <nav class="navbar navbar-default">
@@ -206,17 +217,16 @@
           <?=  form_open(base_url().'Donativos/new_appointment')?>
           <h2 style="text-align:center;">Datos de Donativos</h2>
           <br>
-    
+        
           <div style="margin-left:30px; margin-right:5px;">
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               
-            
              <div class="col-xs-4">
               <span class="input-group-addon" id="sizing-addon2">Tipo
                </span>
-                <select type="text" class="form-control" aria-describedby="sizing-addon2" name="Tipo">
-                 <option>Monetario</option>
+                <select type="text" class="form-control" onchange="habilitar(this)" aria-describedby="sizing-addon2" name="Tipo">
                  <option>Material</option>
+                 <option>Monetario</option>
                </select>
               </div>
 
@@ -226,27 +236,31 @@
               </div> 
               <div class="col-xs-4">
               <span class="input-group-addon" id="sizing-addon2">Cantidad</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombreP" placeholder="$">
-            </div>
+              <input type="number" class="form-control" aria-describedby="sizing-addon2" name="nombreP" placeholder="$">
+                
+              </div>
 
             </div>
           </div>
-
+           
+          <!-- Apartado dombre Taller|curso|Terapia  --> 
           <div style="margin-left:30px; margin-right:5px;">
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
-              
-            <div class="col-xs-6">
-              <span class="input-group-addon" id="sizing-addon2" >Nombre Paciente</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombreP" placeholder="Ejemplo: Enrique Rodrìguez Becerra">
-            </div>
-
+           
+            
               <div class="col-xs-6">
               <span class="input-group-addon" id="sizing-addon2">Nombre Taller, Curso o Terapia</span>
-                <select type="text" class="form-control" aria-describedby="sizing-addon2" name="Tipo">
+                <select type="text" class="form-control" aria-describedby="sizing-addon2" name="TipoA">
                  <option>Monetario</option>
                  <option>Material</option>
                </select>
               </div>
+
+
+            <div class="col-xs-6">
+              <span class="input-group-addon" id="sizing-addon2" >Nombre Paciente</span>
+              <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombreP" placeholder="Ejemplo: Enrique Rodrìguez Becerra">
+            </div>
 
             </div>
           </div>
@@ -256,7 +270,7 @@
               
             <div class="col-xs-6">
               <span class="input-group-addon" id="sizing-addon2">Descripción</span>
-            <textarea class="form-control" rows="3"></textarea>
+            <textarea class="form-control" name="descri"rows="3"></textarea>
             </div>
 
               
@@ -278,22 +292,23 @@
 
   <!-- Pie de página-->
 
-  <footer style="width: 100%;border-top: 2px solid #fff;bottom: 0; position: absolute; padding: 1rem;">
+  <footer style="width: 100%;border-top: 2px solid #fff;bottom: 0; position: fixed; padding: 1rem;">
     <div class="container">
           &copy; 2015 SISTEMA CEPII | BY : <a href="http://www.uv.mx/Fei/" target="_blank">FEI UV</a>
     </div>
   </footer>
 
 </body>
-<script type="text/javascript">
-jQuery.noConflict();
-jQuery(document).ready(function() {
-    jQuery("#datepicker").datepicker();
-});
-</script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('input[name="hora"]').ptTimeSelect();
-    });
+            <script type="text/javascript">
+              jQuery.noConflict();
+              jQuery(document).ready(function() {
+               jQuery("#datepicker").datepicker();
+              });
+            </script>
+       
+            <script type="text/javascript">
+              $(document).ready(function(){
+               $('input[name="hora"]').ptTimeSelect();
+              });
 </script>
 </html>
