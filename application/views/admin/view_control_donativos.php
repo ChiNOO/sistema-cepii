@@ -4,10 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>Sistema CEPII</title>
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap.css" rel="stylesheet" />
 
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
-    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>css/jquery-ui.min.css" rel="stylesheet" />
     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -61,7 +61,7 @@
                 </a>
               </li>
               <li>
-                <a href="">
+                <a href="<?php echo base_url().'Paciente'; ?>">
                   <div>
                     <i class="fa fa-users"></i>     Pacientes
                   </div>

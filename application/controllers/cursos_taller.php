@@ -26,7 +26,7 @@ class Cursos_taller extends CI_Controller {
 	public function agrega() {
 		 $datos=array(
 				'tipo' => $this->input->post('tipo',TRUE),
-				'profesional' => $this->input->post('profesional',TRUE),
+				'profesional_idProfesional' => $this->input->post('profesional',TRUE),
 				'lugar' => $this->input->post('lugar',TRUE),
 				'num_horas' => $this->input->post('n_horas',TRUE),
 				'cantidad_personas' => $this->input->post('cantidad_personas',TRUE),

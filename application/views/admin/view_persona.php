@@ -61,14 +61,14 @@
                 </a>
               </li>
               <li>
-                <a class="menu-top-active" href="">
+                <a class="menu-top-active" href="<?php echo base_url().'Paciente'; ?>">
                   <div>
                     <i class="fa fa-users"></i>     Pacientes
                   </div>
                 </a>
               </li>
               <li>
-                <a href="">
+                <a href="<?php echo base_url().'Donativos'; ?>">
                   <div>
                     <i class="fa fa-money"></i>     Donativos
                   </div>

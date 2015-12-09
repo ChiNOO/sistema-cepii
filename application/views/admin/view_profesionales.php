@@ -4,10 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>Sistema CEPII</title>
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap.css" rel="stylesheet" />
 
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
-    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>css/jquery-ui.min.css" rel="stylesheet" />
     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -21,7 +21,7 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header" style="margin:5px;">
-        <img src="assets/img/logo.png">
+        <img src="<?php echo base_url(); ?>assets/img/logo.png">
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav" style="margin:5px;">
@@ -61,14 +61,14 @@
                 </a>
               </li>
               <li>
-                <a href="">
+                <a href="<?php echo base_url().'Paciente'; ?>">
                   <div>
                     <i class="fa fa-users"></i>     Pacientes
                   </div>
                 </a>
               </li>
               <li>
-                <a href="">
+                <a href="<?php echo base_url().'Donativos'; ?>">
                   <div>
                     <i class="fa fa-money"></i>     Donativos
                   </div>
@@ -107,19 +107,16 @@
     <br>
     <div id="exTab3" class="tab"> 
       <ul  class="nav nav-pills">
-        <li>
-          <a>
-            <i class="fa fa-heartbeat"></i>     Gestión de profesionales
-          </a>
-        </li>
         <li class="active" data-toggle="tab">
           <a href="#1b" data-toggle="tab">
-            <i class="fa fa-user-md"></i>     Habilitados
+            <i class="fa fa-heartbeat"></i>     Profesionales Registrados
           </a>
         </li>
-        <div>
-          <input type="submit" href="http://www.google.col-md-12"  value="Nuevo" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
-        </div> 
+        <li  data-toggle="tab">
+          <a href="#2b" data-toggle="tab">
+            <i class="fa fa-user-md"></i>     Registro de Profesional
+          </a>
+        </li> 
       </ul>
 
       <div style="background-color:#e5e5e5; height:3px;"></div>
@@ -172,81 +169,74 @@
             </tr>
           </table>
         </div>
-        <div class="tab-pane" id="3b">
-          <h3>We applied clearfix to the tab-content to rid of the gap between the tab and the content</h3>
-        </div>
-        <div class="tab-pane" id="4b">
-          <h3>We use css to change the background color of the content to be equal to the tab</h3>
-        </div>
-        <div class="tab-pane" id="5b">
-          <?=form_open(base_url().'citas/new_appointment')?>
-          <h2 style="text-align:center;">Datos del paciente</h2>
+        <div class="tab-pane" id="2b">
+          <?=  form_open(base_url().'Profesionales/agregarProfesional')?>
+          <br>
+          <h2 style="text-align:center;">Datos del Profesional</h2>
+          
           <div style="margin-left:20px; margin-right:20px;">
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
-              <div class="col-xs-5">
-                <span class="input-group-addon" id="sizing-addon2">Nombre Paciente</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombreP">
+              <div class="col-xs-4">
+                <span class="input-group-addon">Nombre Profesional</span>
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombre">
               </div>
-              <div class="col-xs-3">
-                <span class="input-group-addon" id="sizing-addon2">Teléfono</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="telP">
+              <div class="col-xs-4">
+                <span class="input-group-addon">Apellido Profesional</span>
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="paterno">
               </div>
-              <div class="col-xs-2">
-                <span class="input-group-addon" id="sizing-addon2">Sexo</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="sexoP">
-              </div>
-              <div class="col-xs-2">
-                <span class="input-group-addon" id="sizing-addon2">Fecha Naciemiento</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="FNP">
+              <div class="col-xs-4">
+                <span class="input-group-addon">Apellido Profesional</span>
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="materno">
               </div>
             </div>
           </div>
-          <br>
-          <div style="background-color:#e5e5e5; height:3px;"></div>
-
-          <h2 style="text-align:center;">Datos del profesional</h2>
-          <div style="margin-left:20px; margin-right:20px;">
-            <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
-              <div class="col-xs-6">
-                <span class="input-group-addon" id="sizing-addon2">Nombre Profesional</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombrePRO">
-              </div>
-              <div class="col-xs-3">
-                <span class="input-group-addon" id="sizing-addon2">Area</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="area">
-              </div>
-              <div class="col-xs-3">
-                <span class="input-group-addon" id="sizing-addon2">Teléfono</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="telPRO">
-              </div>
-            </div>
-          </div> 
-          <br>
-          <div style="background-color:#e5e5e5; height:3px;"></div>
-
-          <h2 style="text-align:center;">Datos de cita</h2>
-          <div style="margin-left:20px; margin-right:20px;">
-            <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
-              <div class="col-xs-2">
-                <span class="input-group-addon" id="sizing-addon2">Fecha</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" data-provide="datepicker" id="datepicker" name="fecha">
-              </div>
-              <div class="col-xs-2">
-                <span class="input-group-addon" id="sizing-addon2">Hora</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="hora">
-              </div>
-              <div class="col-xs-2">
-                <span class="input-group-addon" id="sizing-addon2">Consultorio</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="consultorio">
-              </div>
-              <div class="col-xs-6">
-                <span class="input-group-addon" id="sizing-addon2">Información Adicional</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="info">
-              </div>
-            </div>
-          </div>
-          <input type="submit"  value="Guardar" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
+          
           <br><br>
+          
+          <div style="margin-left:20px; margin-right:20px;">
+            <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
+              <div class="col-xs-4">
+                <span class="input-group-addon">Rama Médica</span>
+                <select class="form-control" name="ramaMedica">
+                  <option></option>
+                  <option value="Medicina">Medicina</option>
+                  <option value="Nutrición">Nutrición</option>
+                  <option value="Psicología">Psicología</option>
+                </select>
+              </div>
+              <div class="col-xs-4">
+                <span class="input-group-addon">Correo</span>
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="correo">
+              </div>
+              <div class="col-xs-4">
+                <span class="input-group-addon">Teléfono</span>
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="telefono">
+              </div>
+            </div>        
+          </div>
+
+          <br><br>
+
+          <div style="margin-left:20px; margin-right:20px;">
+            <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
+              <div class="col-xs-2">
+                <span class="input-group-addon" id="sizing-addon2">Usuario</span>
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="usuario">
+              </div>
+              <div class="col-xs-2">
+                <span class="input-group-addon" id="sizing-addon2">Contraseña</span>
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="contraseña">
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-left:20px; margin-right:20px;">
+            <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
+              <input type="submit"  value="Guardar" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
+            </div>
+          </div>
+
+          <br>
           <?=form_close()?>
         </div>
       </div>

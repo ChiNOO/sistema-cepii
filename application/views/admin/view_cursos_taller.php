@@ -4,25 +4,41 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>Sistema CEPII</title>
-    <link href="<?=base_url()?>assets/css/bootstrap.css" rel="stylesheet" />
 
-    <link href="<?=base_url()?>assets/css/font-awesome.css" rel="stylesheet" />
-    <link href="<?=base_url()?>assets/css/style.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>css/jquery-ui.min.css" rel="stylesheet" />
+
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script>
+
     <script type="text/javascript" src="<?php echo base_url('js/encuentra.js') ?>"></script>
+
     <link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>/assets/img/icon.png">
 
+    <script>
+    $(document).ready(function($){
+     $('#profesional').autocomplete({
+      source:'<?php echo base_url('Profesionales/show_profesional');?>',
+      minLength:1,
+      // optional
+      html: true,
+      // optional (if other layers overlap the autocomplete list)
+      open: function(event, ui) {
+       $(".ui-autocomplete").css("z-index", 1000);
+      }
+     });
+    });
+    </script>
 
 </head>
 <body style="background-color:#e5e5e5;">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header" style="margin:5px;">
-        <img src="<?=base_url()?>assets/img/logo.png">
+        <img src="<?php echo base_url(); ?>assets/img/logo.png">
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav" style="margin:5px;">
@@ -62,14 +78,14 @@
                 </a>
               </li>
               <li>
-                <a href="">
+                <a href="<?php echo base_url().'Paciente'; ?>">
                   <div>
                     <i class="fa fa-users"></i>     Pacientes
                   </div>
                 </a>
               </li>
               <li>
-                <a href="<?=base_url()?>Donativos/">
+                <a href="<?php echo base_url().'Donativos'; ?>">
                   <div>
                     <i class="fa fa-money"></i>     Donativos
                   </div>
@@ -235,7 +251,7 @@
                     foreach($search->result() as $fila) {
                       echo "<tr>";
                         echo "<td>".$fila->tipo."</td>";
-                        echo "<td>".$fila->profesional."</td>";
+                        echo "<td>".$fila->nombrePro." ".$fila->apaPro." ".$fila->amaPro."</td>";
                         echo "<td>".$fila->num_horas."</td>";
                         echo "<td>".$fila->cantidad_personas."</td>";
                         echo "<td>".$fila->f_inicio."</td>";
@@ -266,7 +282,7 @@
                     foreach($searchTerminados->result() as $fila) {
                       echo "<tr>";
                         echo "<td>".$fila->tipo."</td>";
-                        echo "<td>".$fila->profesional."</td>";
+                        echo "<td>".$fila->nombrePro." ".$fila->apaPro." ".$fila->amaPro."</td>";
                         echo "<td>".$fila->num_horas."</td>";
                         echo "<td>".$fila->cantidad_personas."</td>";
                         echo "<td>".$fila->f_inicio."</td>";
@@ -297,7 +313,7 @@
                     foreach($searchVigentes->result() as $fila) {
                       echo "<tr>";
                         echo "<td>".$fila->tipo."</td>";
-                        echo "<td>".$fila->profesional."</td>";
+                        echo "<td>".$fila->nombrePro." ".$fila->apaPro." ".$fila->amaPro."</td>";
                         echo "<td>".$fila->num_horas."</td>";
                         echo "<td>".$fila->cantidad_personas."</td>";
                         echo "<td>".$fila->f_inicio."</td>";
@@ -328,7 +344,7 @@
                     foreach($searchProximos->result() as $fila) {
                       echo "<tr>";
                         echo "<td>".$fila->tipo."</td>";
-                        echo "<td>".$fila->profesional."</td>";
+                        echo "<td>".$fila->nombrePro." ".$fila->apaPro." ".$fila->amaPro."</td>";
                         echo "<td>".$fila->num_horas."</td>";
                         echo "<td>".$fila->cantidad_personas."</td>";
                         echo "<td>".$fila->f_inicio."</td>";

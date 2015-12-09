@@ -41,4 +41,17 @@ class Profesional_model extends CI_Model{
             return $row_set;
         }
     }  
+
+    public function agregarProfesional($nombre, $paterno, $materno, $ramaMedica, $correo, $telefono, $usuario, $contraseña){
+        $profesional = array('nombrePro' => $nombre,
+                            'apaPro' => $paterno,
+                            'amaPro' => $materno,
+                            'celPro' => $telefono,
+                            'correoPro' => $correo,
+                            'ramaMedica' => $ramaMedica,
+                            'usuario' => $usuario,
+                            'contraseña' => $contraseña);
+        $this->db->insert('profesional', $profesional);
+        redirect(base_url().'Profesionales');
+    }
 }

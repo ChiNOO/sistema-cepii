@@ -9,7 +9,6 @@ class Citas_model extends CI_Model{
         $this->db->select('idPersona, CONCAT(nombrePersona," ", amaPersona," ",apaPersona) AS name', FALSE);
         $this->db->from('persona');
         $query = $this->db->get();
-        print_r($query->result());
         foreach ($query->result() as $row) {
             if ($row->name == $nombreP) {
                 $id = $row->idPersona;

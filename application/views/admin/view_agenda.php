@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>Sistema CEPII</title>
-    <link href="<?php echo base_url(); ?>assets/css/bootstrap.css" rel="stylesheet" />
 
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/font-awesome.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>css/jquery-ui.min.css" rel="stylesheet" />
@@ -20,7 +20,7 @@
     $(document).ready(function($){
      $('#nombreP').autocomplete({
       source:'<?php echo base_url('Paciente/show_Paciente');?>',
-      minLength:2,
+      minLength:1,
       // optional
       html: true,
       // optional (if other layers overlap the autocomplete list)
@@ -34,7 +34,7 @@
     $(document).ready(function($){
      $('#nombrePRO').autocomplete({
       source:'<?php echo base_url('Profesionales/show_profesional');?>',
-      minLength:2,
+      minLength:1,
       // optional
       html: true,
       // optional (if other layers overlap the autocomplete list)
