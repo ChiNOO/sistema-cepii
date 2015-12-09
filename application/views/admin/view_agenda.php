@@ -215,10 +215,10 @@
                       </td>
                     <?php endif; ?>
                     <td>
-                      <?php echo $row->nombrePaciente." ".$row->amaPaciente." ".$row->apaPaciente; ?>
+                      <?php echo $row->nombrePersona." ".$row->amaPersona." ".$row->apaPersona; ?>
                       <?php echo "<br>"; ?>
                       <a>
-                        <i class="fa fa-mobile"></i>     <?php echo $row->celPaciente; ?>
+                        <i class="fa fa-mobile"></i>     <?php echo $row->celPersona; ?>
                       </a>
                     </td>
                     <td>
@@ -287,11 +287,11 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-2">
                 <span class="input-group-addon" id="sizing-addon2">Fecha</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" data-provide="datepicker" id="datepicker" name="fecha">
+                <input type="date" class="form-control" aria-describedby="sizing-addon2" data-provide="datepicker" name="fecha">
               </div>
               <div class="col-xs-2">
                 <span class="input-group-addon" id="sizing-addon2">Hora</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="hora">
+                <input type="time" class="form-control" aria-describedby="sizing-addon2" name="hora">
               </div>
               <div class="col-xs-2">
                 <span class="input-group-addon" id="sizing-addon2">Consultorio</span>
