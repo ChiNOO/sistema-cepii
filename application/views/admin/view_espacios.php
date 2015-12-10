@@ -186,15 +186,16 @@ function elimina(url){
                   <span class="input-group-addon" id="sizing-addon2">Capacidad</span>
                   <input type="number" class="form-control" aria-describedby="sizing-addon2" name="capacidad" id="capacidad" required="required">
                 </div>
-                <div class="col-xs-2">
-                  <span class="input-group-addon" id="sizing-addon2">Tipo del servicio</span>
-                  <input type="text" class="form-control" aria-describedby="sizing-addon2" name="tipo_servicio" id="tipo_servicio" required="required">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="espacio_interno"> Espacio interno
+                  </label>
                 </div>
               </div>
             </div>
             <br>
             <br>
-            <input type="submit"  value="Guardar" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
+            <input type="submit"  value="Guardar" onClick="es_interno()" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
             <br><br>
             </form>
           </div>
@@ -217,13 +218,20 @@ function elimina(url){
               echo "<tr>";
               echo "<th>Nombre del espacio</th>";
               echo "<th>Capacidad</th>";
-              echo "<th>Tipo de servicio en el espacio</th>";
+              echo "<th>Tipo de espacio</th>";
               echo "</tr>";
                 foreach ($enlaces->result() as $row) {
                   echo "<tr>";
                   echo "<td>".$row->Nombre."</td>";
                   echo "<td>".$row->Capacidad."</td>";
-                  echo "<td>".$row->Tipo_Servicio."</td>";
+                  echo "<td>";
+                  if ($row->Tipo==1){
+                    echo "Espacio Interno";
+                  }
+                  if ($row->Tipo==0){
+                    echo "Espacio Externo";
+                  }
+                  echo "</td>";
                   echo "<td><a href='".base_url()."espacios/editar/$row->idEspacio' > <i class='glyphicon glyphicon-pencil'></i></a></td>";
                   ?>
                   <td><a href='#' onclick="elimina('<?=base_url()?>espacios/eliminar/<?=$row->idEspacio?>');"><i class='glyphicon glyphicon-trash'></i></a></td>

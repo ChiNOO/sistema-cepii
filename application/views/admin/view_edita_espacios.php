@@ -64,7 +64,7 @@
                 </a>
               </li>
               <li class="dropdown">
-              
+
                 <ul class="dropdown-menu">
 
                 </ul>
@@ -108,9 +108,18 @@
                   <span class="input-group-addon" id="sizing-addon2">Capacidad</span>
                   <input type="number" class="form-control" aria-describedby="sizing-addon2" value="<?=$Capacidad?>" name="capacidad" id="capacidad" required="required">
                 </div>
-                <div class="col-xs-2">
-                  <span class="input-group-addon" id="sizing-addon2">Tipo del servicio</span>
-                  <input type="text" class="form-control" aria-describedby="sizing-addon2" name="tipo_servicio" value="<?=$Tipo_Servicio?>" id="tipo_servicio" required="required">
+                <div class="checkbox">
+
+                  <label>
+                    <?php
+                    if($Tipo==1){
+                    echo"<input type='checkbox' name='espacio_interno'checked> Espacio interno ";
+                    }else {
+                    echo"<input type='checkbox' name='espacio_interno'> Espacio interno ";
+                    }
+                    ?>
+
+                  </label>
                 </div>
                 <input type="hidden" name="idEspacio" value="<?=$idEspacio?>" id="idEspacio" maxlength="20" size="30" class="form-control" />
 

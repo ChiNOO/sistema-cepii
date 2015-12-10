@@ -17,10 +17,19 @@ class Espacios extends CI_Controller {
 	}
 
   public function agregarEspacio(){
+		$es_espacio_interno;
+		if (isset($_REQUEST['espacio_interno']))
+  	{
+				$es_espacio_interno=1;
+				echo $es_espacio_interno;
+  	}else {
+				$es_espacio_interno=0;
+					echo $es_espacio_interno;
+  	}
     $datos=array(
 				'Nombre' => $this->input->post('nombre_espacio',TRUE),
 				'Capacidad' => $this->input->post('capacidad',TRUE),
-				'Tipo_Servicio' => $this->input->post('tipo_servicio',TRUE)
+				'Tipo' => ($es_espacio_interno)
 			);
 
     $this->espacios_model->guardar_espacio($datos);
@@ -35,12 +44,12 @@ class Espacios extends CI_Controller {
 				$idEspacio = $row->idEspacio;
 				$Nombre = $row->Nombre;
 				$Capacidad = $row->Capacidad;
-				$Tipo_Servicio = $row->Tipo_Servicio;
+				$Tipo = $row->Tipo;
 			}
 			$data['idEspacio'] = $idEspacio;
 			$data['Nombre'] = $Nombre;
 			$data['Capacidad'] = $Capacidad;
-			$data['Tipo_Servicio'] = $Tipo_Servicio;
+			$data['Tipo'] = $Tipo;
 			$this->load->view('admin/view_edita_espacios',$data);
 	}
 
@@ -51,14 +60,23 @@ class Espacios extends CI_Controller {
 	}
 
 	function editarEspacio(){
+			$es_espacio_interno;
 		//creamos el arreglo de datos necesario para actualizar a la tabla espacios
 		$id  = array(
 			'idEspacio' => $this->input->post('idEspacio',TRUE)
 		);
+		if (isset($_REQUEST['espacio_interno']))
+		{
+				$es_espacio_interno=1;
+				echo $es_espacio_interno;
+		}else {
+				$es_espacio_interno=0;
+					echo $es_espacio_interno;
+		}
 			$ArrDatos = array(
 				'Nombre' => $this->input->post('nombre_espacio',TRUE),
 				'Capacidad' => $this->input->post('capacidad',TRUE),
-				'Tipo_Servicio' => $this->input->post('tipo_servicio',TRUE)
+				'Tipo' => ($es_espacio_interno)
 			);
 			//actualizamos la tabla
 			$this->espacios_model->actualizar($id,$ArrDatos);
@@ -84,7 +102,7 @@ class Espacios extends CI_Controller {
 				echo "<tr>";
 				echo "<th>Nombre del espacio</th>";
 				echo "<th>Capacidad</th>";
-				echo "<th>Tipo de servicio en el espacio</th>";
+				echo "<th>Tipo de espacio</th>";
 				echo "</tr>";
 				foreach($search->result() as $fila)
 				{
@@ -92,9 +110,16 @@ class Espacios extends CI_Controller {
 					echo "<tr>";
 						echo "<td>".$fila->Nombre."</td>";
 						echo "<td>".$fila->Capacidad."</td>";
-						echo "<td>".$fila->Tipo_Servicio."</td>";
+						echo "<td>";
+						if ($fila->Tipo==1){
+							echo "Espacio Interno";
+						}
+						if ($fila->Tipo==0){
+							echo "Espacio Externo";
+						}
+						echo "</td>";
 						echo "<td><a href='".base_url()."espacios/editar/$fila->idEspacio'> <i class='glyphicon glyphicon-pencil'></i></a></td>";
-						echo "<td><a href='".base_url()."espacios/eliminar/$fila->idEspacio'> <i class='glyphicon glyphicon-remove'></i></a></td>";
+						echo "<td><a href='".base_url()."espacios/eliminar/$fila->idEspacio'> <i class='glyphicon glyphicon-trash'></i></a></td>";
 
 					echo "</tr>";
 				?>
@@ -108,7 +133,7 @@ class Espacios extends CI_Controller {
 			//en otro caso decimos que no hay resultados
 			}else{
 			?>
-				<p><?php echo 'No hay resultados' ?></p>
+				<p><?php  echo "<div class='alert alert-warning'><p class='text-center'>No hay espacios registrados con el nombre introducido</p></div>"; ?></p>
 			<?php
 			}
 		}

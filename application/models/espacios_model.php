@@ -17,7 +17,7 @@ class Espacios_model extends CI_Model{
   		}
   	}
     public function getEspacio($id){
-      $this->db->select('idEspacio,Nombre, Capacidad, Tipo_Servicio');
+      $this->db->select('idEspacio,Nombre, Capacidad,Tipo');
 		  $this->db->from('Espacio AS A');
       $this->db->where('A.idEspacio ='.$id);
 		  $query = $this->db->get();
@@ -46,7 +46,7 @@ class Espacios_model extends CI_Model{
       //el principio de la cadena
       //ej SELECT localidad from localidades_es
       //WHERE localidad LIKE '%$abuscar' limit 12
-      $this->db->select('idEspacio, Nombre, Capacidad, Tipo_Servicio');
+      $this->db->select('idEspacio, Nombre, Capacidad, Tipo');
 
       $this->db->like('Nombre',$abuscar,'after');
 
