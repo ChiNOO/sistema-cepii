@@ -23,6 +23,7 @@
       minLength:1,
       // optional
       html: true,
+
       // optional (if other layers overlap the autocomplete list)
       open: function(event, ui) {
        $(".ui-autocomplete").css("z-index", 1000);
@@ -30,19 +31,27 @@
      });
     });
     </script>
+
     <script>
-    $(document).ready(function($){
-     $('#nombrePRO').autocomplete({
-      source:'<?php echo base_url('Profesionales/show_profesional');?>',
-      minLength:1,
-      // optional
-      html: true,
-      // optional (if other layers overlap the autocomplete list)
-      open: function(event, ui) {
-       $(".ui-autocomplete").css("z-index", 1000);
-      }
-     });
+    $(document).ready(function () {
+    $("#nombrePRO").autocomplete({
+        source: function(request, response) {
+            $.ajax({
+                url: "<?php echo base_url().'Profesionales/show_profesional' ?>",
+                dataType: "json",
+                minLength:1,
+                data: {
+                    term: request.term,
+                    ramaMedica: $("#ramaMedica").val(),
+                },
+                success: function(data) {
+                    response(data);
+                    //alert('You selected:');
+                }
+            });
+        },
     });
+});
     </script>
 </head>
 <body style="background-color:#e5e5e5;">
@@ -263,13 +272,9 @@
           <h2 style="text-align:center;">Datos del paciente</h2>
           <div style="margin-left:20px; margin-right:20px;">
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
-              <div class="col-xs-7">
+              <div class="col-xs-12">
                 <span class="input-group-addon">Nombre Paciente</span>
                 <input type="text" class="form-control" aria-describedby="sizing-addon2" id="nombreP" name="nombreP">
-              </div>
-              <div class="col-xs-5">
-                <span class="input-group-addon">Clave Paciente</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" id="claveP" name="claveP">
               </div>
             </div>
           </div>
@@ -278,7 +283,17 @@
           <h2 style="text-align:center;">Datos del profesional</h2>
           <div style="margin-left:20px; margin-right:20px;">
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
-              <div class="col-xs-12">
+              <div class="col-xs-5">
+                <span class="input-group-addon" id="sizing-addon2">Rama Médica</span>
+                <select class="form-control" value="ramaMedica" id="ramaMedica">
+                  <option></option>
+                  <option value="Medicina" name="Medicina">Medicina</option>
+                  <option value="Nutrición" name="Nutrición">Nutrición</option>
+                  <option value="Psicología" name="Psicología">Psicología</option>
+                </select>
+
+              </div>
+              <div class="col-xs-7">
                 <span class="input-group-addon" id="sizing-addon2">Nombre Profesional</span>
                 <input type="text" class="form-control" aria-describedby="sizing-addon2" id="nombrePRO" name="nombrePRO">
               </div>
