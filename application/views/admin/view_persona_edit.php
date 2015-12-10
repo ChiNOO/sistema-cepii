@@ -16,16 +16,7 @@
 
 
     <link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/img/icon.png">
-    <script type="text/javascript">
-      function elimina(url){
-        if (confirm("¿Está seguro que desea eliminar el paciente?") ){
-          location.href=url;
-        }
-      }
-      function editar(url){
-        location.href=url;
-      }
-    </script>
+
 </head>
 <body style="background-color:#e5e5e5;">
   <nav class="navbar navbar-default">
@@ -122,38 +113,33 @@
       <ul  class="nav nav-pills">
         <li class="active" data-toggle="tab">
           <a href="#1b" data-toggle="tab">
-            <i class="fa fa-list"></i>     Registro de Paciente
-          </a>
-        </li>
-        <li data-toggle="tab">
-          <a href="#3b" data-toggle="tab">
-            <i class="fa fa-table"></i>     Pacientes Registrados
+            <i class="fa fa-list"></i>     Editar Paciente
           </a>
         </li>
       </ul>
-
+      
       <div style="background-color:#e5e5e5; height:3px;"></div>
 
       <div class="tab-content clearfix">
         
         <div class="tab-pane active" id="1b">
-          <?=  form_open(base_url().'Paciente/agregarPaciente')?>
+          <?=  form_open(base_url().'Paciente/upDate')?>
           <br>
           <h2 style="text-align:center;">Datos del paciente</h2>
-          
+          <input type="hidden" value="<?php echo $query['0']->idpersona ?>" name="id" id="id">
           <div style="margin-left:20px; margin-right:20px;">
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-4">
                 <span class="input-group-addon">Nombre Paciente</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombre">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombre" value="<?php echo $query['0']->nombrePersona ?>">
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Apellido Paterno</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="paterno">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="paterno" value="<?php echo $query['0']->apaPersona ?>">
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Apellido Materno</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="materno">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="materno" value="<?php echo $query['0']->amaPersona ?>">
               </div>
             </div>
           </div>
@@ -164,15 +150,15 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-5">
                 <span class="input-group-addon">Calle</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="calle">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="calle" value="<?php echo $query['0']->callePersona ?>">
               </div>
               <div class="col-xs-3">
                 <span class="input-group-addon">Número</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="numero">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="numero" value="<?php echo $query['0']->numDirPersona ?>">
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Colonia</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="colonia">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="colonia" value="<?php echo $query['0']->coloniaPersona ?>">
               </div>
             </div>        
           </div>
@@ -183,11 +169,11 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-2">
                 <span class="input-group-addon" id="sizing-addon2">Fecha</span>
-                <input type="date" class="form-control" aria-describedby="sizing-addon2" data-provide="datepicker" name="fecha">
+                <input type="date" class="form-control" aria-describedby="sizing-addon2" data-provide="datepicker" name="fecha" value="<?php echo $query['0']->fechaNa ?>">
               </div>
               <div class="col-xs-1">
                 <span class="input-group-addon" id="sizing-addon2">Sexo</span>
-                <select class="form-control" name="sexo">
+                <select class="form-control" name="sexo" value="<?php echo $query['0']->sexo ?>">
                   <option></option>
                   <option value="M">M</option>
                   <option value="F">F</option>
@@ -195,11 +181,11 @@
               </div>
               <div class="col-xs-5">
                 <span class="input-group-addon" id="sizing-addon2">Correo</span>
-                <input type="email" class="form-control" aria-describedby="sizing-addon2" name="correo">
+                <input type="email" class="form-control" aria-describedby="sizing-addon2" name="correo" value="<?php echo $query['0']->correoPersona ?>">
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon" id="sizing-addon2">Teléfono</span>
-                <input type="tel" class="form-control" aria-describedby="sizing-addon2" name="telefono">
+                <input type="tel" class="form-control" aria-describedby="sizing-addon2" name="telefono" value="<?php echo $query['0']->celPersona ?>">
               </div>
             </div>
           </div>
@@ -213,49 +199,6 @@
           <br>
           <?=form_close()?>
         </div>
-
-        <div class="tab-pane" id="3b">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Calle</th>
-                <th>Colonia</th>
-                <th>Teléfono</th>
-                <th>Correo</th>
-                <th>Sexo</th>
-                <th>Edad</th>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead>
-            <?php foreach($query as $row): ?>
-              <tr>
-                <td><?php echo $row->nombrePersona.' '.$row->apaPersona.' '.$row->amaPersona; ?></td>
-                <td><?php echo $row->callePersona.' #'.$row->numDirPersona; ?></td>
-                <td><?php echo $row->coloniaPersona; ?></td>
-                <td><?php echo $row->celPersona; ?></td>
-                <td><?php echo $row->correoPersona; ?></td>
-                <td><?php echo $row->sexo; ?></td>
-                <td>
-                  <?php
-                    $then = date('Ymd', strtotime($row->fechaNa));
-                    $diff = date('Ymd') - $then;
-                    echo substr($diff, 0, -4);
-                  ?>
-                </td>
-                <td>
-                  <a href='#' onclick="editar('<?=base_url()?>paciente/modificar/<?=$row->idpersona?>');"><i class='glyphicon glyphicon-pencil'></i></a>
-                </td>
-                <td>
-                  <a href='#' onclick="elimina('<?=base_url()?>paciente/deletePaciente/<?=$row->idpersona?>');"><i class='glyphicon glyphicon-trash'></i></a>
-                </td>
-              </tr>
-            <?php endforeach; ?>
-          </table>
-
-        </div>
-
       </div>
 
     </div>

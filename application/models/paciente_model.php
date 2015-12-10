@@ -28,6 +28,19 @@ class Paciente_model extends CI_Model{
 
     }
 
+    function getPacienteId($id){
+        $this->db->select();
+        $this->db->where('idpersona', $id);
+        $query = $this->db->get('persona');
+        return $query->result();
+    }
+
+    function delete_Paciente($id){
+        $this->db->where('idpersona', $id);
+        $this->db->delete('persona');
+        redirect(base_url().'Paciente');
+    }
+
     function agregarPaciente($nombre, $paterno, $materno, $calle, $numero, $colonia, $fecha, $sexo, $correo, $telefono){
         $datos = array('nombrePersona' => $nombre,
                         'apaPersona' => $paterno,
@@ -42,6 +55,22 @@ class Paciente_model extends CI_Model{
         $this->db->insert('persona', $datos);
         redirect(base_url().'Paciente');
     }
- 
+    
+    function upDatePaciente($id, $nombre, $paterno, $materno, $calle, $numero, $colonia, $fecha, $sexo, $correo, $telefono){
+        $datos = array('nombrePersona' => $nombre,
+                        'apaPersona' => $paterno,
+                        'amaPersona' => $materno,
+                        'callePersona' => $calle,
+                        'numDirPersona' => $numero,
+                        'coloniaPersona' => $colonia,
+                        'celPersona' => $telefono,
+                        'correoPersona' => $correo,
+                        'sexo' => $sexo,
+                        'fechaNa' => $fecha);
+        $this->db->where('idpersona', $id);
+        $this->db->update('persona', $datos);
+
+        redirect(base_url().'Paciente');
+    }
   
 }

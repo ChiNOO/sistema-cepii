@@ -33,10 +33,40 @@ class Paciente extends CI_Controller {
 		$insert = $this->paciente_model->agregarPaciente($nombre, $paterno, $materno, $calle, $numero, $colonia, $fecha, $sexo, $correo, $telefono);	
 	}
 
+	public function upDate(){
+		$id = $this->input->post('id');
+		$nombre = $this->input->post('nombre');
+		$paterno = $this->input->post('paterno');
+		$materno = $this->input->post('materno');
+		$calle = $this->input->post('calle');
+		$numero = $this->input->post('numero');
+		$colonia = $this->input->post('colonia');
+		$fecha = $this->input->post('fecha');
+		$sexo = $this->input->post('sexo');
+		$correo = $this->input->post('correo');
+		$telefono = $this->input->post('telefono');
+		$this->load->model('paciente_model');
+		$insert = $this->paciente_model->upDatePaciente($id, $nombre, $paterno, $materno, $calle, $numero, $colonia, $fecha, $sexo, $correo, $telefono);	
+	}
 	public function show_Paciente(){
 		$q = strtolower($_GET['term']);
 		$valores = $this->paciente_model->get_persona($q);
 		echo json_encode($valores);  
 	}
+
+	public function deletePaciente(){
+		$id = $this->uri->segment(3);
+		$this->load->model('paciente_model');
+		$delete = $this->paciente_model->delete_Paciente($id);
+	}
+
+	public function modificar(){
+		$id = $this->uri->segment(3);
+		$this->load->model('paciente_model');
+		$data['query'] = $this->paciente_model->getPacienteId($id);
+		$this->load->view('admin/view_persona_edit', $data);
+	}
+
+
 
 }
