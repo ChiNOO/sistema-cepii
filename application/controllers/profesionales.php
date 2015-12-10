@@ -25,7 +25,7 @@ class Profesionales extends CI_Controller {
     /*print_r($rama);*/
     $this->load->database('default');
     $this->load->model('profesional_model');
-    $valores = $this->profesional_model->showProfesional($q);
+    $valores = $this->profesional_model->showProfesional($q, $rama);
     echo json_encode($valores);  
   }
 
