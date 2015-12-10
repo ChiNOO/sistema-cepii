@@ -108,19 +108,19 @@ CREATE TABLE IF NOT EXISTS `donativo` (
 -- Estructura de tabla para la tabla `espacio`
 --
 
-CREATE TABLE IF NOT EXISTS `espacio` (
-`idEspacio` int(11) NOT NULL,
+CREATE TABLE `espacio` (
+  `idEspacio` int(11) NOT NULL,
   `Nombre` varchar(20) NOT NULL,
   `Capacidad` int(11) NOT NULL,
-  `Tipo_Servicio` varchar(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
+  `Tipo` tinyint(1) NOT NULL COMMENT '1 si es espacio interno--0 si es externo'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 --
 -- Volcado de datos para la tabla `espacio`
 --
 
-INSERT INTO `espacio` (`idEspacio`, `Nombre`, `Capacidad`, `Tipo_Servicio`) VALUES
-(1, 'Consultorion 1', 1, 'Terapia');
+INSERT INTO `espacio` (`idEspacio`, `Nombre`, `Capacidad`, `Tipo`) VALUES
+(2, 'Espacio de terapias', 1, 1),
+(7, 'Espacio conferencias', 20, 0);
 
 -- --------------------------------------------------------
 
@@ -278,7 +278,7 @@ MODIFY `idDonativo` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `espacio`
 --
 ALTER TABLE `espacio`
-MODIFY `idEspacio` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `idEspacio` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `hojaclinica`
 --
