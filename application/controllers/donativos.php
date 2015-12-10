@@ -15,6 +15,7 @@ class Donativos extends CI_Controller {
 	public function index(){
 	
 	 $data ['query'] = $this->donativos_model->get_appointment();
+	  $data['arrProfesiones'] = $this->donativos_model->get_profesiones();
 	 $this->load->view('admin/view_control_donativos', $data);
 	
 

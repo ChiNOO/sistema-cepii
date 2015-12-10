@@ -12,6 +12,22 @@ class Donativos_model extends CI_Model{
         return $query->result();
     }
 
+    function get_profesiones(){
+      // armamos la consulta
+          $query = $this->db-> query('SELECT idProfesional,nombrePro FROM profesional');
+
+      // si hay resultados
+          if ($query->num_rows() > 0) {
+             // almacenamos en una matriz bidimensional
+            foreach($query->result() as $row)
+            $arrDatos[htmlspecialchars($row->idProfesional, ENT_QUOTES)] = 
+            htmlspecialchars($row->nombrePro, ENT_QUOTES);
+
+            $query->free_result();
+            return $arrDatos;
+            }
+    }
+
 
 
 }
