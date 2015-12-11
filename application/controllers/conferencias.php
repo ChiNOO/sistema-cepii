@@ -82,7 +82,7 @@ class Conferencias extends CI_Controller {
 				'direccion' => $this->input->post('Direccion',TRUE)
 			);
 			//actualizamos la tabla
-			$this->espacios_model->actualizar($id,$ArrDatos);
+			$this->conferencias_model->actualizar($id,$ArrDatos);
 			redirect('conferencias/');
 				//print_r ($ArrDatos);
 	}

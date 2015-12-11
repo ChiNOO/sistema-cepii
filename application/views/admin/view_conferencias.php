@@ -139,9 +139,9 @@
                       <th>Descripcion</th>
                       <th>Acompañantes</th>
                       <th>Ponentes</th>
-                      <th>Numero Asistentes</th>
+                      <th>Asistentes</th>
                       <th>Lugar</th>
-                      <th>Fecha</th>
+                      <th WIDTH=100>Fecha</th>
                       <th>Hora</th>
                       <th>Espacio</th>
                     </tr>

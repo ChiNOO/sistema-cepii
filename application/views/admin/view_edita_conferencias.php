@@ -96,22 +96,22 @@
           <form id="formulario" action="<?=base_url()?>conferencias/editarConferencia" method="post" accept-charset="utf-8">
             <h2 style="text-align:center;">Datos nuevos de la Conferencia</h2>
 
-            <div style="margin-left:20px; margin-right:20px;">
+            <div style="margin-left:5px; margin-right:5px;">
               <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
                 
                <div class="col-xs-4">
-              <span class="input-group-addon" id="sizing-addon1" >Tema de Conferencia</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon1" name="TemaConferencia" placeholder="Ejemplo: Constelaciones Familiares">
-              </div>
-
-                <div class="col-xs-4">
               <span class="input-group-addon" id="sizing-addon2">Descripción</span>
-               <textarea class="form-control" rows="2" name="Descripcion"></textarea>
+               <input class="form-control" rows="2" value="<?=$descripcion?>" name="Descripcion" id="Descripcion"></input>
+              </div>
+
+               <div class="col-xs-4">
+              <span class="input-group-addon" id="sizing-addon3" >Nombre Ponente</span>
+              <input type="text" class="form-control" aria-describedby="sizing-addon3" value="<?=$nombrePonente?>" name="NombrePonente" id="NombrePonente" >
               </div>
 
                 <div class="col-xs-4">
-              <span class="input-group-addon" id="sizing-addon3" >Nombre Ponente</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon3" name="NombrePonente" placeholder="Ejemplo: Uzziel Asafmin Ojeda González">
+              <span class="input-group-addon" id="sizing-addon1" >Acompañantes</span>
+              <input type="text" class="form-control" aria-describedby="sizing-addon1" value="<?=$acompañantes?>" name="Acompañantes" id="Acompañantes" >
               </div>
 
                 <input type="hidden" name="idConferencia" value="<?=$idConferencia?>" id="idConferencia" maxlength="20" size="30" class="form-control" />
@@ -124,17 +124,17 @@
 
               <div class="col-xs-4">
               <span class="input-group-addon" id="sizing-addon4" >Numero de Asistentes</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon4" name="NumAsistentes" placeholder="Ejemplo: 25">
+              <input type="number" class="form-control" aria-describedby="sizing-addon4" value="<?=$numAsistentes?>" name="NumAsistentes" id="NumAsistentes">
               </div>
 
              <div class="col-xs-4">
               <span class="input-group-addon" id="sizing-addon5" >Lugar</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon5" name="Lugar" placeholder="Ejemplo: Facultad de Estadística e Informática">
+              <input type="text" class="form-control" aria-describedby="sizing-addon5" value="<?=$lugar?>" name="Lugar" id="Lugar">
               </div>
 
               <div class="col-xs-4">
-                <span class="input-group-addon bootstrap-timepicker timepicker" id="sizing-addon6">Fecha</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon6" data-provide="datepicker" id="datepicker" name="Fecha">
+                <span class="input-group-addon" id="sizing-addon6">Fecha</span>
+                <input type="date" class="form-control" aria-describedby="sizing-addon6" data-provide="datepicker" value="<?=$fecha?>" name="Fecha" id="Fecha">
               </div>
 
             </div>
@@ -143,14 +143,14 @@
           <div style="margin-left:5px; margin-right:5px;">
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
 
-            <div class="col-xs-4">
+              <div class="col-xs-4">
               <span class="input-group-addon" id="sizing-addon4" >Hora</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon4" name="Hora" placeholder="Ejemplo: 8:00 AM">
+              <input type="time" class="form-control" aria-describedby="sizing-addon4" value="<?=$hora?>" name="Hora" id="Hora">
               </div>
 
               <div class="col-xs-4">
-              <span class="input-group-addon" id="sizing-addon4" >Dirección</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon4" name="Direccion" placeholder="Ejemplo: Av. Xalapa, s/n">
+              <span class="input-group-addon" id="sizing-addon4" >Espacio</span>
+              <input type="text" class="form-control" aria-describedby="sizing-addon4" value="<?=$direccion?>" name="Direccion" id="Direccion">
               </div>
 
             </div>
@@ -158,7 +158,7 @@
             <!br>
             <br>
             <input type="submit"  value="Guardar Cambios" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
-            <a class="btn btn-primary btn-lg pull-right" href="<?=base_url()?>espacios/" role="button" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">Cancelar</a>
+            <a class="btn btn-primary btn-lg pull-right" href="<?=base_url()?>conferencias/" role="button" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">Cancelar</a>
             <br><br>
             </form>
 

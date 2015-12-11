@@ -37,8 +37,8 @@ class Conferencias_model extends CI_Model{
     }
 
     function eliminar_conferencia($id){
-      $this->db->where('idEspacio', $id);
-      $this->db->delete('Espacio');
+      $this->db->where('idConferencia', $id);
+      $this->db->delete('Conferencias');
     }
     public function buscador($abuscar)
     {
