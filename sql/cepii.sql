@@ -43,7 +43,7 @@ CREATE TABLE `cita` (
 --
 
 CREATE TABLE `conferencias` (
-  `idConferencia` int(11) NOT NULL,
+  `acompañantes` int(11) NOT NULL,
   `tema` varchar(50) DEFAULT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
   `nombrePonente` varchar(50) DEFAULT NULL,
