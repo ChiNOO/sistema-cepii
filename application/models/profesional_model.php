@@ -45,6 +45,24 @@ class Profesional_model extends CI_Model{
         }
     }  
 
+    function showProfesionals($q){
+        $this->db->select();
+        $this->db->like('nombrePro', $q);
+        $this->db->or_like('amaPro', $q);
+        $this->db->or_like('apaPro', $q);
+        $query = $this->db->get('profesional');
+        $query->num_rows();
+
+        if($query->num_rows > 0){
+            foreach ($query->result() as $row){
+                    $new_row['id'] = htmlentities(stripslashes($row->idProfesional));
+                    $new_row['value'] = htmlentities(stripslashes($row->nombrePro.' '.$row->amaPro.' '.$row->apaPro));
+                    $row_set[] = $new_row;                
+            }
+            return $row_set;
+        }
+    }  
+
     public function agregarProfesional($nombre, $paterno, $materno, $ramaMedica, $correo, $telefono, $usuario, $contraseña){
         $profesional = array('nombrePro' => $nombre,
                             'apaPro' => $paterno,

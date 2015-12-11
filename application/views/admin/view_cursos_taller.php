@@ -21,7 +21,7 @@
     <script>
     $(document).ready(function($){
      $('#profesional').autocomplete({
-      source:'<?php echo base_url('Profesionales/show_profesional');?>',
+      source:'<?php echo base_url('Profesionales/show_profesionals');?>',
       minLength:1,
       // optional
       html: true,

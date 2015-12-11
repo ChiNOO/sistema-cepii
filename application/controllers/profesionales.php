@@ -29,6 +29,14 @@ class Profesionales extends CI_Controller {
     echo json_encode($valores);  
   }
 
+  public function show_profesionals(){
+        $q = strtolower($_GET['term']);
+        $this->load->database('default');
+        $this->load->model('profesional_model');
+        $valores = $this->profesional_model->showProfesionals($q);
+        echo json_encode($valores);  
+  }
+
   public function agregarProfesional(){
     $nombre = $this->input->post('nombre');
     $paterno = $this->input->post('paterno');
