@@ -43,5 +43,35 @@ class Profesionales extends CI_Controller {
     $insert = $this->profesional_model->agregarProfesional($nombre, $paterno, $materno, $ramaMedica, $correo, $telefono, $usuario, $contraseña);  
   }
 
+  function deleteProfesional(){
+    $this->load->database('default');
+    $id = $this->uri->segment(3);
+    $this->load->model('profesional_model');
+    $delete = $this->profesional_model->delete_profesional($id);
+  }
+
+  function modificar(){
+    $this->load->database('default');
+    $id = $this->uri->segment(3);
+    $this->load->model('profesional_model');
+    $data['query'] = $this->profesional_model->upDateProfesional($id);
+    $this->load->view('admin/view_profesionales_edit', $data);
+  }
+
+  function upDateProfesional(){
+    $id = $this->input->post('id');
+    $nombre = $this->input->post('nombre');
+    $paterno = $this->input->post('paterno');
+    $materno = $this->input->post('materno');
+    $ramaMedica = $this->input->post('ramaMedica');
+    $correo = $this->input->post('correo');
+    $telefono = $this->input->post('telefono');
+    $usuario = $this->input->post('usuario');
+    $contraseña = $this->input->post('contraseña');
+    $this->load->model('profesional_model');
+    $this->load->database('default');
+    $insert = $this->profesional_model->upDateProfesionalId($id, $nombre, $paterno, $materno, $ramaMedica, $correo, $telefono, $usuario);  
+  }
+
 
 }

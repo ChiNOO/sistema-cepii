@@ -57,4 +57,30 @@ class Profesional_model extends CI_Model{
         $this->db->insert('profesional', $profesional);
         redirect(base_url().'Profesionales');
     }
+
+    public function delete_profesional($id){
+        $this->db->where('idProfesional', $id);
+        $this->db->delete('profesional');
+        redirect(base_url().'Profesionales');
+    }
+
+    public function upDateProfesional($id){
+        $this->db->select();
+        $this->db->where('idProfesional', $id);
+        $query = $this->db->get('profesional');
+        return $query->result();
+    }
+
+    public function upDateProfesionalId($id, $nombre, $paterno, $materno, $ramaMedica, $correo, $telefono, $usuario){
+        $profesional = array('nombrePro' => $nombre,
+                            'apaPro' => $paterno,
+                            'amaPro' => $materno,
+                            'celPro' => $telefono,
+                            'correoPro' => $correo,
+                            'ramaMedica' => $ramaMedica,
+                            'usuario' => $usuario);
+        $this->db->where('idProfesional', $id);
+        $this->db->update('profesional', $profesional);
+        redirect(base_url().'Profesionales');
+    }
 }

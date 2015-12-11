@@ -13,17 +13,6 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script type="text/javascript">
-      function elimina(url){
-        if (confirm("¿Está seguro que desea eliminar el profesional?") ){
-          location.href=url;
-        }
-      }
-      function editar(url){
-        location.href=url;
-      }
-    </script>
-
     <link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/img/icon.png">
 </head>
 <body style="background-color:#e5e5e5;">
@@ -118,67 +107,18 @@
       <ul  class="nav nav-pills">
         <li class="active" data-toggle="tab">
           <a href="#1b" data-toggle="tab">
-            <i class="fa fa-heartbeat"></i>     Profesionales Registrados
+            <i class="fa fa-list"></i>     Editar Paciente
           </a>
         </li>
-        <li  data-toggle="tab">
-          <a href="#2b" data-toggle="tab">
-            <i class="fa fa-user-md"></i>     Registro de Profesional
-          </a>
-        </li> 
       </ul>
-
+      
       <div style="background-color:#e5e5e5; height:3px;"></div>
 
       <div class="tab-content clearfix">
+        
         <div class="tab-pane active" id="1b">
-          <!-- Table -->
-          <table class="table">
-            <tr>
-              <td>
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>Nombre</th>
-                      <th>Teléfono</th>
-                      <th>Correo</th>
-                      <th>Area</th>
-                      <th>Usuario</th>
-                      <th></th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <?php foreach($query as $row): ?>
-                    <td>
-                      <i class="fa fa-user-md"></i>     Dr.(a) <?php echo $row->nombrePro.' '.$row->apaPro.' '.$row->amaPro; ?>                      
-                    </td>
-                    <td>
-                      <i class="fa fa-mobile"></i>     <?php echo $row->celPro; ?>
-                    </td>
-                    <td>
-                      <i class="fa fa-envelope-o"></i>    <?php echo $row->correoPro; ?>
-                    </td>
-                    <td>
-                      <?php echo $row->ramaMedica; ?>
-                    </td>
-                    <td>
-                      <?php echo $row->usuario; ?>
-                    </td>
-                    <td>
-                      <a href='#' onclick="editar('<?=base_url()?>profesionales/modificar/<?=$row->idProfesional?>');"><i class='glyphicon glyphicon-pencil'></i></a>
-                    </td>
-                    <td>
-                      <a href='#' onclick="elimina('<?=base_url()?>profesionales/deleteProfesional/<?=$row->idProfesional?>');"><i class='glyphicon glyphicon-trash'></i></a>
-                    </td>
-                  </tr>
-                  <?php endforeach; ?>
-                </table>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="tab-pane" id="2b">
-          <?=  form_open(base_url().'Profesionales/agregarProfesional')?>
+          <?=  form_open(base_url().'Profesionales/upDateProfesional')?>
+          <input type="hidden" value="<?php echo $query['0']->idProfesional ?>" name="id" id="id">
           <br>
           <h2 style="text-align:center;">Datos del Profesional</h2>
           
@@ -186,15 +126,15 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-4">
                 <span class="input-group-addon">Nombre Profesional</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombre">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombre" value="<?php echo $query['0']->nombrePro ?>" requierd>
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Apellido Profesional</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="paterno">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="paterno" value="<?php echo $query['0']->apaPro ?>">
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Apellido Profesional</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="materno">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="materno" value="<?php echo $query['0']->amaPro ?>">
               </div>
             </div>
           </div>
@@ -205,7 +145,7 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-4">
                 <span class="input-group-addon">Rama Médica</span>
-                <select class="form-control" name="ramaMedica">
+                <select class="form-control" name="ramaMedica" value="<?php echo $query['0']->ramaMedica ?>">
                   <option></option>
                   <option value="Medicina">Medicina</option>
                   <option value="Nutrición">Nutrición</option>
@@ -214,11 +154,11 @@
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Correo</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="correo">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="correo" value="<?php echo $query['0']->correoPro ?>">
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Teléfono</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="telefono">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="telefono" value="<?php echo $query['0']->celPro ?>">
               </div>
             </div>        
           </div>
@@ -227,13 +167,9 @@
 
           <div style="margin-left:20px; margin-right:20px;">
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
-              <div class="col-xs-2">
+              <div class="col-xs-3">
                 <span class="input-group-addon" id="sizing-addon2">Usuario</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="usuario">
-              </div>
-              <div class="col-xs-2">
-                <span class="input-group-addon" id="sizing-addon2">Contraseña</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="contraseña">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="usuario" value="<?php echo $query['0']->usuario ?>">
               </div>
             </div>
           </div>
