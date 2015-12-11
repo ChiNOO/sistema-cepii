@@ -30,12 +30,23 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <div style="color:#FFF;">
+                    <i class="fa fa-user"></i>     Administrador
+                    <span class="caret"></span>
+                </div>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Perfil</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="<?php echo base_url().'login/logout'?>">Cerrar Sesión</a></li>
+              </ul>
             </li>
           </ul>
       </div>
     </div>
   </nav>
+
   <section class="menu-section">
     <div>
       <div class="row">
@@ -43,35 +54,45 @@
           <div class="navbar-collapse collapse ">
             <ul id="menu-top" class="nav navbar-nav navbar-right">
               <li>
-                <a >
+                <a href="<?php echo base_url().'Agenda'; ?>">
                   <div>
-
+                    <i class="fa fa-calendar"></i>     Agenda
                   </div>
                 </a>
               </li>
               <li>
-                <a href="">
+                <a href="<?php echo base_url().'Paciente'; ?>">
                   <div>
-
+                    <i class="fa fa-users"></i>     Pacientes
                   </div>
                 </a>
               </li>
               <li>
-                <a href="">
+                <a href="<?php echo base_url().'Donativos'; ?>">
                   <div>
-
+                    <i class="fa fa-money"></i>     Donativos
                   </div>
                 </a>
               </li>
               <li class="dropdown">
-
+                <a href="#" class="dropdown-toggle menu-top-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <div>
+                      <i class="fa fa-file-text-o"></i>     Administración
+                      <span class="caret"></span>
+                  </div>
+                </a>
                 <ul class="dropdown-menu">
-
+                  <li><a href="<?php echo base_url().'Profesionales'; ?>">Profesionales</a></li>
+                  <li><a href="<?=base_url()?>espacios/">Espacios</a></li>
+                  <li><a href="<?=base_url()?>conferencias/">Conferencias</a></li>
+                  <li><a href="<?=base_url()?>cursos_taller/">Cursos</a></li>
+                  <li><a href="<?=base_url()?>jornadas/">Jornadas</a></li>
                 </ul>
               </li>
               <li>
                 <a href="">
                   <div>
+                    <i class="fa fa-bar-chart"></i>     Reportes
                   </div>
                 </a>
               </li>
@@ -138,7 +159,7 @@
     </div>
     <!-- CONTENT-WRAPPER SECTION END-->
 
-  <footer>
+  <footer style="width: 100%;border-top: 2px solid #fff;bottom: 0; position: fixed; padding: 1rem;">
     <div class="container">
           &copy; 2015 SISTEMA CEPII | BY : <a href="http://www.uv.mx/Fei/" target="_blank">FEI UV</a>
     </div>

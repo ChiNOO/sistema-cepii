@@ -34,11 +34,11 @@
       if(data != '')
       {
         //$('.contenedor').show();
-        $(".table").html(data);
+        $(".pinta").html(data);
 
       }else{
 
-        $(".table").html('');
+        $(".pinta").html('');
 
       }
       })
@@ -180,7 +180,7 @@ function elimina(url){
               <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
                 <div class="col-xs-5">
                   <span class="input-group-addon" id="sizing-addon2">Nombre del espacio</span>
-                  <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombre_espacio" id="nombre_espacio" required="required">
+                  <input type="text" class="form-control" placeholder="Ejemplo:Espacio de terapias" aria-describedby="sizing-addon2" name="nombre_espacio" id="nombre_espacio" required="required">
                 </div>
                 <div class="col-xs-3">
                   <span class="input-group-addon" id="sizing-addon2">Capacidad</span>
@@ -204,10 +204,10 @@ function elimina(url){
           <h4 style="padding-left:2%;">Búsqueda de espacios</h4>
           <br/>
           <div class="col-xs-4">
-            <input type="text" class="form-control autocompletar"  name="autocompletar" id="autocompletar" onpaste="return false"  aria-describedby="sizing-addon2" placeholder="Nombre del Espacio">
+            <input type="text" class="form-control autocompletar"  name="autocompletar" id="autocompletar" onpaste="return false"  aria-describedby="sizing-addon2" placeholder="Nombre del espacio a buscar">
             <br/>
           </div>
-          <table class="table table-hover table-responsive">
+          <table class=" pinta table table-hover table-responsive">
           </table>
           </div>
           <div class="tab-pane" id="3b">
