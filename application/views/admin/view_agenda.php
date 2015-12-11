@@ -34,19 +34,27 @@
     </script>
 
     <script>
-    $(document).ready(function($){
-     $('#espacio').autocomplete({
-
-      source:'<?php echo base_url('espacios/show_Espacios');?>',
-      minLength:1,
-      // optional
-      html: true,
-
-      // optional (if other layers overlap the autocomplete list)
-      open: function(event, ui) {
-       $(".ui-autocomplete").css("z-index", 1000);
-      }
-     });
+    $(document).ready(function () {
+    $("#espacio").autocomplete({
+        source: function(request, response) {
+            $.ajax({
+                url: "<?php echo base_url().'espacios/show_Espacios' ?>",
+                dataType: "json",
+                minLength:1,
+                data: {
+                    term: request.term,
+                    nombrePro: $("#nombrePRO").val(),
+                    fecha:   $("#fecha").val(),
+                    horaIni: $("#horaIni").val(),
+                    horaFin: $("#horaFin").val(),
+                },
+                success: function(data) {
+                    response(data);
+                    //alert('You selected:');
+                }
+            });
+        },
+    });
     });
     </script>
 
@@ -69,8 +77,8 @@
             });
         },
     });
-});
-    </script>
+  });
+  </script>
 </head>
 <body style="background-color:#e5e5e5;">
   <nav class="navbar navbar-default">
@@ -319,15 +327,15 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-2">
                 <span class="input-group-addon" id="sizing-addon2">Fecha</span>
-                <input type="date" class="form-control" aria-describedby="sizing-addon2" data-provide="datepicker" name="fecha" required>
+                <input type="date" class="form-control" aria-describedby="sizing-addon2" data-provide="datepicker" name="fecha" id="fecha" required>
               </div>
               <div class="col-xs-2">
                 <span class="input-group-addon" id="sizing-addon2">Hora Inicio</span>
-                <input type="time" class="form-control" aria-describedby="sizing-addon2" name="horaIni" step="1800" required>
+                <input type="time" class="form-control" aria-describedby="sizing-addon2" name="horaIni" id="horaIni" step="1800" required>
               </div>
               <div class="col-xs-2">
                 <span class="input-group-addon" id="sizing-addon2">Hora Fin</span>
-                <input type="time" class="form-control" aria-describedby="sizing-addon2" name="horaFin" step="1800" required>
+                <input type="time" class="form-control" aria-describedby="sizing-addon2" name="horaFin" step="1800" id="horaFin" required>
               </div>
               <div class="col-xs-2">
                 <span class="input-group-addon" id="sizing-addon2">Consultorio</span>

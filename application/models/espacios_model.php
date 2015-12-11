@@ -67,18 +67,56 @@ class Espacios_model extends CI_Model{
 
     }
 
-    public function get_espacio($q){
-      $this->db->select();
-      $this->db->like('Nombre', $q);
-      $query = $this->db->get('espacio');
-      $query->num_rows();
-      if($query->num_rows > 0){
-        foreach ($query->result() as $row){
-          $new_row['id'] = htmlentities(stripslashes($row->idEspacio));
-          $new_row['value'] = htmlentities(stripslashes($row->Nombre));
-          $row_set[] = $new_row;
-        }
-        return $row_set;
+    public function get_espacio($q, $nombrePro, $fecha, $horaIni, $horaFin){
+      $this->db->select('idProfesional, CONCAT(nombrePro," ", amaPro," ",apaPro) AS name', FALSE);
+      $this->db->from('profesional');
+      $query2 = $this->db->get();
+
+      foreach ($query2->result() as $row2) {
+          if ($row2->name == $nombrePro) {
+              $idP = $row2->idProfesional;
+          }
       }
+      $this->db->select();
+      $this->db->where('profesional_idProfesional', $idP);
+      $this->db->where('fecha', $fecha);
+      $this->db->where('horaIni <=', $horaIni);
+      $this->db->where('horaFin >=', $horaFin);
+      $query = $this->db->get('cita');
+      if ($query->num_rows() >= 1) {
+          $new_row['id'] = htmlentities(stripslashes(0));
+          $new_row['value'] = htmlentities(stripslashes("El profesional se encuentra ocupado en esa fecha"));
+          $row_set[] = $new_row;
+          return $row_set;
+      }else{
+
+        $this->db->select('cita.espacio_idEspacio, cita.horaIni, cita.horaFin, cita.fecha, espacio.idEspacio, espacio.Nombre');
+        $this->db->from('cita');
+        $this->db->join('espacio', 'espacio.idEspacio = cita.espacio_idEspacio');
+        $this->db->like('Nombre', $q);
+        $this->db->where('fecha', $fecha);
+        $this->db->where('horaIni <=', $horaIni);
+        $this->db->where('horaFin >=', $horaFin);
+        $query3 = $this->db->get();
+        if($query3->num_rows() >= 1){
+          $new_row['id'] = htmlentities(stripslashes(0));
+          $new_row['value'] = htmlentities(stripslashes("El espacio se encuentra ocupado en esa fecha"));
+          $row_set[] = $new_row;
+          return $row_set;
+        }else{
+          $this->db->select();
+          $this->db->like('Nombre', $q);
+          $query4 = $this->db->get('espacio');
+          foreach ($query4->result() as $row){
+            $new_row['id'] = htmlentities(stripslashes($row->idEspacio));
+            $new_row['value'] = htmlentities(stripslashes($row->Nombre));
+            $row_set[] = $new_row;
+          }
+          return $row_set;
+        }
+
+      }
+
+      
   }
 }

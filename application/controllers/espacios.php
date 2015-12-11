@@ -142,7 +142,11 @@ class Espacios extends CI_Controller {
 
 	public function show_Espacios(){
 		$q = strtolower($_GET['term']);
-		$valores = $this->espacios_model->get_espacio($q);
+		$nombrePro = $_GET['nombrePro'];
+		$fecha = $_GET['fecha'];
+		$horaIni = $_GET['horaIni'];
+		$horaFin = $_GET['horaFin'];
+		$valores = $this->espacios_model->get_espacio($q, $nombrePro, $fecha, $horaIni, $horaFin);
 		echo json_encode($valores);  
 	}
 
