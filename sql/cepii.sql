@@ -39,10 +39,6 @@ CREATE TABLE IF NOT EXISTS `cita` (
 --
 -- Volcado de datos para la tabla `cita`
 --
-
-INSERT INTO `cita` (`idcita`, `persona_idpersona`, `profesional_idProfesional`, `hora`, `fecha`, `consultorio`, `estado`) VALUES
-(1, 3, 1, '14:10', '2015-12-10', '2', NULL);
-
 -- --------------------------------------------------------
 
 --
