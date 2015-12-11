@@ -33,6 +33,23 @@
     });
     </script>
 
+
+   <script>
+    $(document).ready(function($){
+     $('#lugar').autocomplete({
+      source:'<?php echo base_url('cursos_taller/show_Espacio');?>',
+      minLength:1,
+      // optional
+      html: true,
+
+      // optional (if other layers overlap the autocomplete list)
+      open: function(event, ui) {
+       $(".ui-autocomplete").css("z-index", 1000);
+      }
+     });
+    });
+    </script>
+
 </head>
 <body style="background-color:#e5e5e5;">
   <nav class="navbar navbar-default">
@@ -155,18 +172,21 @@
                       <option value="Dilplomado">
                     </datalist> 
                 </div>
-                
+                <div class="col-xs-5">
+                  <span class="input-group-addon" id="sizing-addon2">Tema</span>
+                  <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombre" id="nombre" required="required">
+                </div> 
                 <div class="col-xs-5">
                   <span class="input-group-addon" id="sizing-addon2">Profesional que lo imparte</span>
                   <input type="text" class="form-control" aria-describedby="sizing-addon2" name="profesional" id="profesional" required="required">
                 </div>   
+                <br>
+                <br>
+                <br>
                 <div class="col-xs-5">
                   <span class="input-group-addon" id="sizing-addon2">Lugar disponible</span>
                   <input type="text" class="form-control" aria-describedby="sizing-addon2" name="lugar" id="lugar" required="required">
                 </div>                
-                <br>
-                <br>
-                <br>
                 <div class="col-xs-2">
                   <span class="input-group-addon" id="sizing-addon2">Numero de horas</span>
                   <input type="number" class="form-control" aria-describedby="sizing-addon2" name="n_horas" id="n_horas" required="required">
@@ -180,6 +200,9 @@
                   <span class="input-group-addon" id="sizing-addon2">Fecha de inicio</span>
                   <input type="date" class="form-control" aria-describedby="sizing-addon2" name="f_inicio" id="f_inicio" required="required">
                 </div>
+                <br>
+                <br>
+                <br>
                 <div class="col-xs-2">
                   <span class="input-group-addon" id="sizing-addon2">Fecha de fin</span>
                   <input type="date" class="form-control" aria-describedby="sizing-addon2" name="f_fin" id="f_fin" required="required">
@@ -238,7 +261,9 @@
               <table class="table table-hover table-responsive">                
               <tr>
                 <th>Tipo</th>
+                <th>Tema</th>
                 <th>Personal que lo imparte</th>
+                <th>Lugar</th>
                 <th>Numero de horas</th>
                 <th>Cantidad de personas</th>
                 <th>Fecha de inicio</th>
@@ -251,7 +276,9 @@
                     foreach($search->result() as $fila) {
                       echo "<tr>";
                         echo "<td>".$fila->tipo."</td>";
+                        echo "<td>".$fila->nombre."</td>";
                         echo "<td>".$fila->nombrePro." ".$fila->apaPro." ".$fila->amaPro."</td>";
+                        echo "<td>".$fila->lugar."</td>";
                         echo "<td>".$fila->num_horas."</td>";
                         echo "<td>".$fila->cantidad_personas."</td>";
                         echo "<td>".$fila->f_inicio."</td>";
@@ -269,7 +296,9 @@
               <table class="table table-hover table-responsive">                
               <tr>
                 <th>Tipo</th>
+                <th>Tema</th>
                 <th>Personal que lo imparte</th>
+                <th>Lugar</th>
                 <th>Numero de horas</th>
                 <th>Cantidad de personas</th>
                 <th>Fecha de inicio</th>
@@ -282,7 +311,9 @@
                     foreach($searchTerminados->result() as $fila) {
                       echo "<tr>";
                         echo "<td>".$fila->tipo."</td>";
+                        echo "<td>".$fila->nombre."</td>";
                         echo "<td>".$fila->nombrePro." ".$fila->apaPro." ".$fila->amaPro."</td>";
+                        echo "<td>".$fila->lugar."</td>";
                         echo "<td>".$fila->num_horas."</td>";
                         echo "<td>".$fila->cantidad_personas."</td>";
                         echo "<td>".$fila->f_inicio."</td>";
@@ -300,7 +331,9 @@
               <table class="table table-hover table-responsive">                
               <tr>
                 <th>Tipo</th>
+                <th>Tema</th>
                 <th>Personal que lo imparte</th>
+                <th>Lugar</th>
                 <th>Numero de horas</th>
                 <th>Cantidad de personas</th>
                 <th>Fecha de inicio</th>
@@ -313,7 +346,9 @@
                     foreach($searchVigentes->result() as $fila) {
                       echo "<tr>";
                         echo "<td>".$fila->tipo."</td>";
+                        echo "<td>".$fila->nombre."</td>";
                         echo "<td>".$fila->nombrePro." ".$fila->apaPro." ".$fila->amaPro."</td>";
+                        echo "<td>".$fila->lugar."</td>";
                         echo "<td>".$fila->num_horas."</td>";
                         echo "<td>".$fila->cantidad_personas."</td>";
                         echo "<td>".$fila->f_inicio."</td>";
@@ -331,7 +366,9 @@
               <table class="table table-hover table-responsive">                
               <tr>
                 <th>Tipo</th>
+                <th>Tema</th>
                 <th>Personal que lo imparte</th>
+                <th>Lugar</th>
                 <th>Numero de horas</th>
                 <th>Cantidad de personas</th>
                 <th>Fecha de inicio</th>
@@ -344,7 +381,9 @@
                     foreach($searchProximos->result() as $fila) {
                       echo "<tr>";
                         echo "<td>".$fila->tipo."</td>";
+                        echo "<td>".$fila->nombre."</td>";
                         echo "<td>".$fila->nombrePro." ".$fila->apaPro." ".$fila->amaPro."</td>";
+                        echo "<td>".$fila->lugar."</td>";
                         echo "<td>".$fila->num_horas."</td>";
                         echo "<td>".$fila->cantidad_personas."</td>";
                         echo "<td>".$fila->f_inicio."</td>";

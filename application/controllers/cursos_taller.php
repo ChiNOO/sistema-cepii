@@ -26,6 +26,7 @@ class Cursos_taller extends CI_Controller {
 	public function agrega() {
 		 $datos=array(
 				'tipo' => $this->input->post('tipo',TRUE),
+				'nombre' => $this->input->post('nombre',TRUE),
 				'profesional_idProfesional' => $this->input->post('profesional',TRUE),
 				'lugar' => $this->input->post('lugar',TRUE),
 				'num_horas' => $this->input->post('n_horas',TRUE),
@@ -40,5 +41,9 @@ class Cursos_taller extends CI_Controller {
     	redirect('cursos_taller/');
 	}
 
-	
+	public function show_Espacio(){
+		$q = strtolower($_GET['term']);
+		$valores = $this->cursos_taller_model->get_Espacio($q);
+		echo json_encode($valores);  
+	}	
 }

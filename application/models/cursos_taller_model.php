@@ -17,7 +17,7 @@ class Cursos_taller_model extends CI_Model{
   }
 
   function buscador(){
-    $this->db->select('profesional.idProfesional, profesional.nombrePro, profesional.apaPro, profesional.amaPro, curso_taller.tipo, curso_taller.profesional_idProfesional, curso_taller.lugar, curso_taller.num_horas,
+    $this->db->select('profesional.idProfesional, profesional.nombrePro, profesional.apaPro, profesional.amaPro, curso_taller.tipo, curso_taller.nombre, curso_taller.profesional_idProfesional, curso_taller.lugar, curso_taller.num_horas,
       curso_taller.cantidad_personas, curso_taller.f_inicio, curso_taller.f_fin, curso_taller.h_inicio, curso_taller.h_fin');
     $this->db->order_by("f_inicio","desc");
     $this->db->from('curso_taller');
@@ -35,7 +35,7 @@ class Cursos_taller_model extends CI_Model{
     $dia=date("d")-1;
     $mes= date("m");
     $year= date("Y");
-    $this->db->select('profesional.idProfesional, profesional.nombrePro, profesional.apaPro, profesional.amaPro, curso_taller.tipo, curso_taller.profesional_idProfesional, curso_taller.lugar, curso_taller.num_horas,
+    $this->db->select('profesional.idProfesional, profesional.nombrePro, profesional.apaPro, profesional.amaPro, curso_taller.tipo, curso_taller.nombre, curso_taller.profesional_idProfesional, curso_taller.lugar, curso_taller.num_horas,
       curso_taller.cantidad_personas, curso_taller.f_inicio, curso_taller.f_fin, curso_taller.h_inicio, curso_taller.h_fin');
     $this->db->from('curso_taller');
     $this->db->join('profesional', 'profesional.idProfesional = curso_taller.profesional_idProfesional');
@@ -54,7 +54,7 @@ class Cursos_taller_model extends CI_Model{
     $dia=date("d")-1;
     $mes= date("m");
     $year= date("Y");
-    $this->db->select('profesional.idProfesional, profesional.nombrePro, profesional.apaPro, profesional.amaPro, curso_taller.tipo, curso_taller.profesional_idProfesional, curso_taller.lugar, curso_taller.num_horas,
+    $this->db->select('profesional.idProfesional, profesional.nombrePro, profesional.apaPro, profesional.amaPro, curso_taller.tipo, curso_taller.nombre, curso_taller.profesional_idProfesional, curso_taller.lugar, curso_taller.num_horas,
       curso_taller.cantidad_personas, curso_taller.f_inicio, curso_taller.f_fin, curso_taller.h_inicio, curso_taller.h_fin');
     $this->db->from('curso_taller');
     $this->db->join('profesional', 'profesional.idProfesional = curso_taller.profesional_idProfesional');
@@ -74,7 +74,7 @@ class Cursos_taller_model extends CI_Model{
     $dia=date("d")-1;
     $mes= date("m");
     $year= date("Y");
-    $this->db->select('profesional.idProfesional, profesional.nombrePro, profesional.apaPro, profesional.amaPro, curso_taller.tipo, curso_taller.profesional_idProfesional, curso_taller.lugar, curso_taller.num_horas,
+    $this->db->select('profesional.idProfesional, profesional.nombrePro, profesional.apaPro, profesional.amaPro, curso_taller.tipo, curso_taller.nombre, curso_taller.profesional_idProfesional, curso_taller.lugar, curso_taller.num_horas,
       curso_taller.cantidad_personas, curso_taller.f_inicio, curso_taller.f_fin, curso_taller.h_inicio, curso_taller.h_fin');
     $this->db->from('curso_taller');
     $this->db->join('profesional', 'profesional.idProfesional = curso_taller.profesional_idProfesional');
@@ -88,4 +88,21 @@ class Cursos_taller_model extends CI_Model{
         return FALSE;
       }
   }
+
+  
+  function get_Espacio($q){
+        $this->db->select();
+        $this->db->like('Nombre', $q);
+        $query = $this->db->get('espacio');
+        $query->num_rows();
+
+        if($query->num_rows > 0){
+            foreach ($query->result() as $row){
+                $new_row['id'] = htmlentities(stripslashes($row->idEspacio));
+                $new_row['value'] = htmlentities(stripslashes($row->Nombre));
+                $row_set[] = $new_row;
+            }
+            return $row_set;
+        }
+    }
 }
