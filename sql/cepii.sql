@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-12-2015 a las 17:09:46
--- Versión del servidor: 5.6.21
--- Versión de PHP: 5.5.19
+-- Tiempo de generación: 11-12-2015 a las 09:20:46
+-- Versión del servidor: 10.1.8-MariaDB
+-- Versión de PHP: 5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de datos: `cepii`
@@ -26,27 +26,24 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `cita`
 --
 
-CREATE TABLE IF NOT EXISTS `cita` (
-`idcita` int(11) NOT NULL,
+CREATE TABLE `cita` (
+  `idcita` int(11) NOT NULL,
   `persona_idpersona` int(11) NOT NULL,
   `profesional_idProfesional` int(11) NOT NULL,
   `hora` varchar(45) DEFAULT NULL,
   `fecha` varchar(45) DEFAULT NULL,
   `consultorio` varchar(45) DEFAULT NULL,
   `estado` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `cita`
---
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `conferencias`
 --
 
-CREATE TABLE IF NOT EXISTS `conferencias` (
-`idConferencia` int(11) NOT NULL,
+CREATE TABLE `conferencias` (
+  `idConferencia` int(11) NOT NULL,
   `tema` varchar(50) DEFAULT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
   `nombrePonente` varchar(50) DEFAULT NULL,
@@ -63,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `conferencias` (
 -- Estructura de tabla para la tabla `curso_taller`
 --
 
-CREATE TABLE IF NOT EXISTS `curso_taller` (
+CREATE TABLE `curso_taller` (
   `id` int(11) NOT NULL,
   `tipo` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `Profesional_idProfesional` int(11) NOT NULL,
@@ -89,8 +86,8 @@ INSERT INTO `curso_taller` (`id`, `tipo`, `Profesional_idProfesional`, `lugar`, 
 -- Estructura de tabla para la tabla `donativo`
 --
 
-CREATE TABLE IF NOT EXISTS `donativo` (
-`idDonativo` int(11) NOT NULL,
+CREATE TABLE `donativo` (
+  `idDonativo` int(11) NOT NULL,
   `Nombre` varchar(20) DEFAULT NULL,
   `TipoDonativo` varchar(20) DEFAULT NULL,
   `Cantidad` int(11) DEFAULT NULL,
@@ -110,6 +107,7 @@ CREATE TABLE `espacio` (
   `Capacidad` int(11) NOT NULL,
   `Tipo` tinyint(1) NOT NULL COMMENT '1 si es espacio interno--0 si es externo'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Volcado de datos para la tabla `espacio`
 --
@@ -124,8 +122,8 @@ INSERT INTO `espacio` (`idEspacio`, `Nombre`, `Capacidad`, `Tipo`) VALUES
 -- Estructura de tabla para la tabla `hojaclinica`
 --
 
-CREATE TABLE IF NOT EXISTS `hojaclinica` (
-`idhojaClinica` int(11) NOT NULL,
+CREATE TABLE `hojaclinica` (
+  `idhojaClinica` int(11) NOT NULL,
   `estatura` double DEFAULT NULL,
   `consumoAlcohol` varchar(45) DEFAULT NULL,
   `practicaDeporte` varchar(45) DEFAULT NULL,
@@ -141,9 +139,39 @@ CREATE TABLE IF NOT EXISTS `hojaclinica` (
 -- Estructura de tabla para la tabla `hojareferencia`
 --
 
-CREATE TABLE IF NOT EXISTS `hojareferencia` (
-`idhojaReferencia` int(11) NOT NULL,
+CREATE TABLE `hojareferencia` (
+  `idhojaReferencia` int(11) NOT NULL,
   `hojaReferenciacol` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `jornada`
+--
+
+CREATE TABLE `jornada` (
+  `idJornada` int(11) NOT NULL,
+  `nombre_jornada` varchar(45) NOT NULL,
+  `tipo_servicio` varchar(45) NOT NULL,
+  `detalle` varchar(45) NOT NULL,
+  `espacio` varchar(45) NOT NULL,
+  `idProfesional` varchar(45) NOT NULL,
+  `fechas` varchar(45) NOT NULL,
+  `horario` varchar(45) NOT NULL,
+  `costo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `jornada_persona`
+--
+
+CREATE TABLE `jornada_persona` (
+  `idPersona` int(11) NOT NULL,
+  `nombre` int(11) NOT NULL,
+  `idJornada` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -152,8 +180,8 @@ CREATE TABLE IF NOT EXISTS `hojareferencia` (
 -- Estructura de tabla para la tabla `persona`
 --
 
-CREATE TABLE IF NOT EXISTS `persona` (
-`idpersona` int(11) NOT NULL,
+CREATE TABLE `persona` (
+  `idpersona` int(11) NOT NULL,
   `nombrePersona` varchar(45) DEFAULT NULL,
   `apaPersona` varchar(45) DEFAULT NULL,
   `amaPersona` varchar(45) DEFAULT NULL,
@@ -164,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `persona` (
   `correoPersona` varchar(45) DEFAULT NULL,
   `sexo` varchar(45) DEFAULT NULL,
   `fechaNa` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `persona`
@@ -172,7 +200,8 @@ CREATE TABLE IF NOT EXISTS `persona` (
 
 INSERT INTO `persona` (`idpersona`, `nombrePersona`, `apaPersona`, `amaPersona`, `callePersona`, `numDirPersona`, `coloniaPersona`, `celPersona`, `correoPersona`, `sexo`, `fechaNa`) VALUES
 (1, 'Christian', 'Vargas', 'Saavedra', 'Apeninos', 8, 'Lomas de Casa Blanca', '012281404359', 'lirical_niggar@hotmail.com', 'M', '1992-02-29'),
-(3, 'Diana', 'Espiritu', 'Vaes', 'Alguna', 5, 'Otra colonia', '51213', 'algo@gmail.com', 'F', '1988-03-02');
+(3, 'Diana', 'Espiritu', 'Vaes', 'Alguna', 5, 'Otra colonia', '51213', 'algo@gmail.com', 'F', '1988-03-02'),
+(4, 'Carlos', 'Medina', 'García', 'Camarillo', 2, 'Sumidero', '123454323', 'car@gmail.com', 'M', '2015-12-15');
 
 -- --------------------------------------------------------
 
@@ -180,8 +209,8 @@ INSERT INTO `persona` (`idpersona`, `nombrePersona`, `apaPersona`, `amaPersona`,
 -- Estructura de tabla para la tabla `profesional`
 --
 
-CREATE TABLE IF NOT EXISTS `profesional` (
-`idProfesional` int(11) NOT NULL,
+CREATE TABLE `profesional` (
+  `idProfesional` int(11) NOT NULL,
   `nombrePro` varchar(45) DEFAULT NULL,
   `apaPro` varchar(45) DEFAULT NULL,
   `amaPro` varchar(45) DEFAULT NULL,
@@ -190,7 +219,7 @@ CREATE TABLE IF NOT EXISTS `profesional` (
   `ramaMedica` varchar(45) DEFAULT NULL,
   `usuario` varchar(45) DEFAULT NULL,
   `contraseña` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `profesional`
@@ -207,49 +236,61 @@ INSERT INTO `profesional` (`idProfesional`, `nombrePro`, `apaPro`, `amaPro`, `ce
 -- Indices de la tabla `cita`
 --
 ALTER TABLE `cita`
- ADD PRIMARY KEY (`idcita`);
+  ADD PRIMARY KEY (`idcita`);
 
 --
 -- Indices de la tabla `conferencias`
 --
 ALTER TABLE `conferencias`
- ADD PRIMARY KEY (`idConferencia`);
+  ADD PRIMARY KEY (`idConferencia`);
 
 --
 -- Indices de la tabla `donativo`
 --
 ALTER TABLE `donativo`
- ADD PRIMARY KEY (`idDonativo`);
+  ADD PRIMARY KEY (`idDonativo`);
 
 --
 -- Indices de la tabla `espacio`
 --
 ALTER TABLE `espacio`
- ADD PRIMARY KEY (`idEspacio`);
+  ADD PRIMARY KEY (`idEspacio`);
 
 --
 -- Indices de la tabla `hojaclinica`
 --
 ALTER TABLE `hojaclinica`
- ADD PRIMARY KEY (`idhojaClinica`);
+  ADD PRIMARY KEY (`idhojaClinica`);
 
 --
 -- Indices de la tabla `hojareferencia`
 --
 ALTER TABLE `hojareferencia`
- ADD PRIMARY KEY (`idhojaReferencia`);
+  ADD PRIMARY KEY (`idhojaReferencia`);
+
+--
+-- Indices de la tabla `jornada`
+--
+ALTER TABLE `jornada`
+  ADD PRIMARY KEY (`idJornada`);
+
+--
+-- Indices de la tabla `jornada_persona`
+--
+ALTER TABLE `jornada_persona`
+  ADD PRIMARY KEY (`idPersona`);
 
 --
 -- Indices de la tabla `persona`
 --
 ALTER TABLE `persona`
- ADD PRIMARY KEY (`idpersona`);
+  ADD PRIMARY KEY (`idpersona`);
 
 --
 -- Indices de la tabla `profesional`
 --
 ALTER TABLE `profesional`
- ADD PRIMARY KEY (`idProfesional`);
+  ADD PRIMARY KEY (`idProfesional`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -259,42 +300,52 @@ ALTER TABLE `profesional`
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-MODIFY `idcita` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `idcita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `conferencias`
 --
 ALTER TABLE `conferencias`
-MODIFY `idConferencia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idConferencia` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `donativo`
 --
 ALTER TABLE `donativo`
-MODIFY `idDonativo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDonativo` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `espacio`
 --
 ALTER TABLE `espacio`
-MODIFY `idEspacio` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `idEspacio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `hojaclinica`
 --
 ALTER TABLE `hojaclinica`
-MODIFY `idhojaClinica` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idhojaClinica` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `hojareferencia`
 --
 ALTER TABLE `hojareferencia`
-MODIFY `idhojaReferencia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idhojaReferencia` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `jornada`
+--
+ALTER TABLE `jornada`
+  MODIFY `idJornada` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `jornada_persona`
+--
+ALTER TABLE `jornada_persona`
+  MODIFY `idPersona` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `profesional`
 --
 ALTER TABLE `profesional`
-MODIFY `idProfesional` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `idProfesional` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

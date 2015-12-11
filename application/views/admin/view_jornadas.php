@@ -150,16 +150,16 @@
                           <th>Nombre</th>
                           <th>Tipo de servicio</th>
                           <th>Detalle</th>
-                          <th>Costo</th>
                           <th>Espacio</th>
-                          <th>Profesional que impartirá</th>
-                          <th>Número de participantes</th>
+                          <th>Nombre profesional</th>
+                          <th>Número participantes</th>
                           <th>Fechas</th>
                           <th>Horario</th>
+                          <th>Costo</th>
                         </tr>
                       </thead>  
                       <tbody>
-                        <td>Cuida tu salud</td><td>Educación integral</td><td>Jornada para personas entre 20-40 años</td><td>$300</td><td>Laboratorio A</td><td>Doctora Azucena</td><td>5</td><td>15,16,19 Noviembre</td><td>10:00-13:00 horas</td>                
+                        <td>Cuida tu salud</td><td>Educación integral</td><td>Jornada para personas entre 20-40 años</td><td>Laboratorio A</td><td>Doctora Azucena</td><td>5</td><td>15,16,19 Noviembre</td><td>10:00-13:00 horas</td><td>$300</td>              
                       </tbody>             
                     </table>
                   </td>
@@ -200,24 +200,26 @@
                   <input type="text" class="form-control" aria-describedby="sizing-addon3" name="TemaConferencia" placeholder="Ejemplo: Jornada para personas entre 20-40 años">
                   </div>
                   
+                  
                 </div>
               </div>
 
               <div style="margin-left:5px; margin-right:5px;">
                 <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
 
+                  
                   <div class="col-xs-4">
-                  <span class="input-group-addon" id="sizing-addon4" >Costo</span>
-                  <input type="text" class="form-control" aria-describedby="sizing-addon4" name="TemaConferencia" placeholder="Ejemplo: Avenida Xalapa">
-                  </div>
-
-                 <div class="col-xs-4">
                   <span class="input-group-addon" id="sizing-addon5" >Espacio</span>
                   <input type="text" class="form-control" aria-describedby="sizing-addon5" name="TemaConferencia" placeholder="Ejemplo: Laboratorio A">
                   </div>
 
                   <div class="col-xs-4">
-                  <span class="input-group-addon" id="sizing-addon5" >Profesional que impartirá</span>
+                  <span class="input-group-addon" id="sizing-addon5" >El profesional que impartirá ¿es miembro de CEPII?</span>
+                  <input type="text" class="form-control" aria-describedby="sizing-addon5" name="TemaConferencia" placeholder="Ejemplo: Si o No">
+                  </div>
+
+                  <div class="col-xs-4">
+                  <span class="input-group-addon" id="sizing-addon5" >Nombre profesional</span>
                   <input type="text" class="form-control" aria-describedby="sizing-addon5" name="TemaConferencia" placeholder="Ejemplo: Doctora Azucena">
                   </div>
 
@@ -228,14 +230,19 @@
                 <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
 
                 <div class="col-xs-4">
-                  <span class="input-group-addon" id="sizing-addon4" >¿Cuántos días se impartirá?</span>
-                  <input type="text" class="form-control" aria-describedby="sizing-addon4" name="TemaConferencia" placeholder="Ejemplo: 2">
+                  <span class="input-group-addon" id="sizing-addon4" >Fechas</span>
+                  <input type="text" class="form-control" aria-describedby="sizing-addon4" name="TemaConferencia" placeholder="Ejemplo: 15,16,19 Noviembre">
                   </div>
 
-                  <div class="col-xs-4">
+                 <div class="col-xs-4">
                   <span class="input-group-addon" id="sizing-addon4" >Horario</span>
                   <input type="text" class="form-control" aria-describedby="sizing-addon4" name="TemaConferencia" placeholder="Ejemplo: 10:00-13:00 horas">
                   </div>
+
+                    <div class="col-xs-4">
+                   <span class="input-group-addon" id="sizing-addon4" >Costo</span>
+                   <input type="text" class="form-control" aria-describedby="sizing-addon4" name="TemaConferencia" placeholder="Ejemplo: $250">
+                   </div>
 
                 </div>
               </div>
@@ -267,11 +274,34 @@
                   </div>
               </div>    
             </div>
+
+            <div style="margin-left:5px; margin-right:5px;">
+            <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
+            <table class="table">
+                  <td>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Nombre jornada</th>
+                          <th>Nombres participantes</th>
+                        </tr>
+                      </thead>  
+                      <tbody>
+                        <td>Cuida tu salud</td><td>Uzziel Ojeda, Jair González</td>
+                      </tbody>             
+                    </table>
+                  </td>
+                </tr>
+              </table> 
+              </div> 
+             </div> 
             </div> 
+
+      
+
     <!--participantes termina-->
 
               <br>
-
               <input type="submit"  value="Guardar" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
               <br><br>
               <?=form_close()?>
