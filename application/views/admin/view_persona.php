@@ -10,13 +10,36 @@
     <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>css/jquery-ui.min.css" rel="stylesheet" />
     
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script>
+    <script type="text/javascript" src="<?php echo base_url('js/funciones.js') ?>"></script>
 
 
     <link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/img/icon.png">
     <script type="text/javascript">
+    $(document).ready(function(){
+    //utilizamos el evento keyup para coger la información
+    //cada vez que se pulsa alguna tecla con el foco en el buscador
+    $(".autocompletar").keyup(function(){
+    //alert("Hello! I am an alert box!!");
+    //en info tenemos lo que vamos escribiendo en el buscador
+      var info = $(this).val();
+      //hacemos la petición al método autocompletado del controlador home
+      //pasando la variable info
+      $.post('<?php echo base_url().'Paciente/autocompletar' ?>',{ info : info }, function(data){
+        //si autocompletado nos devuelve algo
+        if(data != ''){
+          //$('.contenedor').show();
+          $(".table").html(data);
+        }else{
+          $(".table").html('');
+        }
+      })
+    })
+
+    })
       function elimina(url){
         if (confirm("¿Está seguro que desea eliminar el paciente?") ){
           location.href=url;
@@ -126,6 +149,11 @@
           </a>
         </li>
         <li data-toggle="tab">
+          <a href="#2b" data-toggle="tab">
+            <i class="glyphicon glyphicon-search"></i>     Busqueda de Pacientes
+          </a>
+        </li>
+        <li data-toggle="tab">
           <a href="#3b" data-toggle="tab">
             <i class="fa fa-table"></i>     Pacientes Registrados
           </a>
@@ -214,6 +242,17 @@
           <?=form_close()?>
         </div>
 
+        <div class="tab-pane" id="2b">
+          <h4 style="padding-left:2%;">Búsqueda de Paciente</h4>
+          <br/>
+          <div class="col-xs-4">
+            <input type="text" class="form-control autocompletar"  name="autocompletar" id="autocompletar" onpaste="return false"  aria-describedby="sizing-addon2" placeholder="Nombre del Paciente">
+            <br/>
+          </div>
+          <table class="table table-hover table-responsive">
+          </table>
+        </div>
+
         <div class="tab-pane" id="3b">
           <table class="table">
             <thead>
@@ -271,11 +310,4 @@
   </footer>
 
 </body>
-<script type="text/javascript">
-jQuery.noConflict();
-jQuery(document).ready(function() {
-    jQuery("#datepicker").datepicker();
-});
-</script>
-
 </html>

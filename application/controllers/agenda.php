@@ -11,6 +11,7 @@ class Agenda extends CI_Controller {
 	}
 
 	public function index(){
+		date_default_timezone_set('America/Monterrey');
 		$fecha = date('Y-m-d');
 		if ($this->input->post('Buscar')){
 			$fecha = $this->input->post('fechaSearch');

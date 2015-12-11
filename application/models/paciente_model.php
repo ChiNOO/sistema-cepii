@@ -73,4 +73,26 @@ class Paciente_model extends CI_Model{
         redirect(base_url().'Paciente');
     }
   
+    public function buscador($abuscar){
+      //usamos after para decir que empiece a buscar por
+      //el principio de la cadena
+      //ej SELECT localidad from localidades_es
+      //WHERE localidad LIKE '%$abuscar' limit 12
+      $this->db->select();
+
+      $this->db->or_like('nombrePersona',$abuscar,'after');
+      $this->db->or_like('apaPersona',$abuscar,'after');
+      $this->db->or_like('amaPersona',$abuscar,'after');
+
+      $resultados = $this->db->get('persona', 22);
+
+      //si existe algún resultado lo devolvemos
+      if($resultados->num_rows() > 0){
+        return $resultados;
+      //en otro caso devolvemos false
+      }else{
+        return FALSE;
+      }
+
+    }
 }

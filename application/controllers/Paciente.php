@@ -67,6 +67,60 @@ class Paciente extends CI_Controller {
 		$this->load->view('admin/view_persona_edit', $data);
 	}
 
+	public function autocompletar(){
+    $this->load->database('default');
+    $this->load->model('paciente_model');
+      $data = array();
+    //si es una petición ajax y existe una variable post
+    //llamada info dejamos pasar
+    if($this->input->is_ajax_request() && $this->input->post('info')){
+      $abuscar = $this->security->xss_clean($this->input->post('info'));
+      $search = $this->paciente_model->buscador(trim($abuscar));
+      //si search es distinto de false significa que hay resultados
+      //y los mostramos con un loop foreach
+      if($search !== FALSE){
+        echo "<tr>";
+        echo "<th>Nombre</th>";
+        echo "<th>Calle</th>";
+        echo "<th>Colonia</th>";
+        echo "<th>Teléfono</th>";
+        echo "<th>Correo</th>";
+        echo "<th>Sexo</th>";
+        echo "<th>Edad</th>";
+        echo "<th></th>";
+        echo "<th>  </th>";
+        echo "</tr>";
+        foreach($search->result() as $fila){
+        	$then = date('Ymd', strtotime($fila->fechaNa));
+            $diff = date('Ymd') - $then;
+            $edad = substr($diff, 0, -4);
+          	echo "<tr>";
+            echo "<td>".$fila->nombrePersona.' '.$fila->apaPersona.' '.$fila->amaPersona."<td>";
+            echo "<td>".$fila->callePersona.' #'.$fila->numDirPersona."</td>";
+            echo "<td>".$fila->coloniaPersona."</td>";
+            echo "<td>".$fila->celPersona."</td>";
+            echo "<td>".$fila->correoPersona."</td>";
+            echo "<td>".$fila->sexo."</td>";
+            echo "<td>".$edad."</td>";
+            echo "<td><a href='".base_url()."paciente/modificar/$fila->idpersona'> <i class='glyphicon glyphicon-pencil'></i></a></td>";
+            echo "<td><a href='".base_url()."paciente/deletePaciente/$fila->idpersona'> <i class='glyphicon glyphicon-trash'></i></a></td>";
+            echo "</tr>";
+        ?>
+        <?php
+        /*
+        foreach ($empleados->result() as $row){
 
+        }
+        */
+        }
+      //en otro caso decimos que no hay resultados
+      }else{
+      ?>
+        <p><?php  echo "<div class='alert alert-warning'><p class='text-center'>No hay pacientes registrados con el nombre introducido</p></div>"; ?></p>
+      <?php
+      }
+    }
+
+  }
 
 }

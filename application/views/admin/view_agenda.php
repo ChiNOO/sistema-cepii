@@ -82,8 +82,6 @@
       </div>
     </div>
   </nav>
-
-
   <section class="menu-section">
     <div >
       <div class="row">
@@ -147,7 +145,7 @@
       <ul  class="nav nav-pills">
         <li>
           <a>
-            <i class="fa fa-calendar"></i>     Agenda
+            <i class="fa fa-calendar"></i>     Agenda de Citas
           </a>
         </li>
         <li class="active" data-toggle="tab">
@@ -155,16 +153,7 @@
             <i class="fa fa-list"></i>     Diaria
           </a>
         </li>
-        <li data-toggle="tab">
-          <a href="#3b" data-toggle="tab">
-            <i class="fa fa-table"></i>     Semanal
-          </a>
-        </li>
-        <li data-toggle="tab">
-          <a href="#4b" data-toggle="tab">
-            <i class="fa fa-users"></i>     Diaria Global
-          </a>
-        </li>
+      
         <li data-toggle="tab" style="background-color:#f4d2e1; border-radius:4px;">
           <a href="#5b" data-toggle="tab">
             <i class="fa fa-heart"></i>     Dar cita
@@ -261,12 +250,7 @@
             </tr>
           </table>
         </div>
-        <div class="tab-pane" id="3b">
-          <h3>We applied clearfix to the tab-content to rid of the gap between the tab and the content</h3>
-        </div>
-        <div class="tab-pane" id="4b">
-          <h3>We use css to change the background color of the content to be equal to the tab</h3>
-        </div>
+       
         <div class="tab-pane" id="5b">
           <?=  form_open(base_url().'citas/new_appointment')?>
           <h2 style="text-align:center;">Datos del paciente</h2>
