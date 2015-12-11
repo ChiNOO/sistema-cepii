@@ -44,7 +44,7 @@ CREATE TABLE `cita` (
 
 CREATE TABLE `conferencias` (
   `idConferencia` int(11) NOT NULL,
-  `acompañantes` varchar(50) DEFAULT NULL,
+  `tema` varchar(50) DEFAULT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
   `nombrePonente` varchar(50) DEFAULT NULL,
   `numAsistentes` int(10) DEFAULT NULL,
