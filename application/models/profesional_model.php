@@ -83,4 +83,27 @@ class Profesional_model extends CI_Model{
         $this->db->update('profesional', $profesional);
         redirect(base_url().'Profesionales');
     }
+
+    public function buscador($abuscar){
+      //usamos after para decir que empiece a buscar por
+      //el principio de la cadena
+      //ej SELECT localidad from localidades_es
+      //WHERE localidad LIKE '%$abuscar' limit 12
+      $this->db->select();
+
+      $this->db->or_like('nombrePro',$abuscar,'after');
+      $this->db->or_like('apaPro',$abuscar,'after');
+      $this->db->or_like('amaPro',$abuscar,'after');
+
+      $resultados = $this->db->get('profesional', 22);
+
+      //si existe algún resultado lo devolvemos
+      if($resultados->num_rows() > 0){
+        return $resultados;
+      //en otro caso devolvemos false
+      }else{
+        return FALSE;
+      }
+
+    }
 }
