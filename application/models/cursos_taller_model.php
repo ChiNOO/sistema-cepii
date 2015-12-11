@@ -19,22 +19,15 @@ class Cursos_taller_model extends CI_Model{
   function buscador(){
     $this->db->select('profesional.idProfesional, profesional.nombrePro, profesional.apaPro, profesional.amaPro, curso_taller.tipo, curso_taller.profesional_idProfesional, curso_taller.lugar, curso_taller.num_horas,
       curso_taller.cantidad_personas, curso_taller.f_inicio, curso_taller.f_fin, curso_taller.h_inicio, curso_taller.h_fin');
-    //$this->db->like('tipo',$abuscar,'after');
     $this->db->order_by("f_inicio","desc");
     $this->db->from('curso_taller');
     $this->db->join('profesional', 'profesional.idProfesional = curso_taller.profesional_idProfesional');
     $resultados = $this->db->get();
-     //si existe algún resultado lo devolvemos
-      if($resultados->num_rows() > 0)
-      {
-
+      
+      if($resultados->num_rows() > 0) {
         return $resultados;
-
-      //en otro caso devolvemos false
       }else{
-
         return FALSE;
-
       }
   }
 
@@ -49,17 +42,11 @@ class Cursos_taller_model extends CI_Model{
     $this->db->where('f_fin <='.'"'.$year.'-'.$mes.'-'.$dia.'"');
     $this->db->order_by("f_inicio","desc");
     $resultados = $this->db->get();
-     //si existe algún resultado lo devolvemos
-      if($resultados->num_rows() > 0)
-      {
 
+      if($resultados->num_rows() > 0) {
         return $resultados;
-
-      //en otro caso devolvemos false
       }else{
-
         return FALSE;
-
       }
   }
 
@@ -75,17 +62,11 @@ class Cursos_taller_model extends CI_Model{
     $this->db->where('f_inicio <='.'"'.$year.'-'.$mes.'-'.$dia.'"');
     $this->db->order_by("f_inicio","desc");
     $resultados = $this->db->get();
-     //si existe algún resultado lo devolvemos
-      if($resultados->num_rows() > 0)
-      {
 
+      if($resultados->num_rows() > 0) {
         return $resultados;
-
-      //en otro caso devolvemos false
       }else{
-
         return FALSE;
-
       }
   }
 
@@ -100,14 +81,11 @@ class Cursos_taller_model extends CI_Model{
     $this->db->where('f_inicio >'.'"'.$year.'-'.$mes.'-'.$dia.'"');
     $this->db->order_by("f_inicio","desc");
     $resultados = $this->db->get();
-     //si existe algún resultado lo devolvemos
+
       if($resultados->num_rows() > 0) {
         return $resultados;
-      //en otro caso devolvemos false
       }else{
         return FALSE;
       }
   }
-
-
 }

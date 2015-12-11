@@ -126,12 +126,12 @@
         <ul  class="nav nav-pills">
           <li>
             <a href="#1b" data-toggle="tab">
-              <i class="glyphicon glyphicon-list-alt"></i>     Registro de cursos y talleres
+              <i class="glyphicon glyphicon-list-alt"></i>     Registro de cursos
             </a>
           </li>
           <li class="active" data-toggle="tab">
             <a href="#2b" data-toggle="tab">
-              <i class="glyphicon glyphicon-search"></i>     Consulta de cursos y talleres
+              <i class="glyphicon glyphicon-search"></i>     Consulta de cursos
             </a>
           </li>
         </ul>
@@ -141,8 +141,8 @@
         <div class="tab-content clearfix">
           <div class="tab-pane" id="1b">
           <form id="formulario" action="<?=base_url()?>index.php/cursos_taller/agrega" method="post" accept-charset="utf-8">
-            <h3>Registro de cursos y talleres</h3>
-            <h2 style="text-align:center;">Datos del curso/taller</h2>
+            <h3>Registro de cursos</h3>
+            <h2 style="text-align:center;">Datos del curso</h2>
             <div style="margin-left:20px; margin-right:20px;">
               <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
                 <div class="col-xs-2">
