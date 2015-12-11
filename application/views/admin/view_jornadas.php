@@ -15,6 +15,10 @@
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script>
         <script type="text/javascript" src="<?php echo base_url('js/funciones.js') ?>"></script>
         <link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>/assets/img/icon.png">
+
+        <!--agregué esto-->
+
+
     </head>
     <body style="background-color:#e5e5e5;">
       <nav class="navbar navbar-default">
@@ -139,10 +143,7 @@
               <!-- Table -->
               <table class="table">
                 <tr>
-                  <td>
-                    <input data-provide="datepicker" data-provide="timepicker">
-
-                  </td>
+                  
                   <td>
                     <table class="table">
                       <thead>
@@ -281,6 +282,9 @@
                 </div>
 
                 </div>
+                <br>
+              <input type="submit"  value="Guardar" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
+              <br>
               </div>
           </div>
 
@@ -338,8 +342,6 @@
     <!--participantes termina-->
 
               <br>
-              <input type="submit"  value="Guardar" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
-              <br><br>
               <?=form_close()?>
             </div>
           </div>
