@@ -8,6 +8,14 @@ public function guardar_jornada($datos){
       $this->db->insert('jornada', $datos);
     }
 
+function verTodos() {
+      $query = $this->db->get('jornada');
+  		if ($query->num_rows() > 0){
+  		  return $query;
+  		}else{
+  		  return FALSE;
+  		}
+  	}
 
   }
 

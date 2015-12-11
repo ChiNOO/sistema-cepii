@@ -12,9 +12,11 @@ class Jornadas extends CI_Controller {
 	}
 
 	public function index(){
-	
-	$this->load->view('admin/view_jornadas');
+	$todos_datos = array('enlaces' =>	$this->jornadas_model->verTodos());
+	$this->load->view('admin/view_jornadas',$todos_datos);
+    //$this->load->view('admin/view_jornadas');
 	}
+
     public function agregarJornada(){
     $datos=array(
 				'nombre_jornada' => $this->input->post('TemaJornada',TRUE),

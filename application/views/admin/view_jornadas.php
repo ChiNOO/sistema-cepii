@@ -152,19 +152,35 @@
                           <th>Detalle</th>
                           <th>Espacio</th>
                           <th>Nombre profesional</th>
-                          <th>Número participantes</th>
-                          <th>Fechas</th>
-                          <th>Horario</th>
+                         <!-- <th>Número participantes</th>-->
+                          <th>Fecha inicio</th>
+                          <th>Fecha fin</th>
                           <th>Costo</th>
                         </tr>
                       </thead>  
-                      <tbody>
-                        <td>Cuida tu salud</td><td>Educación integral</td><td>Jornada para personas entre 20-40 años</td><td>Laboratorio A</td><td>Doctora Azucena</td><td>5</td><td>15,16,19 Noviembre</td><td>10:00-13:00 horas</td><td>$300</td>              
-                      </tbody>             
-                    </table>
-                  </td>
-                </tr>
-              </table>
+                        <?php                   
+                    if ($enlaces!=FALSE){
+                      foreach ($enlaces->result() as $row) {
+                      echo "<tr>";
+                      echo "<td>".$row->nombre_jornada."</td>";
+                      echo "<td>".$row->tipo_servicio."</td>";
+                      echo "<td>".$row->detalle."</td>";
+                      echo "<td>".$row->espacio."</td>";
+                      echo "<td>".$row->idProfesional."</td>";
+                      echo "<td>".$row->hora_inicio."</td>";
+                      echo "<td>".$row->hora_fin."</td>";
+                      echo "<td>".$row->costo."</td>";
+                      echo "</tr>";
+                      }   
+                    }    
+                    else{
+                       echo "<div class='alert alert-warning'><p class='text-center'>No hay jornadas registradas</p></div>";
+                        }
+                  ?>            
+                </table>
+              </td>
+            </tr>
+          </table>
 
                <!-- fin Table -->
 
