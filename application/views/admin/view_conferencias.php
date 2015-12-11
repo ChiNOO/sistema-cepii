@@ -136,22 +136,22 @@
                 <table class="table table-hover table-responsive">
                   <thead>
                     <tr>
-                      <th>Tema Conferencia</th>
                       <th>Descripcion</th>
+                      <th>Acompañantes</th>
                       <th>Ponentes</th>
                       <th>Numero Asistentes</th>
                       <th>Lugar</th>
                       <th>Fecha</th>
                       <th>Hora</th>
-                      <th>Direccion</th>
+                      <th>Espacio</th>
                     </tr>
                   </thead>  
                   <?php                   
                     if ($enlaces!=FALSE){
                       foreach ($enlaces->result() as $row) {
                       echo "<tr>";
-                      echo "<td>".$row->tema."</td>";
                       echo "<td>".$row->descripcion."</td>";
+                      echo "<td>".$row->acompañantes."</td>";
                       echo "<td>".$row->nombrePonente."</td>";
                       echo "<td>".$row->numAsistentes."</td>";
                       echo "<td>".$row->lugar."</td>";
@@ -192,20 +192,20 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
 
               <div class="col-xs-4">
-              <span class="input-group-addon" id="sizing-addon1" >Tema de Conferencia</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon1" name="TemaConferencia" placeholder="Ejemplo: Constelaciones Familiares">
-              </div>
-
-              <div class="col-xs-4">
               <span class="input-group-addon" id="sizing-addon2">Descripción</span>
                <textarea class="form-control" rows="2" name="Descripcion"></textarea>
               </div>
-              
+
               <div class="col-xs-4">
               <span class="input-group-addon" id="sizing-addon3" >Nombre Ponente</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon3" name="NombrePonente" placeholder="Ejemplo: Uzziel Asafmin Ojeda González">
+              <input type="text" class="form-control" aria-describedby="sizing-addon3" name="NombrePonente" placeholder="Ejemplo: Omar Farid Gómez Arcos">
               </div>
-              
+
+              <div class="col-xs-4">
+              <span class="input-group-addon" id="sizing-addon1" >Acompañantes</span>
+              <input type="text" class="form-control" aria-describedby="sizing-addon1" name="Acompañantes" placeholder="Ejemplo: Ing. Rafael Murrieta García">
+              </div>
+             
             </div>
           </div>
 
@@ -214,17 +214,17 @@
 
               <div class="col-xs-4">
               <span class="input-group-addon" id="sizing-addon4" >Numero de Asistentes</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon4" name="NumAsistentes" placeholder="Ejemplo: 25">
+              <input type="number" class="form-control" aria-describedby="sizing-addon4" name="NumAsistentes" placeholder="Ejemplo: 50">
               </div>
 
              <div class="col-xs-4">
               <span class="input-group-addon" id="sizing-addon5" >Lugar</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon5" name="Lugar" placeholder="Ejemplo: Facultad de Estadística e Informática">
+              <input type="text" class="form-control" aria-describedby="sizing-addon5" name="Lugar" placeholder="Ejemplo: Centro CEPII">
               </div>
 
               <div class="col-xs-4">
-                <span class="input-group-addon bootstrap-timepicker timepicker" id="sizing-addon6">Fecha</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon6" data-provide="datepicker" id="datepicker" name="Fecha">
+                <span class="input-group-addon" id="sizing-addon6">Fecha</span>
+                <input type="date" class="form-control" aria-describedby="sizing-addon6" data-provide="datepicker" id="datepicker" name="Fecha">
               </div>
 
             </div>
@@ -235,12 +235,12 @@
 
             <div class="col-xs-4">
               <span class="input-group-addon" id="sizing-addon4" >Hora</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon4" name="Hora" placeholder="Ejemplo: 8:00 AM">
+              <input type="time" class="form-control" aria-describedby="sizing-addon4" name="Hora">
               </div>
 
               <div class="col-xs-4">
-              <span class="input-group-addon" id="sizing-addon4" >Dirección</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon4" name="Direccion" placeholder="Ejemplo: Av. Xalapa, s/n">
+              <span class="input-group-addon" id="sizing-addon4" >Espacio</span>
+              <input type="text" class="form-control" aria-describedby="sizing-addon4" name="Direccion" placeholder="Ejemplo: Escuela Ricardo Flores Magón">
               </div>
 
             </div>

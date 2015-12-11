@@ -18,7 +18,7 @@ class Conferencias extends CI_Controller {
 
   public function agregarConferencia(){
     $datos=array(
-				'tema' => $this->input->post('TemaConferencia',TRUE),
+				'acompañantes' => $this->input->post('Acompañantes',TRUE),
 				'descripcion' => $this->input->post('Descripcion',TRUE),
 				'nombrePonente' => $this->input->post('NombrePonente',TRUE),
 				'numAsistentes' => $this->input->post('NumAsistentes',TRUE),
@@ -38,14 +38,25 @@ class Conferencias extends CI_Controller {
 		$datos =  $this->conferencias_model->getConferencia($id);
 		foreach ($datos->result() as $row) {
 				$idConferencia = $row->idConferencia;
-				$Nombre = $row->Nombre;
-				$Capacidad = $row->Capacidad;
-				$Tipo_Servicio = $row->Tipo_Servicio;
+				$acompañantes = $row->acompañantes;
+				$descripcion = $row->descripcion;
+				$nombrePonente = $row->nombrePonente;
+				$numAsistentes = $row->numAsistentes;
+				$lugar = $row->lugar;
+				$fecha = $row->fecha;
+				$hora = $row->hora;
+				$direccion = $row->direccion;
+
 			}
 			$data['idConferencia'] = $idConferencia;
-			$data['Nombre'] = $Nombre;
-			$data['Capacidad'] = $Capacidad;
-			$data['Tipo_Servicio'] = $Tipo_Servicio;
+			$data['acompañantes'] = $acompañantes;
+			$data['descripcion'] = $descripcion;
+			$data['nombrePonente'] = $nombrePonente;
+			$data['numAsistentes'] = $numAsistentes;
+			$data['lugar'] = $lugar;
+			$data['fecha'] = $fecha;
+			$data['hora'] = $hora;
+			$data['direccion'] = $direccion;
 			$this->load->view('admin/view_edita_conferencias',$data);
 	}
 
@@ -61,7 +72,7 @@ class Conferencias extends CI_Controller {
 			'idConferencia' => $this->input->post('idConferencia',TRUE)
 		);
 			$ArrDatos = array(
-				'tema' => $this->input->post('TemaConferencia',TRUE),
+				'acompañantes' => $this->input->post('Acompañantes',TRUE),
 				'descripcion' => $this->input->post('Descripcion',TRUE),
 				'nombrePonente' => $this->input->post('NombrePonente',TRUE),
 				'numAsistentes' => $this->input->post('NumAsistentes',TRUE),

@@ -17,9 +17,9 @@ class Conferencias_model extends CI_Model{
   		}
   	}
     public function getConferencia($id){
-      $this->db->select('idConferencia,tema, descripcion, nombrePonente', 'numAsistentes', 'lugar', 'fecha', 'hora', 'direccion');
-		  $this->db->from('Conferencias AS C');
-      $this->db->where('C.idConferencia ='.$id);
+      $this->db->select('idConferencia,acompañantes, descripcion, nombrePonente, numAsistentes, lugar, fecha, hora, direccion');
+		  $this->db->from('Conferencias');
+      $this->db->where('Conferencias.idConferencia ='.$id);
 		  $query = $this->db->get();
 
 		if ($query->num_rows() > 0){
@@ -30,8 +30,8 @@ class Conferencias_model extends CI_Model{
     }
 
     function actualizar($id,$arreglo){
-      $this->db->where('idEspacio', $id["idEspacio"]);
-      $this->db->update('Espacio', $arreglo);
+      $this->db->where('idConferencia', $id["idConferencia"]);
+      $this->db->update('conferencias', $arreglo);
 
         //print_r ($arreglo);
     }
