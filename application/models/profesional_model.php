@@ -25,6 +25,12 @@ class Profesional_model extends CI_Model{
     }  
 
     function showProfesional($q, $rama){
+        if ($rama == "") {
+            $new_row['id'] = htmlentities(stripslashes(0));
+            $new_row['value'] = htmlentities(stripslashes("Seleccione rama medica"));
+            $row_set[] = $new_row;
+            return $row_set;
+        }
         $this->db->select();
         $this->db->like('nombrePro', $q);
         $this->db->or_like('amaPro', $q);
@@ -37,6 +43,10 @@ class Profesional_model extends CI_Model{
                 if($row->ramaMedica == $rama){
                     $new_row['id'] = htmlentities(stripslashes($row->idProfesional));
                     $new_row['value'] = htmlentities(stripslashes($row->nombrePro.' '.$row->amaPro.' '.$row->apaPro));
+                    $row_set[] = $new_row;
+                }else{
+                    $new_row['id'] = htmlentities(stripslashes($row->idProfesional));
+                    $new_row['value'] = htmlentities(stripslashes("El profesional ingresado no pertecene a la rama medica seleccionada"));
                     $row_set[] = $new_row;
                 }
                 

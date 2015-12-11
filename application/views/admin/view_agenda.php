@@ -18,8 +18,26 @@
     <link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/img/icon.png">
     <script>
     $(document).ready(function($){
+
      $('#nombreP').autocomplete({
       source:'<?php echo base_url('Paciente/show_Paciente');?>',
+      minLength:1,
+      // optional
+      html: true,
+
+      // optional (if other layers overlap the autocomplete list)
+      open: function(event, ui) {
+       $(".ui-autocomplete").css("z-index", 1000);
+      }
+     });
+    });
+    </script>
+
+    <script>
+    $(document).ready(function($){
+     $('#espacio').autocomplete({
+
+      source:'<?php echo base_url('espacios/show_Espacios');?>',
       minLength:1,
       // optional
       html: true,
@@ -188,7 +206,9 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th>Hora</th>
+                      <th>Hora Inicio</th>
+                      <th></th>
+                      <th>Hora Fin</th>
                       <th>Paciente</th>
                       <th>Profesional</th>
                       <th>Consultorio</th>
@@ -201,19 +221,37 @@
                   <tr style="margin-top:5px; margin-bottom:5px;">
                     <?php if($row->ramaMedica == "Psicología"): ?>
                       <td style="background-color:#F2DEDE">
-                        <?php echo $row->hora; ?>
+                        <?php echo $row->horaIni; ?>
+                      </td>
+                      <td style="background-color:#F2DEDE">
+                        -
+                      </td>
+                      <td style="background-color:#F2DEDE">
+                        <?php echo $row->horaFin; ?>
                       </td>
                     <?php endif; ?>
 
                     <?php if($row->ramaMedica == "Nutrición"): ?>
                       <td style="background-color:#BCE8F1">
-                        <?php echo $row->hora; ?>
+                        <?php echo $row->horaIni; ?>
+                      </td>
+                      <td style="background-color:#BCE8F1">
+                        -
+                      </td>
+                      <td style="background-color:#BCE8F1">
+                        <?php echo $row->horaFin; ?>
                       </td>
                     <?php endif; ?>
 
                     <?php if($row->ramaMedica == "Medicina"): ?>
                       <td style="background-color:#DFF0D8">
-                        <?php echo $row->hora; ?>
+                        <?php echo $row->horaIni; ?>
+                      </td>
+                      <td style="background-color:#DFF0D8">
+                        -
+                      </td>
+                      <td style="background-color:#DFF0D8">
+                        <?php echo $row->horaFin; ?>
                       </td>
                     <?php endif; ?>
                     <td>
@@ -229,16 +267,7 @@
                       </a>
                     </td>
                     <td>
-                      <?php echo $row->consultorio; ?>
-                    </td>
-                    <td>
-                      <select>
-                        <option>Atendido</option>
-                        <option>holo</option>
-                        <option>casa</option>
-                        <option>holo</option>
-                        <option>casa</option>
-                      </select>
+                      <?php echo $row->Nombre; ?>
                     </td>
                     <td>
                       <button style="background-color:#f4d2e1">Cancelar</button>
@@ -258,7 +287,7 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-12">
                 <span class="input-group-addon">Nombre Paciente</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" id="nombreP" name="nombreP">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" id="nombreP" name="nombreP" required>
               </div>
             </div>
           </div>
@@ -269,7 +298,7 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-5">
                 <span class="input-group-addon" id="sizing-addon2">Rama Médica</span>
-                <select class="form-control" value="ramaMedica" id="ramaMedica">
+                <select class="form-control" value="ramaMedica" id="ramaMedica" required>
                   <option></option>
                   <option value="Medicina" name="Medicina">Medicina</option>
                   <option value="Nutrición" name="Nutrición">Nutrición</option>
@@ -279,7 +308,7 @@
               </div>
               <div class="col-xs-7">
                 <span class="input-group-addon" id="sizing-addon2">Nombre Profesional</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" id="nombrePRO" name="nombrePRO">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" id="nombrePRO" name="nombrePRO" required>
               </div>
             </div>
           </div>
@@ -290,19 +319,19 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-2">
                 <span class="input-group-addon" id="sizing-addon2">Fecha</span>
-                <input type="date" class="form-control" aria-describedby="sizing-addon2" data-provide="datepicker" name="fecha">
+                <input type="date" class="form-control" aria-describedby="sizing-addon2" data-provide="datepicker" name="fecha" required>
               </div>
               <div class="col-xs-2">
-                <span class="input-group-addon" id="sizing-addon2">Hora</span>
-                <input type="time" class="form-control" aria-describedby="sizing-addon2" name="hora">
+                <span class="input-group-addon" id="sizing-addon2">Hora Inicio</span>
+                <input type="time" class="form-control" aria-describedby="sizing-addon2" name="horaIni" step="1800" required>
+              </div>
+              <div class="col-xs-2">
+                <span class="input-group-addon" id="sizing-addon2">Hora Fin</span>
+                <input type="time" class="form-control" aria-describedby="sizing-addon2" name="horaFin" step="1800" required>
               </div>
               <div class="col-xs-2">
                 <span class="input-group-addon" id="sizing-addon2">Consultorio</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="consultorio">
-              </div>
-              <div class="col-xs-6">
-                <span class="input-group-addon" id="sizing-addon2">Información Adicional</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="info">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="espacio" id="espacio" required>
               </div>
             </div>
           </div>

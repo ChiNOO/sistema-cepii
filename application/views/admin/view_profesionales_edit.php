@@ -126,15 +126,15 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-4">
                 <span class="input-group-addon">Nombre Profesional</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombre" value="<?php echo $query['0']->nombrePro ?>" requierd>
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombre" value="<?php echo $query['0']->nombrePro ?>" required>
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Apellido Profesional</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="paterno" value="<?php echo $query['0']->apaPro ?>">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="paterno" value="<?php echo $query['0']->apaPro ?>" required>
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Apellido Profesional</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="materno" value="<?php echo $query['0']->amaPro ?>">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="materno" value="<?php echo $query['0']->amaPro ?>" required>
               </div>
             </div>
           </div>
@@ -145,7 +145,7 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-4">
                 <span class="input-group-addon">Rama Médica</span>
-                <select class="form-control" name="ramaMedica" value="<?php echo $query['0']->ramaMedica ?>">
+                <select class="form-control" name="ramaMedica" value="<?php echo $query['0']->ramaMedica ?>" required>
                   <option></option>
                   <option value="Medicina">Medicina</option>
                   <option value="Nutrición">Nutrición</option>
@@ -154,11 +154,11 @@
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Correo</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="correo" value="<?php echo $query['0']->correoPro ?>">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="correo" value="<?php echo $query['0']->correoPro ?>" required>
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Teléfono</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="telefono" value="<?php echo $query['0']->celPro ?>">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="telefono" value="<?php echo $query['0']->celPro ?>" required>
               </div>
             </div>        
           </div>
@@ -169,7 +169,7 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-3">
                 <span class="input-group-addon" id="sizing-addon2">Usuario</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="usuario" value="<?php echo $query['0']->usuario ?>">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="usuario" value="<?php echo $query['0']->usuario ?>" required>
               </div>
             </div>
           </div>

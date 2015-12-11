@@ -15,14 +15,10 @@ class Citas extends CI_Controller {
 		$claveP = $this->input->post('claveP');
 		$nombrePRO = $this->input->post('nombrePRO');
 		$fecha = $this->input->post('fecha');
-		$hora = $this->input->post('hora');
-		$consultorio = $this->input->post('consultorio');
-		$info = $this->input->post('info');
-		if ($claveP != ""){
-			$insert = $this->citas_model->save_appointmentClv($claveP,$nombrePRO,$fecha,$hora,$consultorio,$info);
-		}else{
-			$insert = $this->citas_model->save_appointmentName($nombreP,$nombrePRO,$fecha,$hora,$consultorio,$info);
-		}
+		$horaIni = $this->input->post('horaIni');
+		$horaFin = $this->input->post('horaFin');
+		$espacio = $this->input->post('espacio');
+		$insert = $this->citas_model->save_appointmentName($nombreP,$nombrePRO,$fecha,$horaIni, $horaFin,$espacio);
 		
 		redirect(base_url().'Agenda');
 	}

@@ -227,15 +227,15 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-4">
                 <span class="input-group-addon">Nombre Profesional</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombre">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombre" required>
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Apellido Profesional</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="paterno">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="paterno" required>
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Apellido Profesional</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="materno">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="materno" required>
               </div>
             </div>
           </div>
@@ -246,7 +246,7 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-4">
                 <span class="input-group-addon">Rama Médica</span>
-                <select class="form-control" name="ramaMedica">
+                <select class="form-control" name="ramaMedica" required>
                   <option></option>
                   <option value="Medicina">Medicina</option>
                   <option value="Nutrición">Nutrición</option>
@@ -255,11 +255,11 @@
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Correo</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="correo">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="correo" required>
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Teléfono</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="telefono">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="telefono" required>
               </div>
             </div>        
           </div>
@@ -270,11 +270,11 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-2">
                 <span class="input-group-addon" id="sizing-addon2">Usuario</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="usuario">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="usuario" required>
               </div>
               <div class="col-xs-2">
                 <span class="input-group-addon" id="sizing-addon2">Contraseña</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="contraseña">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="contraseña" required>
               </div>
             </div>
           </div>

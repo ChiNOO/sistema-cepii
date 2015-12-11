@@ -173,15 +173,15 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-4">
                 <span class="input-group-addon">Nombre Paciente</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombre">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombre" required>
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Apellido Paterno</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="paterno">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="paterno" required>
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Apellido Materno</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="materno">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="materno" required>
               </div>
             </div>
           </div>
@@ -192,15 +192,15 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-5">
                 <span class="input-group-addon">Calle</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="calle">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="calle" required>
               </div>
               <div class="col-xs-3">
                 <span class="input-group-addon">Número</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="numero">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="numero" required>
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Colonia</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="colonia">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="colonia" required>
               </div>
             </div>        
           </div>
@@ -211,11 +211,11 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-2">
                 <span class="input-group-addon" id="sizing-addon2">Fecha</span>
-                <input type="date" class="form-control" aria-describedby="sizing-addon2" data-provide="datepicker" name="fecha">
+                <input type="date" class="form-control" aria-describedby="sizing-addon2" data-provide="datepicker" name="fecha" required>
               </div>
               <div class="col-xs-1">
                 <span class="input-group-addon" id="sizing-addon2">Sexo</span>
-                <select class="form-control" name="sexo">
+                <select class="form-control" name="sexo" required>
                   <option></option>
                   <option value="M">M</option>
                   <option value="F">F</option>
@@ -223,11 +223,11 @@
               </div>
               <div class="col-xs-5">
                 <span class="input-group-addon" id="sizing-addon2">Correo</span>
-                <input type="email" class="form-control" aria-describedby="sizing-addon2" name="correo">
+                <input type="email" class="form-control" aria-describedby="sizing-addon2" name="correo" required>
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon" id="sizing-addon2">Teléfono</span>
-                <input type="tel" class="form-control" aria-describedby="sizing-addon2" name="telefono">
+                <input type="tel" class="form-control" aria-describedby="sizing-addon2" name="telefono" required>
               </div>
             </div>
           </div>

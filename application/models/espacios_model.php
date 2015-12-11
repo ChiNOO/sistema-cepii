@@ -66,4 +66,19 @@ class Espacios_model extends CI_Model{
       }
 
     }
+
+    public function get_espacio($q){
+      $this->db->select();
+      $this->db->like('Nombre', $q);
+      $query = $this->db->get('espacio');
+      $query->num_rows();
+      if($query->num_rows > 0){
+        foreach ($query->result() as $row){
+          $new_row['id'] = htmlentities(stripslashes($row->idEspacio));
+          $new_row['value'] = htmlentities(stripslashes($row->Nombre));
+          $row_set[] = $new_row;
+        }
+        return $row_set;
+      }
+  }
 }

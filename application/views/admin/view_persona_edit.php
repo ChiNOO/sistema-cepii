@@ -131,15 +131,15 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-4">
                 <span class="input-group-addon">Nombre Paciente</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombre" value="<?php echo $query['0']->nombrePersona ?>">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="nombre" value="<?php echo $query['0']->nombrePersona ?>" required>
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Apellido Paterno</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="paterno" value="<?php echo $query['0']->apaPersona ?>">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="paterno" value="<?php echo $query['0']->apaPersona ?>" required>
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Apellido Materno</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="materno" value="<?php echo $query['0']->amaPersona ?>">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="materno" value="<?php echo $query['0']->amaPersona ?>" required>
               </div>
             </div>
           </div>
@@ -150,15 +150,15 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-5">
                 <span class="input-group-addon">Calle</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="calle" value="<?php echo $query['0']->callePersona ?>">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="calle" value="<?php echo $query['0']->callePersona ?>" required>
               </div>
               <div class="col-xs-3">
                 <span class="input-group-addon">Número</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="numero" value="<?php echo $query['0']->numDirPersona ?>">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="numero" value="<?php echo $query['0']->numDirPersona ?>" required>
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon">Colonia</span>
-                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="colonia" value="<?php echo $query['0']->coloniaPersona ?>">
+                <input type="text" class="form-control" aria-describedby="sizing-addon2" name="colonia" value="<?php echo $query['0']->coloniaPersona ?>" required>
               </div>
             </div>        
           </div>
@@ -169,11 +169,11 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               <div class="col-xs-2">
                 <span class="input-group-addon" id="sizing-addon2">Fecha</span>
-                <input type="date" class="form-control" aria-describedby="sizing-addon2" data-provide="datepicker" name="fecha" value="<?php echo $query['0']->fechaNa ?>">
+                <input type="date" class="form-control" aria-describedby="sizing-addon2" data-provide="datepicker" name="fecha" value="<?php echo $query['0']->fechaNa ?>" required>
               </div>
               <div class="col-xs-1">
                 <span class="input-group-addon" id="sizing-addon2">Sexo</span>
-                <select class="form-control" name="sexo" value="<?php echo $query['0']->sexo ?>">
+                <select class="form-control" name="sexo" value="<?php echo $query['0']->sexo ?>" required>
                   <option></option>
                   <option value="M">M</option>
                   <option value="F">F</option>
@@ -181,11 +181,11 @@
               </div>
               <div class="col-xs-5">
                 <span class="input-group-addon" id="sizing-addon2">Correo</span>
-                <input type="email" class="form-control" aria-describedby="sizing-addon2" name="correo" value="<?php echo $query['0']->correoPersona ?>">
+                <input type="email" class="form-control" aria-describedby="sizing-addon2" name="correo" value="<?php echo $query['0']->correoPersona ?>" required>
               </div>
               <div class="col-xs-4">
                 <span class="input-group-addon" id="sizing-addon2">Teléfono</span>
-                <input type="tel" class="form-control" aria-describedby="sizing-addon2" name="telefono" value="<?php echo $query['0']->celPersona ?>">
+                <input type="tel" class="form-control" aria-describedby="sizing-addon2" name="telefono" value="<?php echo $query['0']->celPersona ?>" required>
               </div>
             </div>
           </div>

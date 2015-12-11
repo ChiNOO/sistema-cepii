@@ -4,7 +4,7 @@ class Citas_model extends CI_Model{
         parent::__construct();
     }
  
-    public function save_appointmentName($nombreP,$nombrePRO,$fecha,$hora,$consultorio,$info){
+    public function save_appointmentName($nombreP,$nombrePRO,$fecha,$horaIni, $horaFin, $espacio){
         
         $this->db->select('idPersona, CONCAT(nombrePersona," ", amaPersona," ",apaPersona) AS name', FALSE);
         $this->db->from('persona');
@@ -22,24 +22,36 @@ class Citas_model extends CI_Model{
                 $idP = $row2->idProfesional;
             }
         }
+
+        $this->db->select();
+        $this->db->where('Nombre', $espacio);
+        $query3 = $this->db->get('espacio');
+        if ($query3->num_rows() == 1) {
+            foreach ($query3->result() as $row) {
+                $idEspacio = $row->idEspacio;
+            }
+        }
+
         $array = array(
             'persona_idpersona' => $id,
             'profesional_idProfesional' => $idP,
-            'hora' => $hora,
+            'horaIni' => $horaIni,
+            'horaFin' => $horaFin,
             'fecha' => $fecha,
-            'consultorio' => $consultorio
+            'espacio_idEspacio' => $idEspacio
             );
         
         $this->db->insert('cita', $array);
     }
 
     public function get_appointment($fecha){
-        $this->db->select('cita.hora, cita.fecha, cita.consultorio, cita.estado, profesional.nombrePro, profesional.amaPro,
+        $this->db->select('cita.horaIni, cita.horaFin, cita.fecha, cita.espacio_idEspacio, profesional.nombrePro, profesional.amaPro,
                             profesional.apaPro, profesional.ramaMedica, persona.nombrePersona, persona.amaPersona,
-                            persona.apaPersona, persona.celPersona');
+                            persona.apaPersona, persona.celPersona, espacio.idEspacio, espacio.Nombre');
         $this->db->from('cita');
         $this->db->join('persona', 'persona.idpersona = cita.persona_idpersona');
         $this->db->join('profesional', 'profesional.idProfesional = cita.profesional_idProfesional');
+        $this->db->join('espacio', 'espacio.idEspacio = cita.espacio_idEspacio');
         $this->db->where('fecha', $fecha);
         $query = $this->db->get();
         return $query->result();

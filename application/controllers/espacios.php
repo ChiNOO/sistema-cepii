@@ -140,4 +140,11 @@ class Espacios extends CI_Controller {
 
 	}
 
+	public function show_Espacios(){
+		$q = strtolower($_GET['term']);
+		$valores = $this->espacios_model->get_espacio($q);
+		echo json_encode($valores);  
+	}
+
+
 }
