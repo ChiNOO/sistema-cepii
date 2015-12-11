@@ -62,6 +62,7 @@ CREATE TABLE `conferencias` (
 
 CREATE TABLE `curso_taller` (
   `id` int(11) NOT NULL,
+  `nombre` varchar(50) DEFAULT NULL,
   `tipo` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
   `Profesional_idProfesional` int(11) NOT NULL,
   `lugar` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
