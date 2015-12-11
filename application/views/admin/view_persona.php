@@ -32,9 +32,9 @@
         //si autocompletado nos devuelve algo
         if(data != ''){
           //$('.contenedor').show();
-          $(".table").html(data);
+          $("#tableSearch").html(data);
         }else{
-          $(".table").html('');
+          $("#tableSearch").html('');
         }
       })
     })
@@ -249,7 +249,7 @@
             <input type="text" class="form-control autocompletar"  name="autocompletar" id="autocompletar" onpaste="return false"  aria-describedby="sizing-addon2" placeholder="Nombre del Paciente">
             <br/>
           </div>
-          <table class="table table-hover table-responsive">
+          <table class="table table-hover table-responsive" id="tableSearch">
           </table>
         </div>
 
