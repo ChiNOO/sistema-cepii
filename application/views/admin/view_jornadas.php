@@ -141,17 +141,17 @@
                   <thead>
                     <tr>
                       <th>Nombre</th>
-                      <th>Ciudad</th>
-                      <th>Municipio</th>
-                      <th>Calle</th>
-                      <th>C-P</th>
-                      <th>Donativo</th>
-                      <th>Fecha Inicio</th>
-                      <th>Fecha Fin</th>
+                      <th>Tipo de servicio</th>
+                      <th>Detalle</th>
+                      <th>Costo</th>
+                      <th>Espacio</th>
+                      <th>Profesional que impartirá</th>
+                      <th>Fechas</th>
+                      <th>Horario</th>
                     </tr>
                   </thead>  
                   <tbody>
-                    <td>Ama tu vida</td><td>Xalapa</td><td>Xalapa, Ver</td><td>Avenida Xalapa</td><td>91130</td><td>300</td><td>1 Diciembre 2015</td><td>20 Diciembre 2015</td>                
+                    <td>Cuida tu salud</td><td> </td><td>Jornada para personas entre 20-40 años</td><td>$300</td><td>Laboratorio A</td><td>Doctora Azucena</td><td>15,16,19 Noviembre</td><td>10:00-13:00 horas</td>                
                   </tbody>             
                 </table>
               </td>
