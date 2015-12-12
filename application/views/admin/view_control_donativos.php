@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>Sistema CEPII</title>
-    
+     
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/font-awesome.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet" />
@@ -148,8 +148,15 @@
                  <tr>
               <!-- Campo de busqueda -->
                  <td>
-                  <input data-provide="datepicker"> 
-                 </td>
+                <?=  form_open(base_url().'Donativos')?> 
+                  <label>Buscar Donativos</label>
+                  <!--<input type="date" class="form-control" value="<?php echo $fecha; ?>" aria-describedby="sizing-addon2" data-provide="datepicker" name="fechaSearch" id="fechaSearch">-->
+                  <br>
+                  <input type="submit" value="Buscar" id="Buscar" name="Buscar" class="btn btn-primary btn-lg">
+                <?=form_close()?> 
+              </td>
+
+
                  <td>
                    <table class="table">
                  <!-- Titulos de columnas -->
@@ -207,18 +214,59 @@
         
 
          <div class="tab-pane" id="5b">
-           <?=  form_open(base_url().'Donativos/new_appointment')?>
+           <?=  form_open(base_url().'Donativos')?>
            <h2 style="text-align:center;">Datos de Donativos</h2>
-           <br>
-        
+           
+          <!-- Apartado dombre Taller|curso|Terapia  --> 
             <div style="margin-left:30px; margin-right:5px;">
+              <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
+                
+                <div name="mi_forma" class="col-xs-4">
+                  <span class="input-group-addon" id="sizing-addon2">Servicio</span>
+                  <select type="text" class="form-control" aria-describedby="sizing-addon2" name="servicioDonaciones" id="servicioDonaciones" required="required">
+                   <option  value="" disabled selected style="display: none;">Selecione...</option>
+                    <option>Citas</option>
+                    <option>Curso</option>
+                    <option>Taller</option>
+                    <option>Diplomados</option>
+                    <option>Certificacion</option>
+                  </select>
+                </div>
+                
+                <div class="col-xs-4">
+                  <span class="input-group-addon" id="sizing-addon2" >Nombre Servicio</span>
+                  <select type="text" class="form-control" aria-describedby="sizing-addon2" name="nombreServicioDonativo">
+                    <?php
+                     foreach ($arrProfesiones as $i => $profesion)
+                     echo '<option values="',$i,'">',$profesion,'</option>';
+                    ?>
+                   </select>
+                 </div>
+
+                
+                  <div class="col-xs-4">
+                    <span class="input-group-addon" id="sizing-addon2">Persona</span>
+                      <select  class="form-control" value="persona" id="persona"aria-describedby="sizing-addon2" name="NombrePersonaDonativo">
+                         <option></option>
+                         <option></option>
+                      </select>
+                   </div>
+
+
+              </div>
+            </div>
+          <!-- Fin de Apartado dombre Taller|curso|Terapia  --> 
+           <div style="margin-left:30px; margin-right:5px;">
                 <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
                   
                   <div class="col-xs-4">
                     <span class="input-group-addon" id="sizing-addon2">Tipo Donativo</span>
                     <select type="text" class="form-control" onchange="habilitarDescripcion(this)" aria-describedby="sizing-addon2" name="TipoDonativo">
-                      <option>Especie</option>
+                      <option >Aldo</option>
                       <option>Monetario</option>
+                        <option>Monetario</option>
+                         <option>Monetario</option>
+                          <option>Monetario</option>
                     </select>
                   </div>
                 
@@ -235,41 +283,7 @@
               </div>
             </div>
            
-          <!-- Apartado dombre Taller|curso|Terapia  --> 
-            <div style="margin-left:30px; margin-right:5px;">
-              <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
-                
-                <div class="col-xs-4">
-                  <span class="input-group-addon" id="sizing-addon2">Servicio</span>
-                  <select type="text" class="form-control" onchange="habilitar(this)" aria-describedby="sizing-addon2" name="servicioDonaciones" required="required">
-                    <option  value="" disabled selected style="display: none;">Selecione...</option>
-                    <option>Curso</option>
-                    <option>Taller</option>
-                    <option>cita</option>
-                  </select>
-                </div>
-                
-                <div class="col-xs-4">
-                  <span class="input-group-addon" id="sizing-addon2" >Nombre Servicio</span>
-                  <select type="text" class="form-control"  disabled="false "aria-describedby="sizing-addon2" name="nombreServicioDonativo">
-                    <?php
-                     foreach ($arrProfesiones as $i => $profesion)
-                     echo '<option values="',$i,'">',$profesion,'</option>';
-                    ?>
-                   </select>
-                 </div>
-
-                 <div class="col-xs-4">
-                   <span class="input-group-addon" id="sizing-addon2">Persona</span>
-                     <select type="text" class="form-control" disabled="false"aria-describedby="sizing-addon2" name="NombrePersonaDonativo">
-                       <option>Monetario</option>
-                       <option>Material</option>
-                     </select>
-                 </div>
-
-              </div>
-            </div>
-          <!-- Fin de Apartado dombre Taller|curso|Terapia  --> 
+          <!---->
             <div style="margin-left:30px; margin-right:5px;">
               <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
                 
@@ -313,25 +327,13 @@
                  var hab; 
                  frm=obj.form; 
                  num=obj.selectedIndex; 
-                  if (num== 1) hab=true; 
-                  else if (num==2) hab=false;
+                  if (num== 0) hab=true; 
+                  else if (num==1) hab=false;
                 frm.descripcionDonativo.disabled=hab; 
                }        
               </script>
 
-             <script type="text/javascript"> 
-             function habilitar(obj) { 
-             var hab; 
-             frm=obj.form; 
-             num=obj.selectedIndex; 
-              if (num=> 0) hab=false; 
-              else hab=true; 
-             frm.nombreServicioDonativo.disabled=hab; 
-             frm.NombrePersonaDonativo.disabled=hab; 
-             } 
-             </script>
-
-       
+                       
            <!-- <script type="text/javascript">
               $(document).ready(function(){
                $('input[name="hora"]').ptTimeSelect();
