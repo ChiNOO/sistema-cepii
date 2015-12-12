@@ -51,7 +51,7 @@ INSERT INTO `cita` (`idcita`, `persona_idpersona`, `profesional_idProfesional`, 
 
 CREATE TABLE IF NOT EXISTS `conferencias` (
 `idConferencia` int(11) NOT NULL,
-  `tema` varchar(50) DEFAULT NULL,
+  `acompañantes` varchar(50) DEFAULT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
   `nombrePonente` varchar(50) DEFAULT NULL,
   `numAsistentes` int(10) DEFAULT NULL,

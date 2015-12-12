@@ -15,6 +15,49 @@
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script>
     <script type="text/javascript" src="<?php echo base_url('js/funciones.js') ?>"></script>
     <link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>/assets/img/icon.png">
+
+    <script>
+    $(document).ready(function () {
+    $("#Direccion").autocomplete({
+        source: function(request, response) {
+            $.ajax({
+                url: "<?php echo base_url().'espacios/show_Espacios' ?>",
+                dataType: "json",
+                minLength:1,
+                data: {
+                    term: request.term,
+                      },
+                success: function(data) {
+                    response(data);
+                    //alert('You selected:');
+                }
+            });
+        },
+    });
+    });
+    </script>
+
+    <script>
+    $(document).ready(function () {
+    $("#NombrePonente").autocomplete({
+        source: function(request, response) {
+            $.ajax({
+                url: "<?php echo base_url().'Profesionales/show_profesionals' ?>",
+                dataType: "json",
+                minLength:1,
+                data: {
+                    term: request.term,
+                      },
+                success: function(data) {
+                    response(data);
+                    //alert('You selected:');
+                }
+            });
+        },
+    });
+  });
+  </script>
+
 </head>
 <body style="background-color:#e5e5e5;">
   <nav class="navbar navbar-default">
@@ -139,7 +182,7 @@
                       <th>Descripcion</th>
                       <th>Acompañantes</th>
                       <th>Ponentes</th>
-                      <th>Asistentes</th>
+                      <th>Máx. Asistentes</th>
                       <th>Lugar</th>
                       <th WIDTH=100>Fecha</th>
                       <th>Hora</th>
@@ -198,7 +241,7 @@
 
               <div class="col-xs-4">
               <span class="input-group-addon" id="sizing-addon3" >Nombre Ponente</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon3" name="NombrePonente" placeholder="Ejemplo: Omar Farid Gómez Arcos">
+              <input type="text" class="form-control" aria-describedby="sizing-addon3" name="NombrePonente" id="NombrePonente" placeholder="Ejemplo: Omar Farid Gómez Arcos">
               </div>
 
               <div class="col-xs-4">
@@ -213,7 +256,7 @@
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
 
               <div class="col-xs-4">
-              <span class="input-group-addon" id="sizing-addon4" >Numero de Asistentes</span>
+              <span class="input-group-addon" id="sizing-addon4" >Máximo número de Asistentes</span>
               <input type="number" class="form-control" aria-describedby="sizing-addon4" name="NumAsistentes" placeholder="Ejemplo: 50">
               </div>
 
@@ -240,7 +283,7 @@
 
               <div class="col-xs-4">
               <span class="input-group-addon" id="sizing-addon4" >Espacio</span>
-              <input type="text" class="form-control" aria-describedby="sizing-addon4" name="Direccion" placeholder="Ejemplo: Escuela Ricardo Flores Magón">
+              <input type="text" class="form-control" aria-describedby="sizing-addon4" name="Direccion" id="Direccion" placeholder="Ejemplo: Escuela Ricardo Flores Magón">
               </div>
 
             </div>
