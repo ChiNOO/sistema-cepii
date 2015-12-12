@@ -125,12 +125,6 @@
               </a>
             </li>
 
-            <li data-toggle="tab" >
-              <a href="#8b" data-toggle="tab">
-                <i class="fa fa-child"></i>     Participantes
-              </a>
-            </li>
-
           </ul>
 
           <div style="background-color:#e5e5e5; height: 0px;"></div>
@@ -148,14 +142,14 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>Nombre</th>
                           <th>Tipo de servicio</th>
                           <th>Detalle</th>
                           <th>Espacio</th>
                           <th>Nombre profesional</th>
-                         <!-- <th>Número participantes</th>-->
-                          <th>Fecha inicio</th>
-                          <th>Fecha fin</th>
+                          <th>Mes</th>
+                          <th>Fechas</th>
+                          <th>Hora Inicial<th>
+                          <th>Hora Final</th>
                           <th>Costo</th>
                         </tr>
                       </thead>  
@@ -163,11 +157,12 @@
                     if ($enlaces!=FALSE){
                       foreach ($enlaces->result() as $row) {
                       echo "<tr>";
-                      echo "<td>".$row->nombre_jornada."</td>";
                       echo "<td>".$row->tipo_servicio."</td>";
                       echo "<td>".$row->detalle."</td>";
                       echo "<td>".$row->espacio."</td>";
                       echo "<td>".$row->idProfesional."</td>";
+                      echo "<td>".$row->mes."</td>";
+                      echo "<td>".$row->fechas."</td>";
                       echo "<td>".$row->hora_inicio."</td>";
                       echo "<td>".$row->hora_fin."</td>";
                       echo "<td>".$row->costo."</td>";
@@ -201,91 +196,95 @@
 
               <div style="margin-left:5px; margin-right:5px;">
                 <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
-
-                  <div class="col-xs-4">
-                  <span class="input-group-addon" id="sizing-addon1" >Nombre</span>
-                  <input type="text" class="form-control" aria-describedby="sizing-addon1" name="TemaJornada" placeholder="Ejemplo: Cuida tu salud">
-                  </div>
-
-                  <div class="col-xs-4">
-                  <span class="input-group-addon" id="sizing-addon1" >Tipo de servicio</span>
-                  <input type="text" class="form-control" aria-describedby="sizing-addon1" name="Tipo" placeholder="Ejemplo: Educación integral">
-                  </div>
-
+              
+              <div class="col-xs-4">
+                  <span class="input-group-addon" id="sizing-addon2">Tipo de servicio</span>
+                  <select class="form-control" value="servicio" id="servicio">
+                  <option>
+                  <option value="Terapia" name="servicio">Terapia</option>
+                  <option value="Consulta" name="servicio">Consulta</option>
+                  <option value="Curso" name="servicio">Curso</option>
+                  </option>
+                </select>
+                </div>
+            
                   <div class="col-xs-4">
                   <span class="input-group-addon" id="sizing-addon3" >Detalle</span>
                   <input type="text" class="form-control" aria-describedby="sizing-addon3" name="Detalle" placeholder="Ejemplo: Jornada para personas entre 20-40 años">
                   </div>
-                  
-                </div>
-              </div>
-
-              <div style="margin-left:5px; margin-right:5px;">
-                <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
-
-                  <div class="col-xs-4">
+                
+                    <div class="col-xs-4">
                   <span class="input-group-addon" id="sizing-addon5" >Espacio</span>
                   <input type="text" class="form-control" aria-describedby="sizing-addon5" name="Espacio" placeholder="Ejemplo: Laboratorio A">
                   </div>
 
-              <!--  <div class="col-xs-5">
-                  <span class="input-group-addon" id="sizing-addon2">¿Profesional pertenece al CEPII?</span>
-                  <select class="form-control" value="esMiembro" id="EsMiembro">
-                  <option></option>
-                  <option value="Medicina" name="Medicina">Si</option>
-                  <option value="Nutrición" name="Nutrición">No</option>
-                </select>
-                </div>-->
+                </div>
+            </div>
 
-                 </div> 
-              </div> 
-
-
-              <div style="margin-left:5px; margin-right:5px;">
+               <div style="margin-left:5px; margin-right:5px;">
                 <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
 
-                 <div class="col-xs-4">
+                <div class="col-xs-4">
                   <span class="input-group-addon" id="sizing-addon5" >Nombre profesional</span>
                   <input type="text" class="form-control" aria-describedby="sizing-addon5" name="Nombrep" placeholder="Ejemplo: Doctora Azucena">
                   </div>
-
-                  <!--<div class="col-xs-2">
-                  <span class="input-group-addon" id="sizing-addon2">Cantidad de días</span>
-                  <input type="number" class="form-control" aria-describedby="sizing-addon2" name="cantidad_dias" id="cantidad_personas" required="required">
-                </div>-->   
-
-                <!--<div class="col-xs-4">
-                  <span class="input-group-addon" id="sizing-addon4" >Fechas</span>
-                  <input type="text" class="form-control" aria-describedby="sizing-addon4" name="TemaConferencia" placeholder="Ejemplo: 15,16,19 Noviembre">
-                  </div>-->
-
+                  
+                 <div class="col-xs-4">
+                  <span classS="input-group-addon" id="sizing-addon2">Mes</span>
+                  <select class="form-control" value="mes" id="mes">
+                  <option>
+                  <option value="Enero" name="mes">Enero</option>
+                  <option value="Febrero" name="mes">Febrero</option>
+                  <option value="Marzo" name="mes">Marzo</option>
+                  <option value="Abril" name="mes">Abril</option>
+                  <option value="Mayo" name="mes">Mayo</option>
+                  <option value="Junio" name="mes">Junio</option>
+                  <option value="Julio" name="mes">Julio</option>
+                  <option value="Agosto" name="mes">Agosto</option>
+                  <option value="Septiembre" name="mes">Septiembre</option>
+                  <option value="Octubre" name="mes">Octubre</option>
+                  <option value="Noviembre" name="mes">Noviembre</option>
+                  <option value="Diciembre" name="mes">Diciembre</option>  
+                  </option>
+                  </select>
                 </div>
-              </div>
+              
+                 <div class="col-xs-4">
+                  <span class="input-group-addon" id="sizing-addon3" >Fechas</span>
+                  <input type="text" class="form-control" aria-describedby="sizing-addon3" name="Fechas" placeholder="Ejemplo: 14 15 17">
+                  </div>
+              </div> 
+            </div> 
 
 
               <div style="margin-left:5px; margin-right:5px;">
                 <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
 
-                  <div class="col-xs-4">
+                <div class="col-xs-4">
                 <span class="input-group-addon" id="sizing-addon4" >Hora inicio</span>
                 <input type="time" class="form-control" aria-describedby="sizing-addon4" name="Horai">
-                </div>
-
+                </div> 
+                  
                 <div class="col-xs-4">
                 <span class="input-group-addon" id="sizing-addon4" >Hora fin</span>
                 <input type="time" class="form-control" aria-describedby="sizing-addon4" name="Horaf">
                 </div>
 
-                  <div class="col-xs-4">
+                 <div class="col-xs-4">
                   <span class="input-group-addon" id="sizing-addon2">Costo</span>
                   <input type="number" class="form-control" aria-describedby="sizing-addon2" name="Costo" placeholder="$" required="required">
                 </div>
 
                 </div>
-                <br>
-              <input type="submit"  value="Guardar" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
-              <br>
               </div>
+
+             <div style="margin-left:5px; margin-right:5px;">
+                <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
+                </div>
+                 <br>
+                <input type="submit"  value="Guardar" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
+                <br>
+            </div>
           </div>
 
             <div class="tab-pane" id="6b">
@@ -294,59 +293,6 @@
             <div class="tab-pane" id="7b">
               <h3>We use css to change the background color of the content to be equal to the tab</h3>
             </div>
-
-    <!--participantes empieza-->
-            <div class="tab-pane" id="8b">
-              <?=  form_open(base_url().'Jornadas/new_jornada')?>
-              <h2 style="text-align:center;">Participantes</h2>
-              <br>
-              <div style="margin-left:5px; margin-right:5px;">
-                <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
-
-                  <div class="col-xs-4">
-                  <span class="input-group-addon" id="sizing-addon1" >Nombre participante</span>
-                  <input type="text" class="form-control" aria-describedby="sizing-addon1" name="nombreParticipante" placeholder="Ejemplo: Uzziel Ojeda">
-                  </div>
-
-                  <div class="col-xs-4">
-                  <span class="input-group-addon" id="sizing-addon1" >Nombre jornada</span>
-                  <input type="text" class="form-control" aria-describedby="sizing-addon1" name="nombreJornada" placeholder="Ejemplo: Cuida tu salud">
-                  </div>
-              </div>    
-            </div>
-
-            <div style="margin-left:5px; margin-right:5px;">
-            <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
-            <table class="table">
-                  <td>
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th>Nombre jornada</th>
-                          <th>Nombres participantes</th>
-                        </tr>
-                      </thead>  
-                      <tbody>
-                        <td>Cuida tu salud</td><td>Uzziel Ojeda, Jair González</td>
-                      </tbody>             
-                    </table>
-                  </td>
-                </tr>
-              </table> 
-              </div> 
-             </div> 
-            </div> 
-
-      
-
-    <!--participantes termina-->
-
-              <br>
-              <?=form_close()?>
-            </div>
-          </div>
-        </div>
-      </div>
             
       <!-- Pie de página-->
 

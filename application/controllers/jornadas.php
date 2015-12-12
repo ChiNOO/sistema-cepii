@@ -19,11 +19,12 @@ class Jornadas extends CI_Controller {
 
     public function agregarJornada(){
     $datos=array(
-				'nombre_jornada' => $this->input->post('TemaJornada',TRUE),
-				'tipo_servicio' => $this->input->post('Tipo',TRUE),
+				'tipo_servicio' => $this->input->post('servicio',TRUE),
 				'detalle' => $this->input->post('Detalle',TRUE),
 				'espacio' => $this->input->post('Espacio',TRUE),
 				'idProfesional' => $this->input->post('Nombrep',TRUE),
+				'mes' => $this->input->post('mes',TRUE),
+			    'fechas' => $this->input->post('Fechas',TRUE),
 				'hora_inicio' => $this->input->post('Horai',TRUE),
 				'hora_fin' => $this->input->post('Horaf',TRUE),
 				'costo' => $this->input->post('Costo',TRUE),
@@ -32,7 +33,6 @@ class Jornadas extends CI_Controller {
     $this->jornadas_model->guardar_jornada($datos);
     	redirect('jornadas/');
   }
-
 
 
 }
