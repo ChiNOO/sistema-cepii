@@ -15,9 +15,73 @@
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js'></script>
         <script type="text/javascript" src="<?php echo base_url('js/funciones.js') ?>"></script>
         <link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>/assets/img/icon.png">
+        
+        <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
 
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+
+        <link href="<?php echo base_url(); ?>assets/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+        <script src="<?php echo base_url(); ?>assets/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
         <!--agregué esto-->
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#myTags").tagit();
+            });
+        </script>
 
+        <script type="text/javascript">
+        $(document).ready(function($){
+
+           $('#nombreP').autocomplete({
+            source:'<?php echo base_url('Paciente/show_Paciente');?>',
+            minLength:1,
+            // optional
+            html: true,
+
+            // optional (if other layers overlap the autocomplete list)
+            open: function(event, ui) {
+             $(".ui-autocomplete").css("z-index", 1000);
+            }
+           });
+          });
+        </script>
+
+        <script type="text/javascript">
+        $(document).ready(function($){
+
+           $('#Espacio').autocomplete({
+            source:'<?php echo base_url('espacios/show_Espacios_G');?>',
+            minLength:1,
+            // optional
+            html: true,
+
+            // optional (if other layers overlap the autocomplete list)
+            open: function(event, ui) {
+             $(".ui-autocomplete").css("z-index", 1000);
+            }
+           });
+          });
+        </script>
+
+        <script type="text/javascript">
+        $(document).ready(function($){
+
+           $('#Nombrep').autocomplete({
+            source:'<?php echo base_url('Profesionales/show_profesionals');?>',
+            minLength:1,
+            // optional
+            html: true,
+
+            // optional (if other layers overlap the autocomplete list)
+            open: function(event, ui) {
+             $(".ui-autocomplete").css("z-index", 1000);
+            }
+           });
+          });
+        </script>
 
     </head>
     <body style="background-color:#e5e5e5;">
@@ -136,57 +200,36 @@
             <div class="tab-pane active" id="2b">
               <!-- Table -->
               <table class="table">
-                <tr>
-                  
-                  <td>
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th>Tipo de servicio</th>
-                          <th>Detalle</th>
-                          <th>Espacio</th>
-                          <th>Nombre profesional</th>
-                          <th>Mes</th>
-                          <th>Fechas</th>
-                          <th>Hora Inicial<th>
-                          <th>Hora Final</th>
-                          <th>Costo</th>
-                        </tr>
-                      </thead>  
-                        <?php                   
-                    if ($enlaces!=FALSE){
-                      foreach ($enlaces->result() as $row) {
-                      echo "<tr>";
-                      echo "<td>".$row->tipo_servicio."</td>";
-                      echo "<td>".$row->detalle."</td>";
-                      echo "<td>".$row->espacio."</td>";
-                      echo "<td>".$row->idProfesional."</td>";
-                      echo "<td>".$row->mes."</td>";
-                      echo "<td>".$row->fechas."</td>";
-                      echo "<td>".$row->hora_inicio."</td>";
-                      echo "<td>".$row->hora_fin."</td>";
-                      echo "<td>".$row->costo."</td>";
-                      echo "</tr>";
-                      }   
-                    }    
-                    else{
-                       echo "<div class='alert alert-warning'><p class='text-center'>No hay jornadas registradas</p></div>";
-                        }
-                  ?>            
-                </table>
-              </td>
-            </tr>
-          </table>
+                <thead>
+                  <tr>
+                    <th>Tipo de servicio</th>
+                    <th>Detalle</th>
+                    <th>Espacio</th>
+                    <th>Nombre profesional</th>
+                    <th>Mes</th>
+                    <th>Fechas</th>
+                    <th>Hora Inicial</th>
+                    <th>Hora Final</th>
+                    <th>Costo</th>
+                  </tr>
+                </thead>  
+                  <?php foreach ($query as $row): ?>
+                    <tr>
+                      <td><?php echo $row->tipo_servicio; ?></td>
+                      <td><?php echo $row->detalle; ?></td>
+                      <td><?php echo $row->Nombre; ?></td>
+                      <td><?php echo $row->nombrePro.' '.$row->apaPro.' '.$row->amaPro; ?></td>
+                      <td><?php echo $row->mes; ?></td>
+                      <td><?php echo $row->fechas; ?></td>
+                      <td><?php echo $row->hora_inicio; ?></td>
+                      <td><?php echo $row->hora_fin; ?></td>
+                      <td><?php echo '$'.$row->costo; ?></td>
+                    </tr>
+                  <?php endforeach; ?>
+              </table>
 
                <!-- fin Table -->
 
-            </div>
-
-            <div class="tab-pane" id="3b">
-              <h3>We applied clearfix to the tab-content to rid of the gap between the tab and the content</h3>
-            </div>
-            <div class="tab-pane" id="4b">
-              <h3>We use css to change the background color of the content to be equal to the tab</h3>
             </div>
 
             <div class="tab-pane" id="5b">
@@ -199,7 +242,7 @@
               
               <div class="col-xs-4">
                   <span class="input-group-addon" id="sizing-addon2">Tipo de servicio</span>
-                  <select class="form-control" value="servicio" id="servicio">
+                  <select class="form-control" value="servicio" id="servicio" name="servicio">
                   <option>
                   <option value="Terapia" name="servicio">Terapia</option>
                   <option value="Consulta" name="servicio">Consulta</option>
@@ -215,7 +258,7 @@
                 
                     <div class="col-xs-4">
                   <span class="input-group-addon" id="sizing-addon5" >Espacio</span>
-                  <input type="text" class="form-control" aria-describedby="sizing-addon5" name="Espacio" placeholder="Ejemplo: Laboratorio A">
+                  <input type="text" class="form-control" aria-describedby="sizing-addon5" id="Espacio" name="Espacio" placeholder="Ejemplo: Laboratorio A">
                   </div>
 
                 </div>
@@ -226,12 +269,12 @@
 
                 <div class="col-xs-4">
                   <span class="input-group-addon" id="sizing-addon5" >Nombre profesional</span>
-                  <input type="text" class="form-control" aria-describedby="sizing-addon5" name="Nombrep" placeholder="Ejemplo: Doctora Azucena">
+                  <input type="text" class="form-control" aria-describedby="sizing-addon5" name="Nombrep" id="Nombrep" placeholder="Ejemplo: Doctora Azucena">
                   </div>
                   
                  <div class="col-xs-4">
-                  <span classS="input-group-addon" id="sizing-addon2">Mes</span>
-                  <select class="form-control" value="mes" id="mes">
+                  <span class="input-group-addon" id="sizing-addon3" >Mes</span>
+                  <select class="form-control" name="mes" id="mes">
                   <option>
                   <option value="Enero" name="mes">Enero</option>
                   <option value="Febrero" name="mes">Febrero</option>
@@ -250,8 +293,8 @@
                 </div>
               
                  <div class="col-xs-4">
-                  <span class="input-group-addon" id="sizing-addon3" >Fechas</span>
-                  <input type="text" class="form-control" aria-describedby="sizing-addon3" name="Fechas" placeholder="Ejemplo: 14 15 17">
+                  <span class="input-group-addon" id="sizing-addon3" >Días</span>
+                  <input id="myTags" type="number" class="form-control" aria-describedby="sizing-addon3" name="Fechas" placeholder="Ejemplo: 14 15 17">
                   </div>
               </div> 
             </div> 
@@ -303,13 +346,4 @@
       </footer>
 
     </body>
-    <script type="text/javascript">
-                $('#timepicker1').timepicker();
-            </script>
-    <script type="text/javascript">
-    jQuery.noConflict();
-    jQuery(document).ready(function() {
-        jQuery("#datepicker").datepicker();
-    });
-    </script>
 </html>
