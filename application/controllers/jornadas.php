@@ -58,8 +58,8 @@ class Jornadas extends CI_Controller {
     $this->load->database('default');
     $this->load->model('jornadas_model');
     $data['query'] = $this->jornadas_model->jornadaPaciente($id);
-    print_r($query);
-    //$this->load->view('admin/jornadaPaciente', $data);
+    print_r($data);
+    $this->load->view('admin/jornadaPaciente', $data);
   }
 
 }

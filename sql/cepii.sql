@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-12-2015 a las 15:28:12
--- Versión del servidor: 10.1.8-MariaDB
--- Versión de PHP: 5.6.14
+-- Tiempo de generación: 14-12-2015 a las 20:53:58
+-- Versión del servidor: 5.6.21
+-- Versión de PHP: 5.5.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `cepii`
@@ -26,15 +26,15 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `cita`
 --
 
-CREATE TABLE `cita` (
-  `idcita` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `cita` (
+`idcita` int(11) NOT NULL,
   `persona_idpersona` int(11) NOT NULL,
   `profesional_idProfesional` int(11) NOT NULL,
   `horaIni` time DEFAULT NULL,
   `horaFin` time NOT NULL,
   `fecha` date DEFAULT NULL,
   `espacio_idEspacio` int(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `cita`
@@ -50,8 +50,8 @@ INSERT INTO `cita` (`idcita`, `persona_idpersona`, `profesional_idProfesional`, 
 -- Estructura de tabla para la tabla `conferencias`
 --
 
-CREATE TABLE `conferencias` (
-  `idConferencia` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `conferencias` (
+`idConferencia` int(11) NOT NULL,
   `acompañantes` varchar(50) DEFAULT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
   `nombrePonente` varchar(50) DEFAULT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE `conferencias` (
 -- Estructura de tabla para la tabla `curso_taller`
 --
 
-CREATE TABLE `curso_taller` (
+CREATE TABLE IF NOT EXISTS `curso_taller` (
   `id` int(11) NOT NULL,
   `nombre` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `tipo` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
@@ -100,9 +100,10 @@ INSERT INTO `curso_taller` (`id`, `nombre`, `tipo`, `Profesional_idProfesional`,
 --
 -- Disparadores `curso_taller`
 --
-DELIMITER $$
-CREATE TRIGGER `Donativo_curso_taller` AFTER INSERT ON `curso_taller` FOR EACH ROW INSERT INTO donativo_curso_taller SET id_curso_taller = NEW.id, tipo= NEW.tipo, fecha_ini = NEW.f_inicio, Monto_monetario = 0, Monto_especie = 0
-$$
+DELIMITER //
+CREATE TRIGGER `Donativo_curso_taller` AFTER INSERT ON `curso_taller`
+ FOR EACH ROW INSERT INTO donativo_curso_taller SET id_curso_taller = NEW.id, tipo= NEW.tipo, fecha_ini = NEW.f_inicio, Monto_monetario = 0, Monto_especie = 0
+//
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -111,14 +112,14 @@ DELIMITER ;
 -- Estructura de tabla para la tabla `donativo`
 --
 
-CREATE TABLE `donativo` (
-  `idDonativo` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `donativo` (
+`idDonativo` int(11) NOT NULL,
   `Nombre` varchar(20) DEFAULT NULL,
   `TipoDonativo` varchar(20) DEFAULT NULL,
   `Cantidad` int(11) DEFAULT NULL,
   `Fecha` date NOT NULL,
   `Persona_idpersona` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `donativo`
@@ -133,14 +134,14 @@ INSERT INTO `donativo` (`idDonativo`, `Nombre`, `TipoDonativo`, `Cantidad`, `Fec
 -- Estructura de tabla para la tabla `donativo_curso_taller`
 --
 
-CREATE TABLE `donativo_curso_taller` (
-  `id_donativo_cur_tall` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `donativo_curso_taller` (
+`id_donativo_cur_tall` int(11) NOT NULL,
   `id_curso_taller` int(11) NOT NULL,
   `Tipo` varchar(45) NOT NULL,
   `fecha_ini` date NOT NULL,
   `Monto_monetario` float NOT NULL,
   `Monto_especie` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `donativo_curso_taller`
@@ -155,12 +156,12 @@ INSERT INTO `donativo_curso_taller` (`id_donativo_cur_tall`, `id_curso_taller`, 
 -- Estructura de tabla para la tabla `espacio`
 --
 
-CREATE TABLE `espacio` (
-  `idEspacio` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `espacio` (
+`idEspacio` int(11) NOT NULL,
   `Nombre` varchar(20) NOT NULL,
   `Capacidad` int(11) NOT NULL,
   `Tipo` tinyint(1) NOT NULL COMMENT '1 si es espacio interno--0 si es externo'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `espacio`
@@ -176,8 +177,8 @@ INSERT INTO `espacio` (`idEspacio`, `Nombre`, `Capacidad`, `Tipo`) VALUES
 -- Estructura de tabla para la tabla `hojaclinica`
 --
 
-CREATE TABLE `hojaclinica` (
-  `idhojaClinica` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `hojaclinica` (
+`idhojaClinica` int(11) NOT NULL,
   `estatura` double DEFAULT NULL,
   `consumoAlcohol` varchar(45) DEFAULT NULL,
   `practicaDeporte` varchar(45) DEFAULT NULL,
@@ -193,8 +194,8 @@ CREATE TABLE `hojaclinica` (
 -- Estructura de tabla para la tabla `hojareferencia`
 --
 
-CREATE TABLE `hojareferencia` (
-  `idhojaReferencia` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `hojareferencia` (
+`idhojaReferencia` int(11) NOT NULL,
   `hojaReferenciacol` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -204,8 +205,9 @@ CREATE TABLE `hojareferencia` (
 -- Estructura de tabla para la tabla `jornada`
 --
 
-CREATE TABLE `jornada` (
-  `idJornada` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `jornada` (
+`idJornada` int(11) NOT NULL,
+  `nombreJornada` varchar(35) NOT NULL,
   `tipo_servicio` varchar(45) NOT NULL,
   `detalle` varchar(45) NOT NULL,
   `espacio_idEspacio` int(11) NOT NULL,
@@ -216,16 +218,16 @@ CREATE TABLE `jornada` (
   `hora_inicio` time NOT NULL,
   `hora_fin` time NOT NULL,
   `costo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `jornada`
 --
 
-INSERT INTO `jornada` (`idJornada`, `tipo_servicio`, `detalle`, `espacio_idEspacio`, `idProfesional`, `año`, `mes`, `fechas`, `hora_inicio`, `hora_fin`, `costo`) VALUES
-(2, 'Terapia', 'Ejemplo de jornada 2', 7, '1', 2015, 'Marzo', '14', '01:01:00', '02:02:00', 200),
-(3, 'Terapia', 'Alguno', 2, '1', 2015, 'Marzo', '13', '15:01:00', '16:00:00', 100),
-(4, 'Terapia', 'alguno', 2, '2', 2015, 'Febrero', '12', '03:01:00', '16:00:00', 10);
+INSERT INTO `jornada` (`idJornada`, `nombreJornada`, `tipo_servicio`, `detalle`, `espacio_idEspacio`, `idProfesional`, `año`, `mes`, `fechas`, `hora_inicio`, `hora_fin`, `costo`) VALUES
+(2, 'jornada1', 'Terapia', 'Ejemplo de jornada 2', 7, '1', 2015, 'Marzo', '14', '01:01:00', '02:02:00', 200),
+(3, 'jornada2', 'Terapia', 'Alguno', 2, '1', 2015, 'Marzo', '13', '15:01:00', '16:00:00', 100),
+(4, 'jornada3', 'Terapia', 'alguno', 2, '2', 2015, 'Febrero', '12', '03:01:00', '16:00:00', 10);
 
 -- --------------------------------------------------------
 
@@ -233,10 +235,17 @@ INSERT INTO `jornada` (`idJornada`, `tipo_servicio`, `detalle`, `espacio_idEspac
 -- Estructura de tabla para la tabla `jornada_persona`
 --
 
-CREATE TABLE `jornada_persona` (
+CREATE TABLE IF NOT EXISTS `jornada_persona` (
   `idPersona` varchar(45) NOT NULL,
-  `idJornada` varchar(45) NOT NULL
+  `jornada_persoan_idJornada` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `jornada_persona`
+--
+
+INSERT INTO `jornada_persona` (`idPersona`, `jornada_persoan_idJornada`) VALUES
+('4', 3);
 
 -- --------------------------------------------------------
 
@@ -244,7 +253,7 @@ CREATE TABLE `jornada_persona` (
 -- Estructura de tabla para la tabla `monto_monetario_cur_tall`
 --
 
-CREATE TABLE `monto_monetario_cur_tall` (
+CREATE TABLE IF NOT EXISTS `monto_monetario_cur_tall` (
   `id_donativo_cur_tall` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `cantidad` float NOT NULL
@@ -262,11 +271,12 @@ INSERT INTO `monto_monetario_cur_tall` (`id_donativo_cur_tall`, `fecha`, `cantid
 --
 -- Disparadores `monto_monetario_cur_tall`
 --
-DELIMITER $$
-CREATE TRIGGER `Monetario_curso_taller` AFTER INSERT ON `monto_monetario_cur_tall` FOR EACH ROW UPDATE donativo_curso_taller
+DELIMITER //
+CREATE TRIGGER `Monetario_curso_taller` AFTER INSERT ON `monto_monetario_cur_tall`
+ FOR EACH ROW UPDATE donativo_curso_taller
 SET monto_monetario = monto_monetario + NEW.cantidad
 WHERE id_donativo_cur_tall = NEW.id_donativo_cur_tall
-$$
+//
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -275,8 +285,8 @@ DELIMITER ;
 -- Estructura de tabla para la tabla `persona`
 --
 
-CREATE TABLE `persona` (
-  `idpersona` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `persona` (
+`idpersona` int(11) NOT NULL,
   `nombrePersona` varchar(45) DEFAULT NULL,
   `apaPersona` varchar(45) DEFAULT NULL,
   `amaPersona` varchar(45) DEFAULT NULL,
@@ -287,7 +297,7 @@ CREATE TABLE `persona` (
   `correoPersona` varchar(45) DEFAULT NULL,
   `sexo` varchar(45) DEFAULT NULL,
   `fechaNa` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `persona`
@@ -296,7 +306,7 @@ CREATE TABLE `persona` (
 INSERT INTO `persona` (`idpersona`, `nombrePersona`, `apaPersona`, `amaPersona`, `callePersona`, `numDirPersona`, `coloniaPersona`, `celPersona`, `correoPersona`, `sexo`, `fechaNa`) VALUES
 (1, 'Christian', 'Vargas', 'Saavedra', 'Apeninos', 8, 'Lomas de Casa Blanca', '012281404359', 'lirical_niggar@hotmail.com', 'M', '1992-02-29'),
 (3, 'Diana', 'Espiritu', 'Vaes', 'Alguna', 5, 'Otra colonia', '51213', 'algo@gmail.com', 'F', '1988-03-02'),
-(4, 'Carlos', 'Medina', 'García', 'Camarillo', 2, 'Sumidero', '123454323', 'car@gmail.com', 'M', '2015-12-15'),
+(4, 'Carlos', 'Medina', 'Garcia', 'Camarillo', 2, 'Sumidero', '123454323', 'car@gmail.com', 'M', '2015-12-15'),
 (5, 'Karen ', 'Murrieta', 'Hernandez', 'Miradores', 2, 'Progreso', '1234543213', 'kar@hotmail.com', 'F', '1994-02-02');
 
 -- --------------------------------------------------------
@@ -305,8 +315,8 @@ INSERT INTO `persona` (`idpersona`, `nombrePersona`, `apaPersona`, `amaPersona`,
 -- Estructura de tabla para la tabla `profesional`
 --
 
-CREATE TABLE `profesional` (
-  `idProfesional` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `profesional` (
+`idProfesional` int(11) NOT NULL,
   `nombrePro` varchar(45) DEFAULT NULL,
   `apaPro` varchar(45) DEFAULT NULL,
   `amaPro` varchar(45) DEFAULT NULL,
@@ -315,7 +325,7 @@ CREATE TABLE `profesional` (
   `ramaMedica` varchar(45) DEFAULT NULL,
   `usuario` varchar(45) DEFAULT NULL,
   `contraseña` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `profesional`
@@ -331,10 +341,10 @@ INSERT INTO `profesional` (`idProfesional`, `nombrePro`, `apaPro`, `amaPro`, `ce
 -- Estructura de tabla para la tabla `servicios`
 --
 
-CREATE TABLE `servicios` (
-  `id_servicio` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `servicios` (
+`id_servicio` int(11) NOT NULL,
   `Nombre` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `servicios`
@@ -352,73 +362,73 @@ INSERT INTO `servicios` (`id_servicio`, `Nombre`) VALUES
 -- Indices de la tabla `cita`
 --
 ALTER TABLE `cita`
-  ADD PRIMARY KEY (`idcita`);
+ ADD PRIMARY KEY (`idcita`);
 
 --
 -- Indices de la tabla `conferencias`
 --
 ALTER TABLE `conferencias`
-  ADD PRIMARY KEY (`idConferencia`);
+ ADD PRIMARY KEY (`idConferencia`);
 
 --
 -- Indices de la tabla `donativo`
 --
 ALTER TABLE `donativo`
-  ADD PRIMARY KEY (`idDonativo`);
+ ADD PRIMARY KEY (`idDonativo`);
 
 --
 -- Indices de la tabla `donativo_curso_taller`
 --
 ALTER TABLE `donativo_curso_taller`
-  ADD PRIMARY KEY (`id_donativo_cur_tall`);
+ ADD PRIMARY KEY (`id_donativo_cur_tall`);
 
 --
 -- Indices de la tabla `espacio`
 --
 ALTER TABLE `espacio`
-  ADD PRIMARY KEY (`idEspacio`);
+ ADD PRIMARY KEY (`idEspacio`);
 
 --
 -- Indices de la tabla `hojaclinica`
 --
 ALTER TABLE `hojaclinica`
-  ADD PRIMARY KEY (`idhojaClinica`);
+ ADD PRIMARY KEY (`idhojaClinica`);
 
 --
 -- Indices de la tabla `hojareferencia`
 --
 ALTER TABLE `hojareferencia`
-  ADD PRIMARY KEY (`idhojaReferencia`);
+ ADD PRIMARY KEY (`idhojaReferencia`);
 
 --
 -- Indices de la tabla `jornada`
 --
 ALTER TABLE `jornada`
-  ADD PRIMARY KEY (`idJornada`);
+ ADD PRIMARY KEY (`idJornada`);
 
 --
 -- Indices de la tabla `jornada_persona`
 --
 ALTER TABLE `jornada_persona`
-  ADD PRIMARY KEY (`idPersona`);
+ ADD PRIMARY KEY (`idPersona`);
 
 --
 -- Indices de la tabla `persona`
 --
 ALTER TABLE `persona`
-  ADD PRIMARY KEY (`idpersona`);
+ ADD PRIMARY KEY (`idpersona`);
 
 --
 -- Indices de la tabla `profesional`
 --
 ALTER TABLE `profesional`
-  ADD PRIMARY KEY (`idProfesional`);
+ ADD PRIMARY KEY (`idProfesional`);
 
 --
 -- Indices de la tabla `servicios`
 --
 ALTER TABLE `servicios`
-  ADD PRIMARY KEY (`id_servicio`);
+ ADD PRIMARY KEY (`id_servicio`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -428,57 +438,57 @@ ALTER TABLE `servicios`
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `idcita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+MODIFY `idcita` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `conferencias`
 --
 ALTER TABLE `conferencias`
-  MODIFY `idConferencia` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idConferencia` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `donativo`
 --
 ALTER TABLE `donativo`
-  MODIFY `idDonativo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+MODIFY `idDonativo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `donativo_curso_taller`
 --
 ALTER TABLE `donativo_curso_taller`
-  MODIFY `id_donativo_cur_tall` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+MODIFY `id_donativo_cur_tall` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `espacio`
 --
 ALTER TABLE `espacio`
-  MODIFY `idEspacio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+MODIFY `idEspacio` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `hojaclinica`
 --
 ALTER TABLE `hojaclinica`
-  MODIFY `idhojaClinica` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idhojaClinica` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `hojareferencia`
 --
 ALTER TABLE `hojareferencia`
-  MODIFY `idhojaReferencia` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idhojaReferencia` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `jornada`
 --
 ALTER TABLE `jornada`
-  MODIFY `idJornada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+MODIFY `idJornada` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `profesional`
 --
 ALTER TABLE `profesional`
-  MODIFY `idProfesional` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+MODIFY `idProfesional` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `servicios`
 --
 ALTER TABLE `servicios`
-  MODIFY `id_servicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+MODIFY `id_servicio` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

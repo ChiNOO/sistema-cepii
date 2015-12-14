@@ -118,24 +118,30 @@ public function guardar_pa($nombreP, $nombreJ){
             $idj = $row2->idJornada;
         }
     }
-  
+    
+    
+
+
     $datos=array(
           'idPersona' => $id,
-          'idJornada' => $idj,
+          'jornada_persona_idJornada' => $idj,
         );
         $this->db->insert('jornada_persona', $datos);
   }
 
   public function jornadaPaciente($id){
-    $this->db->select('jornada_persona.idPersona, jornada_persona.idJornada, jornada.idJornada, jornada.nombreJornada, jornada.tipo_servicio, jornada.detalle, jornada.espacio_idEspacio, jornada.idProfesional,
+    $this->db->select('jornada_persona.idPersona, jornada_persona.jornada_persona_idJornada,  jornada.idJornada, jornada.nombreJornada,
+      jornada.tipo_servicio, jornada.detalle,
+      jornada.espacio_idEspacio, jornada.idProfesional,
       jornada.fechas, jornada.hora_inicio, jornada.hora_fin, jornada.costo, espacio.idEspacio, espacio.Nombre, persona.idPersona,
-      persona.nombrePersona, persona.apaPersona, persona.amaPersona, profesional.idProfesional, profesional.nombrePro, profesional.apaPro,
-      profesional.amaPro');
+      persona.nombrePersona, persona.apaPersona, persona.amaPersona, profesional.idProfesional, profesional.nombrePro,
+      profesional.apaPro, profesional.amaPro');
     $this->db->from('jornada_persona');
+    $this->db->where('jornada_persona_idJornada', $id);
     $this->db->join('persona', 'persona.idpersona = jornada_persona.idPersona');
-    $this->db->join('jornada', 'jornada.idJornada = jornada_persona.idJornada');
+    $this->db->join('jornada', 'jornada.idJornada = jornada_persona.jornada_persona_idJornada');
     $this->db->join('espacio', 'espacio.idEspacio = jornada.espacio_idEspacio');
-    $this->db->join('persona', 'persona.idpersona = jornada_persona.idPersona');
+    $this->db->join('profesional', 'profesional.idProfesional = jornada.idProfesional');
     $query = $this->db->get();
     return $query->result();
   }

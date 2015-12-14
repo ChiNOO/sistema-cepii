@@ -277,7 +277,6 @@
                       <td><?php echo $row->hora_inicio; ?></td>
                       <td><?php echo $row->hora_fin; ?></td>
                       <td><?php echo '$'.$row->costo; ?></td>
-                      <td></td>
                       <td><a href='#' onclick="ver('<?=base_url()?>jornadas/verPacientesJornada/<?=$row->idJornada?>');"><i class='glyphicon glyphicon-pencil'></i></a></td>
                     </tr>
                   <?php endforeach; ?>
