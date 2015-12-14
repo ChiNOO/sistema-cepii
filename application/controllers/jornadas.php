@@ -10,7 +10,7 @@ class Jornadas extends CI_Controller {
   		$this->load->database('default');
   		//$this->load->model('citas_model');
 	}
-
+  
 	public function index(){
 		$data['query'] = $this->jornadas_model->verTodos();
 		$this->load->view('admin/view_jornadas',$data);

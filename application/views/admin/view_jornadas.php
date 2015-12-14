@@ -192,7 +192,7 @@
           </ul>
 
           <div style="background-color:#e5e5e5; height: 0px;"></div>
-
+  
           <div class="tab-content clearfix">
             <div class="tab-pane" id="1b">
               <h3>We use the class nav-pills instead of nav-tabs which automatically creates a background color for the tab</h3>

@@ -7,7 +7,7 @@ class Espacios_model extends CI_Model{
     public function guardar_espacio($datos){
       $this->db->insert('Espacio', $datos);
     }
-
+  
     function verTodos() {
       $query = $this->db->get('espacio');
   		if ($query->num_rows() > 0){

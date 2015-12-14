@@ -23,7 +23,7 @@ class Jornadas_model extends CI_Model{
             $idEspacio = $row->idEspacio;
         }
     }
-
+  
     $datos=array(
           'tipo_servicio' => $servicio,
           'detalle' => $detalle,
