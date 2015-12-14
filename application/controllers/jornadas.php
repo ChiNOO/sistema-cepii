@@ -32,14 +32,24 @@ class Jornadas extends CI_Controller {
     	redirect('jornadas/');
   	}
 
-//Agregué esto
- public function show_patient(){
+//Agregué esto para ver jornadas
+	public function show_jor(){
         $q = strtolower($_GET['term']);
         $this->load->database('default');
         $this->load->model('jornadas_model');
-        $valores = $this->jornadas_model->showPatient($q);
+        $valores = $this->jornadas_model->showJor($q);
         echo json_encode($valores);  
   }
   //hasta aquí
+
+//Aquí agregué
+
+ public function agregarPa(){
+    	$idPersona = $this->input->post('Persona',TRUE);
+		$idJornada = $this->input->post('Tservicio',TRUE);
+
+    	$this->jornadas_model->guardar_pa($idPersona, $idJornada);
+    	redirect('jornadas/');
+  	}
 
 }

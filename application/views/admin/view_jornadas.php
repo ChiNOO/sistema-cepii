@@ -84,11 +84,11 @@
         </script>
 
 <!--Agregué esto para que autocomplete a pacientes-->
-<script type="text/javascript">
+      <script type="text/javascript">
         $(document).ready(function($){
 
-           $('#Paciente').autocomplete({
-            source:'<?php echo base_url('Jornadas/show_patient');?>',
+           $('#Persona').autocomplete({
+            source:'<?php echo base_url('Paciente/show_patient');?>',
             minLength:1,
             // optional
             html: true,
@@ -100,6 +100,27 @@
            });
           });
         </script>
+
+<!--Hasta aquí-->
+<!--Atocompletar jornadas-->
+  <script type="text/javascript">
+        $(document).ready(function($){
+
+           $('#Tservicio').autocomplete({
+            source:'<?php echo base_url('jornadas/show_jor');?>',
+            minLength:1,
+            // optional
+            html: true,
+
+            // optional (if other layers overlap the autocomplete list)
+            open: function(event, ui) {
+             $(".ui-autocomplete").css("z-index", 1000);
+            }
+           });
+          });
+        </script>
+
+
 <!--Hasta aquí-->
     </head>
     <body style="background-color:#e5e5e5;">
@@ -359,7 +380,7 @@
 
           <!--Clase personas-->
            <div class="tab-pane" id="8b">
-              <?=  form_open(base_url().'jornadas/agregarJornada')?>
+              <?=  form_open(base_url().'jornadas/agregarPa')?>
               <h2 style="text-align:center;">Agregar participantes a jornadas</h2>
               <br>
 
@@ -376,10 +397,11 @@
            <div style="margin-left:5px; margin-right:5px;">
                 <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
                 </div>
-                 <br>
-                <input type="submit"  value="Guardar" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
-                <br>
+                 
             </div>
+              <br>
+              <input type="submit"  value="Guardar" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
+              <br>
         </div>
 
 

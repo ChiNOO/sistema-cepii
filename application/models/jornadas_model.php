@@ -39,6 +39,7 @@ class Jornadas_model extends CI_Model{
         $this->db->insert('jornada', $datos);
   }
 
+
   public function verTodos(){
     $this->db->select('jornada.idJornada, jornada.tipo_servicio, jornada.detalle, jornada.espacio_idEspacio, jornada.idProfesional,
                       jornada.año, jornada.mes, jornada.fechas, jornada.hora_inicio, jornada.hora_fin, jornada.costo,
@@ -54,8 +55,69 @@ class Jornadas_model extends CI_Model{
     }
   }
 
+//AGREGUÉ ESTO
+function showPatient($q){
+        $this->db->select();
+        $this->db->like('nombrePersona', $q);
+        $this->db->or_like('apaPersona', $q);
+        $this->db->or_like('amaPersona', $q);
+        $query = $this->db->get('persona');
+        $query->num_rows();
 
+        if($query->num_rows > 0){
+            foreach ($query->result() as $row){
+                    $new_row['id'] = htmlentities(stripslashes($row->idpersona));
+                    $new_row['value'] = htmlentities(stripslashes($row->nombrePersona.' '.$row->apaPersona.' '.$row->amaPersona));
+                    $row_set[] = $new_row;                
+            }
+            return $row_set;
+        }
+    }  
+//AGREGUÉ ESTO
+
+//Agregué esto para ver la jornada
+function showJor($q){
+        $this->db->select();
+        $this->db->like('tipo_servicio', $q);
+        $query = $this->db->get('jornada');
+        $query->num_rows();
+
+        if($query->num_rows > 0){
+            foreach ($query->result() as $row){
+                    $new_row['id'] = htmlentities(stripslashes($row->idJornada));
+                    $new_row['value'] = htmlentities(stripslashes($row->tipo_servicio));
+                    $row_set[] = $new_row;                
+            }
+            return $row_set;
+        }
+    }  
+
+//Aquí agregué
+
+public function guardar_pa($idpersona, $idJornada){
+    
+    $this->db->select('idpersona, CONCAT(nombrePersona," ", apaPersona," ",amaPersona) AS name', FALSE);
+    $this->db->from('persona');
+    $query2 = $this->db->get();
+    foreach ($query2->result() as $row2) {
+        if ($row2->name == $Persona) {
+            $idP = $row2->idpersona;
+        }
+    }
+    $this->db->select('idJornada, tipo_servicio) AS name', FALSE);
+    $this->db->from('jornada');
+    $query2 = $this->db->get();
+    foreach ($query2->result() as $row2) {
+        if ($row2->name == $Tservicio) {
+            $idP = $row2->idJornada;
+        }
+    }
+  
+    $datos=array(
+          'idPersona' => $Persona,
+          'idJornada' => $Tservicio,
+        );
+        $this->db->insert('jornada_persona', $datos);
+  }
 
 }
-
-  
