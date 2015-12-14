@@ -17,18 +17,19 @@ class Jornadas extends CI_Controller {
 	}
 
     public function agregarJornada(){
+      $nombreJornada = $this->input->post('nombreJornada', TRUE);
     	$servicio = $this->input->post('servicio',TRUE);
-		$detalle = $this->input->post('Detalle',TRUE);
-		$espacio = $this->input->post('Espacio',TRUE);
-		$Nombrep = $this->input->post('Nombrep',TRUE);
-		$año = date('Y');
-		$mes = $this->input->post('mes',TRUE);
-		$fechas = $this->input->post('Fechas',TRUE);
-		$hora_inicio = $this->input->post('Horai',TRUE);
-		$hora_fin = $this->input->post('Horaf',TRUE);
-		$costo = $this->input->post('Costo',TRUE);
+		  $detalle = $this->input->post('Detalle',TRUE);
+		  $espacio = $this->input->post('Espacio',TRUE);
+		  $Nombrep = $this->input->post('Nombrep',TRUE);
+		  $año = date('Y');
+		  $mes = $this->input->post('mes',TRUE);
+		  $fechas = $this->input->post('Fechas',TRUE);
+		  $hora_inicio = $this->input->post('Horai',TRUE);
+		  $hora_fin = $this->input->post('Horaf',TRUE);
+		  $costo = $this->input->post('Costo',TRUE);
 
-    	$this->jornadas_model->guardar_jornada($servicio, $detalle, $espacio, $Nombrep, $año, $mes, $fechas, $hora_inicio, $hora_fin, $costo);
+    	$this->jornadas_model->guardar_jornada($nombreJornada,$servicio, $detalle, $espacio, $Nombrep, $año, $mes, $fechas, $hora_inicio, $hora_fin, $costo);
     	redirect('jornadas/');
   	}
 

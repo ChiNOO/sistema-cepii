@@ -4,7 +4,7 @@ class Jornadas_model extends CI_Model{
         parent::__construct();
     }
  
-  public function guardar_jornada($servicio, $detalle, $espacio, $Nombrep, $año, $mes, $fechas, $hora_inicio, $hora_fin, $costo){
+  public function guardar_jornada($nombreJornada, $servicio, $detalle, $espacio, $Nombrep, $año, $mes, $fechas, $hora_inicio, $hora_fin, $costo){
     
     $this->db->select('idProfesional, CONCAT(nombrePro," ", amaPro," ",apaPro) AS name', FALSE);
     $this->db->from('profesional');
@@ -25,6 +25,7 @@ class Jornadas_model extends CI_Model{
     }
   
     $datos=array(
+          'nombreJornada' => $nombreJornada,
           'tipo_servicio' => $servicio,
           'detalle' => $detalle,
           'espacio_idEspacio' => $idEspacio,
@@ -41,7 +42,7 @@ class Jornadas_model extends CI_Model{
 
 
   public function verTodos(){
-    $this->db->select('jornada.idJornada, jornada.tipo_servicio, jornada.detalle, jornada.espacio_idEspacio, jornada.idProfesional,
+    $this->db->select('jornada.idJornada, jornada.nombreJornada, jornada.tipo_servicio, jornada.detalle, jornada.espacio_idEspacio, jornada.idProfesional,
                       jornada.año, jornada.mes, jornada.fechas, jornada.hora_inicio, jornada.hora_fin, jornada.costo,
                       espacio.idEspacio, espacio.Nombre, profesional.idProfesional, profesional.nombrePro, profesional.apaPro, profesional.amaPro');
     $this->db->from('jornada');
@@ -78,14 +79,14 @@ function showPatient($q){
 //Agregué esto para ver la jornada
 function showJor($q){
         $this->db->select();
-        $this->db->like('tipo_servicio', $q);
+        $this->db->like('nombreJornada', $q);
         $query = $this->db->get('jornada');
         $query->num_rows();
 
         if($query->num_rows > 0){
             foreach ($query->result() as $row){
                     $new_row['id'] = htmlentities(stripslashes($row->idJornada));
-                    $new_row['value'] = htmlentities(stripslashes($row->tipo_servicio));
+                    $new_row['value'] = htmlentities(stripslashes($row->nombreJornada));
                     $row_set[] = $new_row;                
             }
             return $row_set;

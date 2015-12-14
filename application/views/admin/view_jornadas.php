@@ -230,7 +230,7 @@
 
             <li data-toggle="tab" >
               <a href="#8b" data-toggle="tab">
-                <i class="fa fa-child"></i>     Pacientes
+                <i class="fa fa-child"></i>     Registrar Pacientes en Jornada
               </a>
             </li>
 
@@ -247,6 +247,7 @@
               <table class="table">
                 <thead>
                   <tr>
+                    <th>Nombre Jornada</th>
                     <th>Tipo de servicio</th>
                     <th>Detalle</th>
                     <th>Espacio</th>
@@ -260,6 +261,7 @@
                 </thead>  
                   <?php foreach ($query as $row): ?>
                     <tr>
+                      <td><?php echo $row->nombreJornada; ?></td>
                       <td><?php echo $row->tipo_servicio; ?></td>
                       <td><?php echo $row->detalle; ?></td>
                       <td><?php echo $row->Nombre; ?></td>
@@ -285,24 +287,29 @@
 
               <div style="margin-left:5px; margin-right:5px;">
                 <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
-              
-              <div class="col-xs-4">
-                  <span class="input-group-addon" id="sizing-addon2">Tipo de servicio</span>
-                  <select class="form-control" value="servicio" id="servicio" name="servicio">
-                  <option>
-                  <option value="Terapia" name="servicio">Terapia</option>
-                  <option value="Consulta" name="servicio">Consulta</option>
-                  <option value="Curso" name="servicio">Curso</option>
-                  </option>
-                </select>
-                </div>
+                  
+                  <div class="col-xs-3">
+                    <span class="input-group-addon" id="sizing-addon3" >Nombre</span>
+                    <input type="text" class="form-control" aria-describedby="sizing-addon3" name="nombreJornada" >
+                  </div>
+
+                  <div class="col-xs-3">
+                    <span class="input-group-addon" id="sizing-addon2">Tipo de servicio</span>
+                    <select class="form-control" value="servicio" id="servicio" name="servicio">
+                      <option>
+                        <option value="Terapia" name="servicio">Terapia</option>
+                        <option value="Consulta" name="servicio">Consulta</option>
+                        <option value="Curso" name="servicio">Curso</option>
+                      </option>
+                    </select>
+                  </div>
             
-                  <div class="col-xs-4">
+                  <div class="col-xs-3">
                   <span class="input-group-addon" id="sizing-addon3" >Detalle</span>
                   <input type="text" class="form-control" aria-describedby="sizing-addon3" name="Detalle" placeholder="Ejemplo: Jornada para personas entre 20-40 años">
                   </div>
                 
-                    <div class="col-xs-4">
+                    <div class="col-xs-3">
                   <span class="input-group-addon" id="sizing-addon5" >Espacio</span>
                   <input type="text" class="form-control" aria-describedby="sizing-addon5" id="Espacio" name="Espacio" placeholder="Ejemplo: Laboratorio A">
                   </div>
@@ -374,12 +381,13 @@
                 <input type="submit"  value="Guardar" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
                 <br>
             </div>
+          </form>
           </div>
 
           <!--TERMINA-->
 
           <!--Clase personas-->
-           <div class="tab-pane" id="8b">
+            <div class="tab-pane" id="8b" >
               <?=  form_open(base_url().'jornadas/agregarPa')?>
               <h2 style="text-align:center;">Agregar participantes a jornadas</h2>
               <br>
@@ -387,22 +395,23 @@
               <div class="col-xs-4">
                 <span class="input-group-addon" id="sizing-addon5" >Paciente</span>
                 <input type="text" class="form-control" aria-describedby="sizing-addon5" name="Persona" id="Persona" placeholder="Ejemplo: Christian Vargas">
-               </div>
+              </div>
 
-                <div class="col-xs-4">
-                <span class="input-group-addon" id="sizing-addon5" >Tipo de Servicio</span>
+              <div class="col-xs-4">
+                <span class="input-group-addon" id="sizing-addon5" >Nombre Jornada</span>
                 <input type="text" class="form-control" aria-describedby="sizing-addon5" name="Tservicio" id="Tservicio" placeholder="Ejemplo: Terapia">
-               </div>
+              </div>
           
-           <div style="margin-left:5px; margin-right:5px;">
+              <div style="margin-left:5px; margin-right:5px;">
                 <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
-                </div>
-                 
-            </div>
+                </div>   
+              </div>
+
               <br>
               <input type="submit"  value="Guardar" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
               <br>
-        </div>
+            </form>
+            </div>
 
 
          <!--Termina la clase-->
