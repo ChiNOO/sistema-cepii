@@ -6,7 +6,7 @@ class Citas_model extends CI_Model{
  
     public function save_appointmentName($nombreP,$nombrePRO,$fecha,$horaIni, $horaFin, $espacio){
         
-        $this->db->select('idPersona, CONCAT(nombrePersona," ", amaPersona," ",apaPersona) AS name', FALSE);
+        $this->db->select('idPersona, CONCAT(nombrePersona," ", apaPersona," ",amaPersona) AS name', FALSE);
         $this->db->from('persona');
         $query = $this->db->get();
         foreach ($query->result() as $row) {
@@ -14,7 +14,7 @@ class Citas_model extends CI_Model{
                 $id = $row->idPersona;
             }
         }
-        $this->db->select('idProfesional, CONCAT(nombrePro," ", amaPro," ",apaPro) AS name', FALSE);
+        $this->db->select('idProfesional, CONCAT(nombrePro," ", apaPro," ",amaPro) AS name', FALSE);
         $this->db->from('profesional');
         $query2 = $this->db->get();
         foreach ($query2->result() as $row2) {

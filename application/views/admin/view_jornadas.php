@@ -27,6 +27,11 @@
         <script src="<?php echo base_url(); ?>assets/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
         <!--agregué esto-->
         <script type="text/javascript">
+          function ver(url){
+            location.href=url;
+          }
+        </script>
+        <script type="text/javascript">
             $(document).ready(function() {
                 $("#myTags").tagit();
             });
@@ -257,6 +262,7 @@
                     <th>Hora Inicial</th>
                     <th>Hora Final</th>
                     <th>Costo</th>
+                    <th></th>
                   </tr>
                 </thead>  
                   <?php foreach ($query as $row): ?>
@@ -271,6 +277,8 @@
                       <td><?php echo $row->hora_inicio; ?></td>
                       <td><?php echo $row->hora_fin; ?></td>
                       <td><?php echo '$'.$row->costo; ?></td>
+                      <td></td>
+                      <td><a href='#' onclick="ver('<?=base_url()?>jornadas/verPacientesJornada/<?=$row->idJornada?>');"><i class='glyphicon glyphicon-pencil'></i></a></td>
                     </tr>
                   <?php endforeach; ?>
               </table>

@@ -46,11 +46,20 @@ class Jornadas extends CI_Controller {
 //Aquí agregué
 
  public function agregarPa(){
-    	$idPersona = $this->input->post('Persona',TRUE);
-		$idJornada = $this->input->post('Tservicio',TRUE);
+    $nombreP = $this->input->post('Persona',TRUE);
+		$nombreJ = $this->input->post('Tservicio',TRUE);
 
-    	$this->jornadas_model->guardar_pa($idPersona, $idJornada);
+    	$this->jornadas_model->guardar_pa($nombreP, $nombreJ);
     	redirect('jornadas/');
   	}
+
+  public function verPacientesJornada(){
+    $id = $this->uri->segment(3);
+    $this->load->database('default');
+    $this->load->model('jornadas_model');
+    $data['query'] = $this->jornadas_model->jornadaPaciente($id);
+    print_r($query);
+    //$this->load->view('admin/jornadaPaciente', $data);
+  }
 
 }

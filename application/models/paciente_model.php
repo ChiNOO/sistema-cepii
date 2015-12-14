@@ -15,7 +15,7 @@ class Paciente_model extends CI_Model{
         if($query->num_rows > 0){
             foreach ($query->result() as $row){
                 $new_row['id'] = htmlentities(stripslashes($row->idpersona));
-                $new_row['value'] = htmlentities(stripslashes($row->nombrePersona.' '.$row->amaPersona.' '.$row->apaPersona));
+                $new_row['value'] = htmlentities(stripslashes($row->nombrePersona.' '.$row->apaPersona.' '.$row->amaPersona));
                 $row_set[] = $new_row;
             }
             return $row_set;

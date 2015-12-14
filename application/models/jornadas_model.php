@@ -95,30 +95,49 @@ function showJor($q){
 
 //Aquí agregué
 
-public function guardar_pa($idpersona, $idJornada){
-    
-    $this->db->select('idpersona, CONCAT(nombrePersona," ", apaPersona," ",amaPersona) AS name', FALSE);
+public function guardar_pa($nombreP, $nombreJ){
+    print_r($nombreP);
+    echo "<br>";
+    print_r($nombreJ);
+    $this->db->select('idPersona, CONCAT(nombrePersona," ", apaPersona," ",amaPersona) AS name', FALSE);
     $this->db->from('persona');
-    $query2 = $this->db->get();
-    foreach ($query2->result() as $row2) {
-        if ($row2->name == $Persona) {
-            $idP = $row2->idpersona;
-        }
+    $query = $this->db->get();
+    print_r($query->result());
+    foreach ($query->result() as $row) {
+      if ($row->name == $nombreP) {
+        $id = $row->idPersona;
+      }
     }
-    $this->db->select('idJornada, tipo_servicio) AS name', FALSE);
+
+    $this->db->select();
+    $this->db->where('nombreJornada', $nombreJ);
     $this->db->from('jornada');
     $query2 = $this->db->get();
     foreach ($query2->result() as $row2) {
-        if ($row2->name == $Tservicio) {
-            $idP = $row2->idJornada;
+        if ($row2->nombreJornada == $nombreJ) {
+            $idj = $row2->idJornada;
         }
     }
   
     $datos=array(
-          'idPersona' => $Persona,
-          'idJornada' => $Tservicio,
+          'idPersona' => $id,
+          'idJornada' => $idj,
         );
         $this->db->insert('jornada_persona', $datos);
+  }
+
+  public function jornadaPaciente($id){
+    $this->db->select('jornada_persona.idPersona, jornada_persona.idJornada, jornada.idJornada, jornada.nombreJornada, jornada.tipo_servicio, jornada.detalle, jornada.espacio_idEspacio, jornada.idProfesional,
+      jornada.fechas, jornada.hora_inicio, jornada.hora_fin, jornada.costo, espacio.idEspacio, espacio.Nombre, persona.idPersona,
+      persona.nombrePersona, persona.apaPersona, persona.amaPersona, profesional.idProfesional, profesional.nombrePro, profesional.apaPro,
+      profesional.amaPro');
+    $this->db->from('jornada_persona');
+    $this->db->join('persona', 'persona.idpersona = jornada_persona.idPersona');
+    $this->db->join('jornada', 'jornada.idJornada = jornada_persona.idJornada');
+    $this->db->join('espacio', 'espacio.idEspacio = jornada.espacio_idEspacio');
+    $this->db->join('persona', 'persona.idpersona = jornada_persona.idPersona');
+    $query = $this->db->get();
+    return $query->result();
   }
 
 }
