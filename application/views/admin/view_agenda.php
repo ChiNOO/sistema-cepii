@@ -79,6 +79,18 @@
     });
   });
   </script>
+
+  <!--Agregué -->
+
+<script type="text/javascript">
+  function cancela(url){
+  if (confirm("¿Está seguro que desea eliminar la cita?") ){
+    location.href=url;
+  }
+}
+</script>
+<!--Fin-->  
+
 </head>
 <body style="background-color:#e5e5e5;">
   <nav class="navbar navbar-default">
@@ -220,7 +232,7 @@
                       <th>Paciente</th>
                       <th>Profesional</th>
                       <th>Consultorio</th>
-                      <th>Estado de la lista</th>
+                      <th></th>
                       <th></th>
                     </tr>
                   </thead>
@@ -278,7 +290,9 @@
                       <?php echo $row->Nombre; ?>
                     </td>
                     <td>
-                      <button style="background-color:#f4d2e1">Cancelar</button>
+                      <!--Botón  X <button style="background-color:#f4d2e1">Cancelar</button>-->
+                       <td><a href='".base_url()."agenda/eliminar/$row->idConferencia'> <i class='fa fa-times'></i></a></td> 
+                      <!--Aquí--> 
                     </td>
                   </tr>
                   <?php endforeach; ?>
