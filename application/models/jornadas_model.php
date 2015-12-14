@@ -53,6 +53,9 @@ class Jornadas_model extends CI_Model{
       return FALSE;
     }
   }
+
+
+
 }
 
   

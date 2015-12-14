@@ -72,6 +72,28 @@ class Paciente_model extends CI_Model{
 
         redirect(base_url().'Paciente');
     }
+
+
+    //Agregué esto:
+function showPatient($q){
+        $this->db->select();
+        $this->db->like('nombrePersona', $q);
+        $this->db->or_like('apaPersona', $q);
+        $this->db->or_like('amaPersona', $q);
+        $query = $this->db->get('persona');
+        $query->num_rows();
+
+        if($query->num_rows > 0){
+            foreach ($query->result() as $row){
+                    $new_row['id'] = htmlentities(stripslashes($row->idpersona));
+                    $new_row['value'] = htmlentities(stripslashes($row->nombrePersona.' '.$row->apaPersona.' '.$row->amaPersona));
+                    $row_set[] = $new_row;                
+            }
+            return $row_set;
+        }
+    }  
+//Aquí termina
+
   
     public function buscador($abuscar){
       //usamos after para decir que empiece a buscar por

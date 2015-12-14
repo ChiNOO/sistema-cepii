@@ -83,6 +83,24 @@
           });
         </script>
 
+<!--Agregué esto para que autocomplete a pacientes-->
+<script type="text/javascript">
+        $(document).ready(function($){
+
+           $('#Paciente').autocomplete({
+            source:'<?php echo base_url('Jornadas/show_patient');?>',
+            minLength:1,
+            // optional
+            html: true,
+
+            // optional (if other layers overlap the autocomplete list)
+            open: function(event, ui) {
+             $(".ui-autocomplete").css("z-index", 1000);
+            }
+           });
+          });
+        </script>
+<!--Hasta aquí-->
     </head>
     <body style="background-color:#e5e5e5;">
       <nav class="navbar navbar-default">
@@ -189,6 +207,12 @@
               </a>
             </li>
 
+            <li data-toggle="tab" >
+              <a href="#8b" data-toggle="tab">
+                <i class="fa fa-child"></i>     Pacientes
+              </a>
+            </li>
+
           </ul>
 
           <div style="background-color:#e5e5e5; height: 0px;"></div>
@@ -232,6 +256,7 @@
 
             </div>
 
+            <!--Empieza Registrar jornadas-->
             <div class="tab-pane" id="5b">
               <?=  form_open(base_url().'jornadas/agregarJornada')?>
               <h2 style="text-align:center;">Datos Jornadas</h2>
@@ -330,6 +355,35 @@
             </div>
           </div>
 
+          <!--TERMINA-->
+
+          <!--Clase personas-->
+           <div class="tab-pane" id="8b">
+              <?=  form_open(base_url().'jornadas/agregarJornada')?>
+              <h2 style="text-align:center;">Agregar participantes a jornadas</h2>
+              <br>
+
+              <div class="col-xs-4">
+                <span class="input-group-addon" id="sizing-addon5" >Paciente</span>
+                <input type="text" class="form-control" aria-describedby="sizing-addon5" name="Persona" id="Persona" placeholder="Ejemplo: Christian Vargas">
+               </div>
+
+                <div class="col-xs-4">
+                <span class="input-group-addon" id="sizing-addon5" >Tipo de Servicio</span>
+                <input type="text" class="form-control" aria-describedby="sizing-addon5" name="Tservicio" id="Tservicio" placeholder="Ejemplo: Terapia">
+               </div>
+          
+           <div style="margin-left:5px; margin-right:5px;">
+                <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
+                </div>
+                 <br>
+                <input type="submit"  value="Guardar" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
+                <br>
+            </div>
+        </div>
+
+
+         <!--Termina la clase-->
             <div class="tab-pane" id="6b">
               <h3>We applied clearfix to the tab-content to rid of the gap between the tab and the content</h3>
             </div>

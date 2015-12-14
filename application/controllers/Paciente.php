@@ -53,6 +53,15 @@ class Paciente extends CI_Controller {
 		$valores = $this->paciente_model->get_persona($q);
 		echo json_encode($valores);  
 	}
+//Agregué esto
+	public function show_patient(){
+        $q = strtolower($_GET['term']);
+        $this->load->database('default');
+        $this->load->model('paciente_model');
+        $valores = $this->paciente_model->showPatient($q);
+        echo json_encode($valores);  
+  }
+  //Hasta aquí
 
 	public function deletePaciente(){
 		$id = $this->uri->segment(3);

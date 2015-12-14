@@ -32,5 +32,14 @@ class Jornadas extends CI_Controller {
     	redirect('jornadas/');
   	}
 
+//Agregué esto
+ public function show_patient(){
+        $q = strtolower($_GET['term']);
+        $this->load->database('default');
+        $this->load->model('jornadas_model');
+        $valores = $this->jornadas_model->showPatient($q);
+        echo json_encode($valores);  
+  }
+  //hasta aquí
 
 }
