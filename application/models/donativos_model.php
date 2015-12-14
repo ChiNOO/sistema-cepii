@@ -5,55 +5,35 @@ class Donativos_model extends CI_Model{
     }
   
     public function get_appointment(){
-        $this->db->select('donativo.idDonativo,donativo.Nombre, donativo.TipoDonativo, donativo.Cantidad, donativo.Fecha,persona.nombrePersona,persona.amaPersona,persona.apaPersona');
-        $this->db->from('donativo');
-        $this->db->join('persona', 'donativo.Persona_idPersona = persona.idpersona');
-        $query = $this->db->get();
-        return $query->result();
+      
+       $this->db->order_by('fecha_ini', 'asc');
+        $query = $this->db->get('donativo_curso_taller');
+        
+        if($query->num_rows() > 0){
+            return $query->result();
+        }
+
+
+
     }
 
-    function get_profesiones($servicioDonaciones){
+    public function get_servicios(){
     
-      if ($servicioDonaciones=="Citas") {
-      
-       $query = $this->db-> query('SELECT idcita,fecha FROM cita');
-      //  $this->db->select();
-       // $this->db->where('nombrePro', $TipoDonativo);
-       // $query = $this->db->get('profesional');
-      // si hay resultados
-          if ($query->num_rows() > 0) {
-             // almacenamos en una matriz bidimensional
-            foreach($query->result() as $row)
-            $arrDatos[htmlspecialchars($row->idcita, ENT_QUOTES)] = 
-            htmlspecialchars($row->fecha, ENT_QUOTES);
-
-            $query->free_result();
-            return $arrDatos;
-            }
-    }
- 
-      if ($servicioDonaciones=="Curso") {
-      
-       $query = $this->db-> query('SELECT idcita,hora FROM cita');
-      //  $this->db->select();
-       // $this->db->where('nombrePro', $TipoDonativo);
-       // $query = $this->db->get('profesional');
-      // si hay resultados
-          if ($query->num_rows() > 0) {
-             // almacenamos en una matriz bidimensional
-            foreach($query->result() as $row)
-            $arrDatos[htmlspecialchars($row->idcita, ENT_QUOTES)] = 
-            htmlspecialchars($row->hora, ENT_QUOTES);
-
-            $query->free_result();
-            return $arrDatos;
-            }
-    }
-
-
+        $this->db->order_by('nombre', 'asc');
+        $servicios = $this->db->get('servicios');
+        
+        if($servicios->num_rows() > 0){
+            return $servicios->result();
+        }
+    
   }
-    
-
-
-
+    public function getServicioCitas($TipoBusque){
+       $this->db->where('id_servicio', $TipoBusque);
+        $this->db->order_by('fecha', 'asc');
+        $cita_donativo = $this->db->get('cita_donativo');
+        
+        if($cita_donativo->num_rows() > 0){
+            return $cita_donativo->result();
+        }
+  }
 }

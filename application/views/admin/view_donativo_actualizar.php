@@ -28,12 +28,9 @@
                 frm.fechaBusquedaDonativo.disabled=hab; 
                 frm.TipoBusquedaDonativoCita.disabled=hab1;
                  frm.Buscar.disabled=hab;
-               }
+          }
 
-   function registrar_donativo(url){
-          location.href=url;
-      }
-
+  
               </script>
 
        </script> 
@@ -67,7 +64,6 @@
                       </div>
               </div>
             </nav>
-
 
   <section class="menu-section">
     <div >
@@ -126,113 +122,80 @@
     </div>
   </section>
 
-<!-- Tabla -->
 
-<div class="content-wrapper" style="background-color: #e5e5e5; margin-top: 0px;">
+<div class="content-wrapper" style="background-color: #e5e5e5; margin-top:0px;">
+   
     <br>
-    <div id="exTab3" class="tab"> 
+    <div id="exTab3" class="tab">
+      
       <ul  class="nav nav-pills">
-        <li  data-toggle="tab">
+        <li class="active" data-toggle="tab">
           <a href="#1b" data-toggle="tab">
-            <i class="fa fa-usd"></i>     Donativos
+            <i class="fa fa-list"></i>     Registro de Donativo
           </a>
         </li>
-
-          
       </ul>
-      <!-- 1a Margen entre barra Donativo y egistra donativo y tablas -->
-      <div style="background-color:#e5e5e5; height: auto;"></div>
-       
-         <!-- 1b tabla de contenido de consulta -->
+
+      <div style="background-color:#e5e5e5; height:3px;"></div>
+
       <div class="tab-content clearfix">
-         <!-- Tabla de consulta donativos --> 
-           <div class="tab-pane active" id="1b">
-               <?=  form_open(base_url().'Donativos/')?> 
-               <table class="table">
-                 <tr>
-                     
-              <!-- Campo de busqueda -->
-                 <td>
-                <div style="margin-left:0px; margin-right:0px;">
-                <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
-                
-                  <div class="col-xs-2">
-                     <span class="input-group-addon" >Buscar por tipo</span>
-                        <select type="text" class="form-control" onchange="habilitarDescripcion(this)" aria-describedby="sizing-addon2" id="TipoBusquedaDonativo" name="TipoBusquedaDonativo">
-                            <option value="0" disabled selected style="display: none;">Selecione...</option>
-                           <?php 
-                            foreach ($arrServicios as $i) {
-                             echo '<option value="'. $i->id_servicio .'">'. $i->Nombre .'</option>';
-                          }  ?>
-                         </select>
-                  </div>
-
-        
-                 <div class="col-xs-2">
-                  <span class="input-group-addon" >Perido anual</span>
-                    <select type="text" class="form-control" aria-describedby="sizing-addon2" name="TipoBusquedaDonativoCita" id="TipoBusquedaDonativoCita" disabled="false">
-                    </select>
-                  </div>
-
-
-                 <div class="col-xs-2" style="margin-left: 300px; ">
-                    <div class="input-group-addon">
-                      <label>Buscar por Fecha: </label>
-                      <input type="date" class="form-control;" aria-describedby="sizing-addon2" name="fechaBusquedaDonativo" disabled ="false">
-                      <input type="submit" style="margin-left:6px" value="Buscar" id="Buscar" name="Buscar" class="btn btn-primary btn-lg;" disabled ="false">
-                    </div>
-                  </div>
-               
+        <div class="tab-pane active" id="1b">
+          <?=  form_open(base_url().'Paciente/agregarPaciente')?>
+          <br>
+          <h2 style="text-align:center;">Datos del paciente</h2>
+          
+          <div style="margin-left:50px; margin-right:20px;">
+            <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
+              <div class="col-xs-3">
+                <span class="input-group-addon" id="sizing-addon2">Tipo de donativo</span>
+                <select class="form-control" name="sexo" required>
+                   <option value="0" disabled selected style="display: none;">Selecione...</option>
+                  <option value="Especie">Especie</option>
+                  <option value="Monetario">Monetario</option>
+                </select>
+              </div>  
+              <div class="col-xs-2">
+                <span class="input-group-addon" id="sizing-addon2">Fecha</span>
+                <input type="date" class="form-control" aria-describedby="sizing-addon2" data-provide="datepicker" name="fecha" required>
               </div>
+                <div class="col-xs-2">
+                  <span class="input-group-addon" id="sizing-addon2">Cantidad</span>
+                  <input type="number" class="form-control" aria-describedby="sizing-addon2" name="cantidad_personas" id="cantidad_personas" required="required">
+                </div>
+            
+              <div class="col-xs-5">
+                  <span class="input-group-addon" id="sizing-addon2">Descripción</span>
+                  <textarea class="form-control" name="descripcionDonativo"rows="3"  cols="3"></textarea>
+                </div>
+
             </div>
-            <br>
-                   <table class="table" style="margin-left:5px">
-                 <!-- Titulos de columnas -->
-                     <thead>
-                        <th>Tipo</th>
-                         <th>Fecha inicio</th>
-                         <th>Monto monetario</th>
-                         <th>Monto especie</th>
-                        <th> </th>
-                        <th> </th>
-                        
-                    </thead>
-                
-                  <?php foreach($query as $row): ?>
-                  <tr style="margin-top:7px; margin-bottom:7px;">
-                     
-                      <td >
-                         <?php echo $row->Tipo; ?>
-                      </td>   
-                      <td >
-                         <?php echo $row->fecha_ini; ?>
-                      </td>   
-                      <td>
-                         <?php echo $row->Monto_monetario; ?>
-                      </td>   
-                      <td >
-                         <?php echo $row->Monto_especie; ?>
-                      </td>   
-                        <td> 
-                      <a href='#' onclick="registrar_donativo('<?=base_url()?>donativos/registro_donativo/<?=$row->id_donativo_cur_tall?>');"><i class='glyphicon glyphicon-piggy-bank'></i></a>
-                      </td>
-                      <td>
-                       <a href='#' onclick="registrar_donativo('<?=base_url()?>donativos/registro_donativo');"><i class='glyphicon glyphicon-trash'></i></a>
-                      </td>
-                  
-                  </tr>
-                  <?php endforeach; ?>
-                   </table>
-                  </td>
-                 </tr>
-               </table>
-                <?=form_close()?> 
-           </div>
-           <!-- fin Table -->
+
+          </div>
+          <br><br>
+          
+          <div style="margin-left:20px; margin-right:20px;">
+            <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
+              <input type="submit"  value="Guardar" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
+            </div>
+          </div>
+
+          <br>
+          <?=form_close()?>
+        </div>
+        </div>
 
       </div>
+
     </div>
-</div>
+
+
+
+
+
+
+
+<!-- Tabla -->
+
 
 
   <!-- Pie de página-->
@@ -259,8 +222,7 @@
                 $("#TipoBusquedaDonativo").change(function() {
                     $("#TipoBusquedaDonativo option:selected").each(function() {
                         TipoBusque = $('#TipoBusquedaDonativo').val();
-                        $.post(" <?php echo base_url().'Donativos/hacerAlgo'?>", {
-                          registrar_donativo('<?=base_url()?>donativos/registro_donativo');
+                        $.post("  <?php echo base_url().'Donativos/hacerAlgo'?>", {
                             TipoBusque : TipoBusque
                         }, function(data) {
                             $("#TipoBusquedaDonativoCita").html(data);
