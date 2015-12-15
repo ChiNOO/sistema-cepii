@@ -185,6 +185,7 @@
                
               </div>
             </div>
+            <h1>Taller</h1>
             <br>
                    <table class="table" style="margin-left:5px">
                  <!-- Titulos de columnas -->
@@ -213,11 +214,11 @@
                       <td >
                          <?php echo $row->Monto_especie; ?>
                       </td>   
-                        <td> 
-                      <a href='#' onclick="registrar_donativo('<?=base_url()?>donativos/registro_donativo/<?=$row->id_donativo_cur_tall?>');"><i class='glyphicon glyphicon-piggy-bank'></i></a>
+                        <td>
+                      <a href='#' onclick="registrar_donativo('<?=base_url()?>donativos/hacerAlgo/<?=$row->id_donativo_cur_tall?>');"><i class='glyphicon glyphicon-piggy-bank'></i></a>
                       </td>
                       <td>
-                       <a href='#' onclick="registrar_donativo('<?=base_url()?>donativos/registro_donativo');"><i class='glyphicon glyphicon-trash'></i></a>
+                       <a href='#' onclick="registrar_donativo('<?=base_url()?>donativos/Registrar_Mespecie/<?=$row->id_donativo_cur_tall?>');"><i class='glyphicon glyphicon-trash'></i></a>
                       </td>
                   
                   </tr>
@@ -228,6 +229,8 @@
                </table>
                 <?=form_close()?> 
            </div>
+
+           <h1>Cursos</h1>
            <!-- fin Table -->
 
       </div>

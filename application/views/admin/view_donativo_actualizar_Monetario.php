@@ -140,7 +140,7 @@
 
       <div class="tab-content clearfix">
         <div class="tab-pane active" id="1b">
-          <?=  form_open(base_url().'Donativos/registro_donativo')?>
+          <?=  form_open(base_url().'Donativos/registro_donativoEsp')?>
           <br>
           <h2 style="text-align:center;">Registrar Donación Monetaria</h2>
           
@@ -152,8 +152,17 @@
 
                 <div class="col-xs-4">
                   <span class="input-group-addon" id="sizing-addon2">Cantidad</span>
-                  <input type="number" step="any" class="form-control" aria-describedby="sizing-addon2" name="cantidad_monetario" id="cantidad_monetario" required="required">
+                  <input type="number" step="any" class="form-control" aria-describedby="sizing-addon2" name="cantidad_especie" id="cantidad_especie" required="required">
                 </div>
+
+                 <div class="col-xs-6">
+                  <span class="input-group-addon" id="sizing-addon2">Descripción</span>
+                  <textarea class="form-control" name="descripcion" id="descripcion" rows="3" required="required"></textarea>
+                 </div>
+                
+
+
+
 
                  <div style="margin-left:20px; margin-right:20px;">
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">

@@ -12,10 +12,50 @@ class Donativos_model extends CI_Model{
         if($query->num_rows() > 0){
             return $query->result();
         }
-
+ 
 
 
     }
+
+    public function agregarDonativoMonetario($id, $fecha, $cantidad_monetario){
+
+          $datos = array('id_donativo_cur_tall' => $id,
+                        'fecha' => $fecha,
+                        'cantidad'=> $cantidad_monetario);
+       $this->db->insert('monto_monetario_cur_tall', $datos);
+        redirect(base_url().'donativos');
+
+
+    }
+
+    public function agregarDonativoEspecie($id, $fecha, $cantidad_especie,$descripcion){
+
+          $datos = array('id_donativo_cur_tall' => $id,
+                        'fecha' => $fecha,
+                        'cantidad' => $cantidad_especie,
+                        'descripcion'=> $descripcion);
+       $this->db->insert('monto_especie_cur_tall', $datos);
+        redirect(base_url().'donativos');
+
+    }
+
+
+    public function getDonativoId($id){
+        $this->db->select();
+        $this->db->where('id_donativo_cur_tall', $id);
+        $query = $this->db->get('donativo_curso_taller');
+        return $query->result();
+    }
+
+    public function getDonativoIdEs($id){
+        $this->db->select();
+        $this->db->where('id_donativo_cur_tall', $id);
+        $query = $this->db->get('donativo_curso_taller');
+        return $query->result();
+    }
+
+
+
 
     public function get_servicios(){
     

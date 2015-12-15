@@ -19,6 +19,7 @@ class Donativos extends CI_Controller {
 	 $data ['query'] = $this->donativos_model->get_appointment();
      $this->load->model('donativos_model');
 	 $data['arrServicios'] = $this->donativos_model->get_servicios();
+   
 	 $this->load->view('admin/view_control_donativos', $data);
 	//$this->load->database('default');
 	//$this->load->view('admin/view_control_donativos');
@@ -50,27 +51,42 @@ class Donativos extends CI_Controller {
 	}
 
 	 public function hacerAlgo() {
-   $data ['query'] = $this->donativos_model->get_appointment();
-     $this->load->model('donativos_model');
-   $data['arrServicios'] = $this->donativos_model->get_servicios();
-   $this->load->view('admin/view_control_donativos', $data);
-  
-    }
+        $id=$this->uri->segment(3);
+        $this->load->model('donativos_model');
+        $data['query'] = $this->donativos_model->getDonativoId($id);
+        $this->load->view('admin/view_donativo_actualizar', $data);
+      }
+
+  public function Registrar_Mespecie(){
+       $id=$this->uri->segment(3);
+        $this->load->model('donativos_model');
+        $data['query'] = $this->donativos_model->getDonativoIdEs($id);
+        $this->load->view('admin/view_donativo_actualizar_Monetario', $data);
+      
+ }
 
 
    public function registro_donativo(){
-      $id=$this->uri->segment(3);
-      $datos =  $this->donativos_model->getDonativo_taller($id);
-    foreach ($datos->result() as $row) {
-        $idEspacio = $row->idEspacio;
-        $Nombre = $row->Nombre;
-        $Capacidad = $row->Capacidad;
-        $Tipo = $row->Tipo;
-      }
-      $data['idEspacio'] = $idEspacio;
-      $data['Nombre'] = $Nombre;
-      $data['Capacidad'] = $Capacidad;
-      $data['Tipo'] = $Tipo;
-      $this->load->view('admin/view_edita_espacios',$data);}
+        $id = $this->input->post('id');
+        $fecha = date('Y-m-d');
+        $cantidad_monetario = $this->input->post('cantidad_monetario');
+        $this->load->model('donativos_model');
+        $insert = $this->donativos_model->agregarDonativoMonetario($id, $fecha, $cantidad_monetario);  
+  
+  }
+
+    public function  registro_donativoEsp(){
+
+    $id = $this->input->post('id');
+        $fecha = date('Y-m-d');
+        $cantidad_especie = $this->input->post('cantidad_especie');
+        $descripcion = $this->input->post('descripcion');
+        $this->load->model('donativos_model');
+        $insert = $this->donativos_model->agregarDonativoEspecie($id, $fecha, $cantidad_especie,$descripcion);  
+  
+  }
+
+
+
 
 }
