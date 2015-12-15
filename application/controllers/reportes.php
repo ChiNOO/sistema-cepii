@@ -6,7 +6,7 @@ class reportes extends CI_Controller {
 		parent::__construct();
         $this->load->helper(array('url', 'form'));       
   		$this->load->database('default');
-  		$this->load->model('reportes_model');
+  		$this->load->model('citas_model');
   		
 	}
 
