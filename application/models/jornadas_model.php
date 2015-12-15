@@ -113,6 +113,8 @@ public function guardar_pa($nombreP, $nombreJ){
     $this->db->where('nombreJornada', $nombreJ);
     $this->db->from('jornada');
     $query2 = $this->db->get();
+    echo "<br>";
+    print_r($query2->result());
     foreach ($query2->result() as $row2) {
         if ($row2->nombreJornada == $nombreJ) {
             $idj = $row2->idJornada;

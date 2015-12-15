@@ -224,23 +224,13 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Nombre Paciente</th>
-              <th>Tipo de servicio</th>
-              <th>Detalle</th>
-              <th>Espacio</th>
-              <th>Nombre profesional</th>
-              <th>Mes</th>
-              <th>Fechas</th>
-              <th>Hora Inicial</th>
-              <th>Hora Final</th>
-              <th>Costo</th>
-              <th></th>
+              <th>Nombre del paciente</th>
             </tr>
           </thead>
 
           <?php foreach ($query as $row): ?>
             <tr>  
-              <td><?php echo $row->nombrePersona; ?></td>
+              <td><?php echo $row->nombrePersona.' '.$row->apaPersona.' '.$row->amaPersona; ?></td>
             </tr>
           <?php endforeach ?>
         </table>

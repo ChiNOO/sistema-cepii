@@ -354,7 +354,7 @@
               
                  <div class="col-xs-4">
                   <span class="input-group-addon" id="sizing-addon3" >Días</span>
-                  <input id="myTags" type="number" class="form-control" aria-describedby="sizing-addon3" name="Fechas" placeholder="Ejemplo: 14 15 17">
+                  <input id="myTags" type="text" class="form-control" id="tags" placeholder="" name="tags">
                   </div>
               </div> 
             </div> 
