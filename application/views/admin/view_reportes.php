@@ -1,4 +1,4 @@
-<?php 
+ <?php 
  $link = mysqli_connect("localhost", "root", "1234", "cepii"); 
  ?> 
 <!DOCTYPE html>
@@ -39,7 +39,7 @@ $(function () {
             }
         },
         title: {
-            text: 'Reportes por Año'
+            text: 'Reportes Donativos por Mes'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -57,23 +57,254 @@ $(function () {
         },
         series: [{
             type: 'pie',
-            name: 'Browser share',
+            name: 'Porcentaje',
             data: [
               <?php 
-                    $que = "SELECT SUM(Cantidad) AS Total, TipoDonativo FROM donativo WHERE Fecha>='2015-01-01' AND Fecha<='2015-12-31'";
+                    $que = "SELECT SUM(Cantidad) AS Total FROM donativo WHERE month (Fecha)=01";
+                    $sql = mysqli_query($link,$que);
+                    $filasene = mysqli_num_rows($sql);
+                    if ($filasene>0) {
+                    $rows = mysqli_fetch_array($sql)
+              ?>
+              
+              <?php         
+              if($rows['Total']>0){    
+              echo "['Enero' , ".$rows['Total']." ],";
+              };
+              };
+
+              ?>
+
+              <?php 
+                    $que = "SELECT SUM(Cantidad) AS Total FROM donativo WHERE month (Fecha)=02";
+                    $sql = mysqli_query($link,$que);
+                    $filasfeb = mysqli_num_rows($sql);
+                    if ($filasfeb>0) {
+                    $rows = mysqli_fetch_array($sql)
+              ?>
+              
+              <?php             
+              if($rows['Total']>0){
+              echo "['Febrero' , ".$rows['Total']." ],";
+              };
+              };
+
+              ?>
+
+              <?php 
+                    $que = "SELECT SUM(Cantidad) AS Total FROM donativo WHERE month (Fecha)=03";
+                    $sql = mysqli_query($link,$que);
+                    $filasmar = mysqli_num_rows($sql);
+                    if ($filasmar>0) {
+                    $rows = mysqli_fetch_array($sql)
+              ?>
+              
+              <?php             
+              if($rows['Total']>0){
+              echo "['Marzo' , ".$rows['Total']." ],";
+              };
+              };
+
+              ?>
+
+              <?php 
+                    $que = "SELECT SUM(Cantidad) AS Total FROM donativo WHERE month (Fecha)=04";
+                    $sql = mysqli_query($link,$que);
+                    $filasabr = mysqli_num_rows($sql);
+                    if ($filasabr>0) {
+                    $rows = mysqli_fetch_array($sql)
+              ?>
+              
+              <?php             
+              if($rows['Total']>0){
+              echo "['Abril' , ".$rows['Total']." ],";
+              };
+              };
+
+              ?>
+
+              <?php 
+                    $que = "SELECT SUM(Cantidad) AS Total FROM donativo WHERE month (Fecha)=05";
+                    $sql = mysqli_query($link,$que);
+                    $filasmay = mysqli_num_rows($sql);
+                    if ($filasmay>0) {
+                    $rows = mysqli_fetch_array($sql)
+              ?>
+              
+              <?php             
+              if($rows['Total']>0){
+              echo "['Mayo' , ".$rows['Total']." ],";
+              };
+              };
+
+              ?>
+
+              <?php 
+                    $que = "SELECT SUM(Cantidad) AS Total FROM donativo WHERE month (Fecha)=06";
+                    $sql = mysqli_query($link,$que);
+                    $filasjun = mysqli_num_rows($sql);
+                    if ($filasjun>0) {
+                    $rows = mysqli_fetch_array($sql)
+              ?>
+              
+              <?php             
+              if($rows['Total']>0){
+              echo "['Junio' , ".$rows['Total']." ],";
+              };
+              };
+
+              ?>
+
+              <?php 
+                    $que = "SELECT SUM(Cantidad) AS Total FROM donativo WHERE month (Fecha)=07";
+                    $sql = mysqli_query($link,$que);
+                    $filasjul = mysqli_num_rows($sql);
+                    if ($filasjul>0) {
+                    $rows = mysqli_fetch_array($sql)
+              ?>
+              
+              <?php             
+              if($rows['Total']>0){
+              echo "['Julio' , ".$rows['Total']." ],";
+              };
+              };
+
+              ?>
+
+              <?php 
+                    $que = "SELECT SUM(Cantidad) AS Total FROM donativo WHERE month (Fecha)=08";
+                    $sql = mysqli_query($link,$que);
+                    $filasago = mysqli_num_rows($sql);
+                    if ($filasago>0) {
+                    $rows = mysqli_fetch_array($sql)
+              ?>
+              
+              <?php             
+              if($rows['Total']>0){
+              echo "['Agosto' , ".$rows['Total']." ],";
+              };
+              };
+
+              ?>
+
+              <?php 
+                    $que = "SELECT SUM(Cantidad) AS Total FROM donativo WHERE month (Fecha)=09";
+                    $sql = mysqli_query($link,$que);
+                    $filassep = mysqli_num_rows($sql);
+                    if ($filassep>0) {
+                    $rows = mysqli_fetch_array($sql)
+              ?>
+              
+              <?php             
+              if($rows['Total']>0){
+              echo "['Septiembre' , ".$rows['Total']." ],";
+              };
+              };
+
+              ?>
+
+              <?php 
+                    $que = "SELECT SUM(Cantidad) AS Total FROM donativo WHERE month (Fecha)=10";
+                    $sql = mysqli_query($link,$que);
+                    $filasoct = mysqli_num_rows($sql);
+                    if ($filasoct>0) {
+                    $rows = mysqli_fetch_array($sql)
+              ?>
+              
+              <?php             
+              if($rows['Total']>0){
+              echo "['Octubre' , ".$rows['Total']." ],";
+              };
+              };
+
+              ?>
+
+              <?php 
+                    $que = "SELECT SUM(Cantidad) AS Total FROM donativo WHERE month (Fecha)=11";
+                    $sql = mysqli_query($link,$que);
+                    $filasnov = mysqli_num_rows($sql);
+                    if ($filasnov>0) {
+                    $rows = mysqli_fetch_array($sql)
+              ?>
+              
+              <?php             
+              if($rows['Total']>0){
+              echo "['Noviembre' , ".$rows['Total']." ],";
+              };
+              };
+
+              ?>
+
+              <?php 
+                    $que = "SELECT SUM(Cantidad) AS Total FROM donativo WHERE month (Fecha)=12";
+                    $sql = mysqli_query($link,$que);
+                    $filasdic = mysqli_num_rows($sql);
+                    if ($filasdic>0) {
+                    $rows = mysqli_fetch_array($sql)
+              ?>
+              
+              <?php             
+              if($rows['Total']>0){
+              echo "['Diciembre' , ".$rows['Total']." ],";
+              };
+              };
+
+              ?>
+
+              ]
+        }]
+    });
+});
+    </script>
+
+
+    <script type="text/javascript">
+$(function () {
+    $('#containerse').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: 'Porcentaje de Género de Pacientes Registrados'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Porcentaje',
+            data: [
+              <?php 
+                    $que = "SELECT COUNT(sexo) AS Totalhom FROM persona WHERE sexo='M'";
                     $sql = mysqli_query($link,$que);
                     while ($rows = mysqli_fetch_array($sql)){
               ?>
-                ['2015' , <?php echo $rows["Total"]; ?>],
+                ['Hombres' , <?php echo $rows["Totalhom"]; ?>],
               <?php
               }
               ?>
 
-              <?php $que = "SELECT SUM(Cantidad) AS Total, TipoDonativo FROM donativo WHERE Fecha>='2016-01-01' AND Fecha<='2016-12-31'";
+              <?php $que = "SELECT COUNT(sexo) AS Totalmuj FROM persona WHERE sexo='F'";
                     $sql = mysqli_query($link,$que);
                     while ($rows = mysqli_fetch_array($sql)){
               ?>
-                ['2016' , <?php echo $rows["Total"]; ?>],
+                ['Mujeres' , <?php echo $rows["Totalmuj"]; ?>],
               <?php
               }
               ?>
@@ -82,7 +313,7 @@ $(function () {
         }]
     });
 });
-    </script>
+</script>
 </head>
 <body style="background-color:#e5e5e5;">
   <nav class="navbar navbar-default">
@@ -169,7 +400,7 @@ $(function () {
     </div>
   </section>
 
-  <div class="content-wrapper" style="background-color: #e5e5e5; margin-top:0px;">
+  <div class="content-wrapper" style="background-color: #e5e5e5; margin-top:0px;"></div>
    
     <br>
     <div id="exTab3" class="tab">
@@ -182,26 +413,41 @@ $(function () {
         </li>
         <li data-toggle="tab">
           <a href="#2b" data-toggle="tab">
-            <i class="fa fa-bar-chart"></i>     Jornada de Salud
-          </a>
-        </li>
-        <li data-toggle="tab">
-          <a href="#3b" data-toggle="tab">
-            <i class="fa fa-bar-chart"></i>     Conferencias
+            <i class="fa fa-bar-chart"></i>     Pacientes
           </a>
         </li>
       </ul>
-    </div>
+    
 
     <div style="background-color:#e5e5e5; height:3px;"></div>
 
-      <div class="tab-content clearfix">
+        
+
+
+        <div class="tab-content clearfix">
+
         <div class="tab-pane active" id="1b">
 
          <div id="container" style="height: 400px"></div>
           
         </div>          
+      
+
+
+
+    <div style="background-color:#e5e5e5; height:3px;"></div>
+
+
+      <div class="tab-pane" id="2b">
+         
+        <div id="containerse" style="height: 400px" align="center"></div>
+
       </div>
+
+     </div>
+  </div>
+  </div>
+
     <footer style="width: 100%;border-top: 2px solid #fff;bottom: 0; position: fixed; padding: 1rem;">
     <div class="container">
           &copy; 2015 SISTEMA CEPII | BY : <a href="http://www.uv.mx/Fei/" target="_blank">FEI UV</a>
