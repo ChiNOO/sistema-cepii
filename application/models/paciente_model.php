@@ -38,7 +38,7 @@ class Paciente_model extends CI_Model{
     function delete_Paciente($id){
         $this->db->where('idpersona', $id);
         $this->db->delete('persona');
-        redirect(base_url().'Paciente');
+        redirect(base_url().'paciente');
     }
 
     function agregarPaciente($nombre, $paterno, $materno, $calle, $numero, $colonia, $fecha, $sexo, $correo, $telefono){
@@ -53,7 +53,7 @@ class Paciente_model extends CI_Model{
                         'sexo' => $sexo,
                         'fechaNa' => $fecha);
         $this->db->insert('persona', $datos);
-        redirect(base_url().'Paciente');
+        redirect(base_url().'paciente');
     }
     
     function upDatePaciente($id, $nombre, $paterno, $materno, $calle, $numero, $colonia, $fecha, $sexo, $correo, $telefono){
@@ -70,7 +70,7 @@ class Paciente_model extends CI_Model{
         $this->db->where('idpersona', $id);
         $this->db->update('persona', $datos);
 
-        redirect(base_url().'Paciente');
+        redirect(base_url().'paciente');
     }
 
 

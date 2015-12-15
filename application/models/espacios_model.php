@@ -68,7 +68,7 @@ class Espacios_model extends CI_Model{
     }
 
     public function get_espacio($q, $nombrePro, $fecha, $horaIni, $horaFin){
-      $this->db->select('idProfesional, CONCAT(nombrePro," ", amaPro," ",apaPro) AS name', FALSE);
+      $this->db->select('idProfesional, CONCAT(nombrePro," ", apaPro," ",amaPro) AS name', FALSE);
       $this->db->from('profesional');
       $query2 = $this->db->get();
 

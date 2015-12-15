@@ -33,6 +33,14 @@
     });
     </script>
 
+    <script type="text/javascript">
+      function elimina(url){
+        if (confirm("¿Está seguro que desea eliminar la cita?") ){
+          location.href=url;
+        }
+      }
+    </script>
+
     <script>
     $(document).ready(function () {
     $("#espacio").autocomplete({
@@ -199,7 +207,7 @@
         </li>
         <div>
           <a href="<?php echo base_url().'Paciente'; ?>">
-            <input type="submit" href="http://www.google.col-md-12"  value="Nuevo Paciente" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
+            <input type="submit" value="Nuevo Paciente" class="btn btn-primary btn-lg pull-right" style="margin-top:20px; margin-bottom:20px; margin-right:40px;">
           </a>
         </div> 
       </ul>
@@ -236,7 +244,6 @@
                       <th></th>
                     </tr>
                   </thead>
-
                   <?php foreach($query as $row): ?>
                   <tr style="margin-top:5px; margin-bottom:5px;">
                     <?php if($row->ramaMedica == "Psicología"): ?>
@@ -291,7 +298,7 @@
                     </td>
                     <td>
                       <!--Botón  X <button style="background-color:#f4d2e1">Cancelar</button>-->
-                       <td><a href='".base_url()."agenda/eliminar/$row->idConferencia'> <i class='fa fa-times'></i></a></td> 
+                      <a href='#' onclick="elimina('<?=base_url()?>citas/eliminar/<?=$row->idcita?>');"><i class='glyphicon glyphicon-trash'></i></a>
                       <!--Aquí--> 
                     </td>
                   </tr>

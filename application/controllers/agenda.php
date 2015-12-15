@@ -21,4 +21,6 @@ class Agenda extends CI_Controller {
 		$this->load->view('admin/view_agenda', $data);
 	}
 
+	
+
 }
