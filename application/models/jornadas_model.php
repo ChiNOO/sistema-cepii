@@ -113,20 +113,24 @@ public function guardar_pa($nombreP, $nombreJ){
     $this->db->where('nombreJornada', $nombreJ);
     $this->db->from('jornada');
     $query2 = $this->db->get();
+    echo "<br>";
+    print_r($query2->result());
     foreach ($query2->result() as $row2) {
         if ($row2->nombreJornada == $nombreJ) {
             $idj = $row2->idJornada;
         }
     }
     
+    $this->db->select();
+    $this->db->where('idPersona', $id);
+    $this->db->where('jornada_persona_idJornada', $idj);
+    $query4 = $this->db->get('jornada_persona');
+    if ($query4->num_rows() <= 0) {
+      $datos=array('idPersona' => $id,
+                    'jornada_persona_idJornada' => $idj);
+      $this->db->insert('jornada_persona', $datos);
+    }
     
-
-
-    $datos=array(
-          'idPersona' => $id,
-          'jornada_persona_idJornada' => $idj,
-        );
-        $this->db->insert('jornada_persona', $datos);
   }
 
   public function jornadaPaciente($id){

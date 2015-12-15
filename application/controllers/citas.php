@@ -20,7 +20,7 @@ class Citas extends CI_Controller {
 		$espacio = $this->input->post('espacio');
 		$insert = $this->citas_model->save_appointmentName($nombreP,$nombrePRO,$fecha,$horaIni, $horaFin,$espacio);
 		
-		redirect(base_url().'Agenda');
+		redirect(base_url().'agenda');
 	}
 
 	public function get_citas(){
@@ -29,5 +29,11 @@ class Citas extends CI_Controller {
 		$citas = $this->citas_model->get_citas($id);
 		print (json_encode($citas));
 	}
+
+	public function eliminar(){
+        $id = $this->uri->segment(3);
+        $this->load->model('citas_model');
+        $delte = $this->citas_model->eliminar_cita($id);
+    }
 
 }

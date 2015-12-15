@@ -24,12 +24,12 @@ class Jornadas extends CI_Controller {
 		  $Nombrep = $this->input->post('Nombrep',TRUE);
 		  $año = date('Y');
 		  $mes = $this->input->post('mes',TRUE);
-		  $fechas = $this->input->post('Fechas',TRUE);
+		  $fechas = $this->input->post('tags',TRUE);
 		  $hora_inicio = $this->input->post('Horai',TRUE);
 		  $hora_fin = $this->input->post('Horaf',TRUE);
 		  $costo = $this->input->post('Costo',TRUE);
-
-    	$this->jornadas_model->guardar_jornada($nombreJornada,$servicio, $detalle, $espacio, $Nombrep, $año, $mes, $fechas, $hora_inicio, $hora_fin, $costo);
+      print_r($fechas); 
+      $this->jornadas_model->guardar_jornada($nombreJornada,$servicio, $detalle, $espacio, $Nombrep, $año, $mes, $fechas, $hora_inicio, $hora_fin, $costo);
     	redirect('jornadas/');
   	}
 
@@ -58,7 +58,6 @@ class Jornadas extends CI_Controller {
     $this->load->database('default');
     $this->load->model('jornadas_model');
     $data['query'] = $this->jornadas_model->jornadaPaciente($id);
-    print_r($data);
     $this->load->view('admin/jornadaPaciente', $data);
   }
 

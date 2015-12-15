@@ -45,7 +45,7 @@ class Citas_model extends CI_Model{
     }
 
     public function get_appointment($fecha){
-        $this->db->select('cita.horaIni, cita.horaFin, cita.fecha, cita.espacio_idEspacio, profesional.nombrePro, profesional.amaPro,
+        $this->db->select('cita.idcita, cita.horaIni, cita.horaFin, cita.fecha, cita.espacio_idEspacio, profesional.nombrePro, profesional.amaPro,
                             profesional.apaPro, profesional.ramaMedica, persona.nombrePersona, persona.amaPersona,
                             persona.apaPersona, persona.celPersona, espacio.idEspacio, espacio.Nombre');
         $this->db->from('cita');
@@ -69,5 +69,10 @@ class Citas_model extends CI_Model{
         $query = $this->db->get();
         return $query->result();      
     }
+
+    public function eliminar_cita($id){
+        $this->db->where('idcita', $id);
+        $this->db->delete('cita');
+        redirect(base_url().'agenda');
+    }
 }
-//https://www.youtube.com/watch?v=I30kaZbjbfI

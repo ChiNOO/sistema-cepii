@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-12-2015 a las 20:53:58
+-- Tiempo de generación: 15-12-2015 a las 03:03:39
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.5.19
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `cita` (
   `horaFin` time NOT NULL,
   `fecha` date DEFAULT NULL,
   `espacio_idEspacio` int(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `cita`
@@ -174,34 +174,6 @@ INSERT INTO `espacio` (`idEspacio`, `Nombre`, `Capacidad`, `Tipo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hojaclinica`
---
-
-CREATE TABLE IF NOT EXISTS `hojaclinica` (
-`idhojaClinica` int(11) NOT NULL,
-  `estatura` double DEFAULT NULL,
-  `consumoAlcohol` varchar(45) DEFAULT NULL,
-  `practicaDeporte` varchar(45) DEFAULT NULL,
-  `peso` double DEFAULT NULL,
-  `consumoCigarro` varchar(45) DEFAULT NULL,
-  `persona_idpersona` int(11) NOT NULL,
-  `hojaReferencia_idhojaReferencia` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `hojareferencia`
---
-
-CREATE TABLE IF NOT EXISTS `hojareferencia` (
-`idhojaReferencia` int(11) NOT NULL,
-  `hojaReferenciacol` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `jornada`
 --
 
@@ -218,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `jornada` (
   `hora_inicio` time NOT NULL,
   `hora_fin` time NOT NULL,
   `costo` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `jornada`
@@ -227,7 +199,8 @@ CREATE TABLE IF NOT EXISTS `jornada` (
 INSERT INTO `jornada` (`idJornada`, `nombreJornada`, `tipo_servicio`, `detalle`, `espacio_idEspacio`, `idProfesional`, `año`, `mes`, `fechas`, `hora_inicio`, `hora_fin`, `costo`) VALUES
 (2, 'jornada1', 'Terapia', 'Ejemplo de jornada 2', 7, '1', 2015, 'Marzo', '14', '01:01:00', '02:02:00', 200),
 (3, 'jornada2', 'Terapia', 'Alguno', 2, '1', 2015, 'Marzo', '13', '15:01:00', '16:00:00', 100),
-(4, 'jornada3', 'Terapia', 'alguno', 2, '2', 2015, 'Febrero', '12', '03:01:00', '16:00:00', 10);
+(4, 'jornada3', 'Terapia', 'alguno', 2, '2', 2015, 'Febrero', '12', '03:01:00', '16:00:00', 10),
+(5, 'Jornada prueba final', 'Terapia', 'algo algo', 7, '2', 2015, 'Marzo', '11,12,13', '14:00:00', '15:00:00', 400);
 
 -- --------------------------------------------------------
 
@@ -236,16 +209,16 @@ INSERT INTO `jornada` (`idJornada`, `nombreJornada`, `tipo_servicio`, `detalle`,
 --
 
 CREATE TABLE IF NOT EXISTS `jornada_persona` (
-  `idPersona` varchar(45) NOT NULL,
-  `jornada_persoan_idJornada` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `idPersona` int(11) NOT NULL,
+  `jornada_persona_idJornada` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `jornada_persona`
 --
 
-INSERT INTO `jornada_persona` (`idPersona`, `jornada_persoan_idJornada`) VALUES
-('4', 3);
+INSERT INTO `jornada_persona` (`idPersona`, `jornada_persona_idJornada`) VALUES
+(1, 2);
 
 -- --------------------------------------------------------
 
@@ -389,28 +362,10 @@ ALTER TABLE `espacio`
  ADD PRIMARY KEY (`idEspacio`);
 
 --
--- Indices de la tabla `hojaclinica`
---
-ALTER TABLE `hojaclinica`
- ADD PRIMARY KEY (`idhojaClinica`);
-
---
--- Indices de la tabla `hojareferencia`
---
-ALTER TABLE `hojareferencia`
- ADD PRIMARY KEY (`idhojaReferencia`);
-
---
 -- Indices de la tabla `jornada`
 --
 ALTER TABLE `jornada`
  ADD PRIMARY KEY (`idJornada`);
-
---
--- Indices de la tabla `jornada_persona`
---
-ALTER TABLE `jornada_persona`
- ADD PRIMARY KEY (`idPersona`);
 
 --
 -- Indices de la tabla `persona`
@@ -438,7 +393,7 @@ ALTER TABLE `servicios`
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-MODIFY `idcita` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `idcita` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `conferencias`
 --
@@ -460,20 +415,10 @@ MODIFY `id_donativo_cur_tall` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 ALTER TABLE `espacio`
 MODIFY `idEspacio` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
--- AUTO_INCREMENT de la tabla `hojaclinica`
---
-ALTER TABLE `hojaclinica`
-MODIFY `idhojaClinica` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `hojareferencia`
---
-ALTER TABLE `hojareferencia`
-MODIFY `idhojaReferencia` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT de la tabla `jornada`
 --
 ALTER TABLE `jornada`
-MODIFY `idJornada` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `idJornada` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `persona`
 --
