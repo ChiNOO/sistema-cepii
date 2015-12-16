@@ -143,9 +143,9 @@
           <?=  form_open(base_url().'Donativos/registro_donativoEsp')?>
           <br>
           <h2 style="text-align:center;">Registrar Donacion de Articulos</h2>
-          <input type="text" value="<?php echo $banderaTipo;?>" name="banderaTipo" id="banderaTipo">
-       <input type="text" value="<?php echo $banderaID;?>" name="banderaID" id="banderaID">
-          <div style="margin-left:50px; margin-right:20px;">
+          <input type="hidden" value="<?php echo $banderaTipo;?>" name="banderaTipo" id="banderaTipo">
+          <input type="hidden" value="<?php echo $banderaID;?>" name="banderaID" id="banderaID">
+          <div style="marginn-left:50px; margin-right:20px;">
             <div class="content-wrapper"  style="width:100%; min-height: auto; height:auto; margin-left;10px; margin-right:10px;">
               
               

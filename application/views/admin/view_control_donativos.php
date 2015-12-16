@@ -190,7 +190,7 @@
                       <a href='#' onclick="registrar_donativo('<?=base_url()?>donativos/Actualizar_monetario_citas/<?=$row->id_donativo_cita?>');"><i class='glyphicon glyphicon-piggy-bank'></i></a>
                       </td>
                       <td>
-                       <a href='#' onclick="registrar_donativo('<?=base_url()?>donativos/Actualizar_especie_citas/<?=$row->id_donativo_cita?>');"><i class='glyphicon glyphicon-trash'></i></a>
+                       <a href='#' onclick="registrar_donativo('<?=base_url()?>donativos/Actualizar_especie_citas/<?=$row->id_donativo_cita?>');"><i class='glyphicon glyphicon-plus-sign'></i></a>
                       </td>
                   </tr>
                   <?php endforeach; ?>
@@ -246,7 +246,7 @@
                       <a href='#' onclick="registrar_donativo('<?=base_url()?>donativos/Actualizar_monetario_jornada/<?=$row->id_donativo_jornada?>');"><i class='glyphicon glyphicon-piggy-bank'></i></a>
                       </td>
                       <td>
-                       <a href='#' onclick="registrar_donativo('<?=base_url()?>donativos/Actualizar_especie_jornada/<?=$row->id_donativo_jornada?>');"><i class='glyphicon glyphicon-trash'></i></a>
+                       <a href='#' onclick="registrar_donativo('<?=base_url()?>donativos/Actualizar_especie_jornada/<?=$row->id_donativo_jornada?>');"><i class='glyphicon glyphicon-plus-sign'></i></a>
                       </td>
                   </tr>
                   <?php endforeach; ?>
@@ -302,7 +302,7 @@
                       <a href='#' onclick="registrar_donativo('<?=base_url()?>donativos/Actualizar_monetario_CursoTaller/<?=$row->id_donativo_cur_tall?>');"><i class='glyphicon glyphicon-piggy-bank'></i></a>
                       </td>
                       <td>
-                       <a href='#' onclick="registrar_donativo('<?=base_url()?>donativos/Actualizar_especie_CursoTaller/<?=$row->id_donativo_cur_tall?>');"><i class='glyphicon glyphicon-trash'></i></a>
+                       <a href='#' onclick="registrar_donativo('<?=base_url()?>donativos/Actualizar_especie_CursoTaller/<?=$row->id_donativo_cur_tall?>');"><i class='glyphicon glyphicon-plus-sign'></i></a>
                       </td>
                   
                   </tr>

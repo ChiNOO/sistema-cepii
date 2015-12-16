@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-05-2015 a las 15:31:33
+-- Tiempo de generación: 16-12-2015 a las 02:51:43
 -- Versión del servidor: 10.1.8-MariaDB
 -- Versión de PHP: 5.6.14
 
@@ -35,14 +35,6 @@ CREATE TABLE `cita` (
   `fecha` date DEFAULT NULL,
   `espacio_idEspacio` int(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `cita`
---
-
-INSERT INTO `cita` (`idcita`, `persona_idpersona`, `profesional_idProfesional`, `horaIni`, `horaFin`, `fecha`, `espacio_idEspacio`) VALUES
-(3, 1, 1, '01:00:00', '02:00:00', '2015-01-01', 2),
-(4, 5, 2, '13:30:00', '14:30:00', '2015-03-08', 2);
 
 -- --------------------------------------------------------
 
@@ -87,8 +79,7 @@ CREATE TABLE `curso_taller` (
 --
 
 INSERT INTO `curso_taller` (`id`, `nombre`, `tipo`, `Profesional_idProfesional`, `lugar`, `num_horas`, `cantidad_personas`, `f_inicio`, `f_fin`, `h_inicio`, `h_fin`) VALUES
-(1, 'Masaje lumbar', 'Curso', 1, '8', 2, 10, '2015-12-08', '2015-12-08', '11:00:00', '14:00:00'),
-(16, 'Masajes terapéutico', 'Certificación', 2, 'CC1', 2, 2, '2015-01-01', '2015-01-01', '01:00:00', '01:00:00');
+(18, 'Medicina tradicional china', 'Certificación', 0, 'Cuarto de aromaterap', 3, 10, '2015-03-26', '2015-03-26', '12:55:00', '14:00:00');
 
 --
 -- Disparadores `curso_taller`
@@ -113,13 +104,6 @@ CREATE TABLE `donativo` (
   `Persona_idpersona` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `donativo`
---
-
-INSERT INTO `donativo` (`idDonativo`, `Nombre`, `TipoDonativo`, `Cantidad`, `Fecha`, `Persona_idpersona`) VALUES
-(11, 'Donativo', 'Monetario', 21, '2015-12-08', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -139,13 +123,7 @@ CREATE TABLE `donativo_citas` (
 --
 
 INSERT INTO `donativo_citas` (`id_donativo_cita`, `año`, `mes`, `Monto_monetario`, `Monto_especie`) VALUES
-(1, 2015, 8, 0.0000, 134),
-(2, 2015, 1, 0.0000, 0),
-(3, 2015, 8, 0.0000, 0),
-(4, 2015, 8, 0.0000, 0),
-(5, 2015, 8, 0.0000, 0),
-(6, 2015, 7, 0.0000, 0),
-(7, 2015, 5, 0.0000, 0);
+(10, 2015, 10, 0.0000, 0);
 
 -- --------------------------------------------------------
 
@@ -167,8 +145,7 @@ CREATE TABLE `donativo_curso_taller` (
 --
 
 INSERT INTO `donativo_curso_taller` (`id_donativo_cur_tall`, `id_curso_taller`, `Tipo`, `fecha_ini`, `Monto_monetario`, `Monto_especie`) VALUES
-(11, 1, 'Curso', '2015-12-08', 847, 1056),
-(12, 16, 'Certificación', '2015-01-01', 100, 500);
+(14, 18, 'Certificación', '2015-03-26', 100, 0);
 
 -- --------------------------------------------------------
 
@@ -192,8 +169,7 @@ CREATE TABLE `donativo_jornadas` (
 --
 
 INSERT INTO `donativo_jornadas` (`id_donativo_jornada`, `nombreJornadaD`, `tipoServicioD`, `detalleD`, `añoD`, `mesD`, `Monto_monetario`, `Monto_especie`) VALUES
-(1, 'Jornada', 'Jornadita', 'dddd', 2015, 'Marzo', 24.00, 23),
-(3, 'eeee', 'Terapia', 'eee', 2015, 'Enero', 0.00, 0);
+(4, 'Niños felices', 'Curso', 'niños entre 3 a 5 años', 2015, 'Diciembre', 100.00, 0);
 
 -- --------------------------------------------------------
 
@@ -213,7 +189,14 @@ CREATE TABLE `espacio` (
 --
 
 INSERT INTO `espacio` (`idEspacio`, `Nombre`, `Capacidad`, `Tipo`) VALUES
-(8, 'CC1', 20, 1);
+(9, 'Centro de reuniones', 25, 1),
+(10, 'Espacio de terapias', 15, 1),
+(11, 'Salón de masajes ter', 10, 1),
+(12, 'Cuarto de aromaterap', 20, 1),
+(13, 'Sala de usos múltipl', 40, 1),
+(14, 'Sala de reflexología', 10, 1),
+(15, 'Centro de Medicina t', 10, 1),
+(16, 'Sala de meditación ', 15, 1);
 
 -- --------------------------------------------------------
 
@@ -241,9 +224,7 @@ CREATE TABLE `jornada` (
 --
 
 INSERT INTO `jornada` (`idJornada`, `nombreJornada`, `tipo_servicio`, `detalle`, `espacio_idEspacio`, `idProfesional`, `año`, `mes`, `fechas`, `hora_inicio`, `hora_fin`, `costo`) VALUES
-(1, 'lkmkl', 'lkmkkmlkkl', 'km k', 8, 'al', 23, 'klmk', 'klmk', '03:00:00', '00:08:00', 23),
-(7, 'www', 'Terapia', 'ddd', 8, '2', 2015, 'Enero', '4', '01:00:00', '01:00:00', 2),
-(8, 'eeee', 'Terapia', 'eee', 8, '2', 2015, 'Enero', 'w,2', '01:00:00', '01:00:00', 13);
+(1, 'Niños felices', 'Curso', 'niños entre 3 a 5 años', 11, '9', 2015, 'Diciembre', '2 3 4 5 8', '08:00:00', '10:00:00', 100);
 
 --
 -- Disparadores `jornada`
@@ -291,7 +272,10 @@ CREATE TABLE `monto_especie_cita` (
 INSERT INTO `monto_especie_cita` (`id_donativo_cita`, `fecha`, `cantidad`, `descripcion`) VALUES
 (1, '2015-12-10', 2, 'kkk'),
 (1, '2015-12-08', 100, 'Ahora si'),
-(1, '2015-08-04', 134, 'xxxx');
+(1, '2015-08-04', 134, 'xxxx'),
+(2, '2015-12-16', 233, 'wedew'),
+(3, '2015-12-16', 233, 'ce'),
+(9, '2016-02-16', 199, 'jabones');
 
 --
 -- Disparadores `monto_especie_cita`
@@ -317,16 +301,6 @@ CREATE TABLE `monto_especie_cur_tall` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `monto_especie_cur_tall`
---
-
-INSERT INTO `monto_especie_cur_tall` (`id_donativo_cur_tall`, `fecha`, `cantidad`, `descripcion`) VALUES
-(11, '2015-12-15', 23, 'wdd'),
-(11, '2015-12-15', 33, 'tt'),
-(11, '2015-12-15', 1000, 'calcetines'),
-(12, '2015-05-15', 500, 'jabones');
-
---
 -- Disparadores `monto_especie_cur_tall`
 --
 DELIMITER $$
@@ -350,13 +324,6 @@ CREATE TABLE `monto_especie_jornada` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `monto_especie_jornada`
---
-
-INSERT INTO `monto_especie_jornada` (`id_donativo_jornada`, `fecha`, `cantidad`, `descripcion`) VALUES
-(1, '2015-12-01', 23, 'mmm');
-
---
 -- Disparadores `monto_especie_jornada`
 --
 DELIMITER $$
@@ -377,13 +344,6 @@ CREATE TABLE `monto_monetario_cita` (
   `fecha` date NOT NULL,
   `cantidad` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `monto_monetario_cita`
---
-
-INSERT INTO `monto_monetario_cita` (`id_donativo_cita`, `fecha`, `cantidad`) VALUES
-(1, '2015-12-02', 23);
 
 --
 -- Disparadores `monto_monetario_cita`
@@ -412,13 +372,7 @@ CREATE TABLE `monto_monetario_cur_tall` (
 --
 
 INSERT INTO `monto_monetario_cur_tall` (`id_donativo_cur_tall`, `fecha`, `cantidad`) VALUES
-(11, '2015-12-15', 23),
-(11, '2015-12-15', 120),
-(11, '2015-12-15', 120),
-(11, '2015-12-15', 40),
-(11, '2015-12-15', 200),
-(11, '2015-12-09', 344),
-(12, '2015-05-15', 100);
+(14, '2015-12-16', 100);
 
 --
 -- Disparadores `monto_monetario_cur_tall`
@@ -447,7 +401,7 @@ CREATE TABLE `monto_monetario_jornada` (
 --
 
 INSERT INTO `monto_monetario_jornada` (`id_donativo_jornada`, `fecha`, `cantidad`) VALUES
-(1, '2015-12-08', 24);
+(4, '2015-12-16', 100);
 
 --
 -- Disparadores `monto_monetario_jornada`
@@ -484,10 +438,7 @@ CREATE TABLE `persona` (
 --
 
 INSERT INTO `persona` (`idpersona`, `nombrePersona`, `apaPersona`, `amaPersona`, `callePersona`, `numDirPersona`, `coloniaPersona`, `celPersona`, `correoPersona`, `sexo`, `fechaNa`) VALUES
-(1, 'Christian', 'Vargas', 'Saavedra', 'Apeninos', 8, 'Lomas de Casa Blanca', '012281404359', 'lirical_niggar@hotmail.com', 'M', '1992-02-29'),
-(3, 'Diana', 'Espiritu', 'Vaes', 'Alguna', 5, 'Otra colonia', '51213', 'algo@gmail.com', 'F', '1988-03-02'),
-(4, 'Carlos', 'Medina', 'Garcia', 'Camarillo', 2, 'Sumidero', '123454323', 'car@gmail.com', 'M', '2015-12-15'),
-(5, 'Karen ', 'Murrieta', 'Hernandez', 'Miradores', 2, 'Progreso', '1234543213', 'kar@hotmail.com', 'F', '1994-02-02');
+(6, 'Antonio', 'Melo', 'Mora', '27 de septiembre', 6, 'centro', '228134532', 'antoni@gmail.com', 'M', '2015-12-28');
 
 -- --------------------------------------------------------
 
@@ -512,8 +463,14 @@ CREATE TABLE `profesional` (
 --
 
 INSERT INTO `profesional` (`idProfesional`, `nombrePro`, `apaPro`, `amaPro`, `celPro`, `correoPro`, `ramaMedica`, `usuario`, `contraseña`) VALUES
-(1, 'Aldo', 'Jose', 'Espiritu', '82458556', 'aldikistrikis_pocholate@gmail.com', 'Psicología', 'aldo', 'aldo'),
-(2, 'Carlos', 'Alguno', 'Alguno', '1232323221', 'car@hotmail.com', 'Medicina', 'car', '123');
+(3, 'Roberto ', 'Landa', 'Luna', '2281602134', 'rob_lan@gmail.com', 'Medicina', 'Rober', 'rober'),
+(4, 'Ana', 'Ramírez', 'Cabañas', '2281343454', 'anibola@hotmail.com', 'Psicología', 'anita', 'anita'),
+(5, 'Rafael', 'Ramírez', 'Rojas', '2243512343', 'rastafa@gmail.com', 'Nutrición', 'rafilio', 'rafilio'),
+(6, 'Lorena', 'Sánchez', 'López', '2281435674', 'Lore_san@hotmail.com', 'Nutrición', 'Lorss', 'Lorss'),
+(7, 'Alejandra', 'Mendoza', 'Rodríguez', '2282341526', 'alita_21@gmail.com', 'Psicología', 'alita', 'alita'),
+(8, 'Carlos', 'Mota', 'Miranda', '2281342673', 'carls_mota@hotmail.com', 'Medicina', 'charls', 'charls'),
+(9, 'Pascual', 'Ochoa', 'Landa', '2289346745', 'pac_duck@gmail.com', 'Psicología', 'pato', 'pato'),
+(10, 'Jesús', 'Morales', 'Mireles', '22814537', 'jisus_45@gmail.com', 'Medicina', 'jisus', 'jisus');
 
 -- --------------------------------------------------------
 
@@ -618,7 +575,7 @@ ALTER TABLE `servicios`
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `idcita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idcita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `conferencias`
 --
@@ -628,7 +585,7 @@ ALTER TABLE `conferencias`
 -- AUTO_INCREMENT de la tabla `curso_taller`
 --
 ALTER TABLE `curso_taller`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT de la tabla `donativo`
 --
@@ -638,22 +595,22 @@ ALTER TABLE `donativo`
 -- AUTO_INCREMENT de la tabla `donativo_citas`
 --
 ALTER TABLE `donativo_citas`
-  MODIFY `id_donativo_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_donativo_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `donativo_curso_taller`
 --
 ALTER TABLE `donativo_curso_taller`
-  MODIFY `id_donativo_cur_tall` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_donativo_cur_tall` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `donativo_jornadas`
 --
 ALTER TABLE `donativo_jornadas`
-  MODIFY `id_donativo_jornada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_donativo_jornada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `espacio`
 --
 ALTER TABLE `espacio`
-  MODIFY `idEspacio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idEspacio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT de la tabla `jornada`
 --
@@ -663,12 +620,12 @@ ALTER TABLE `jornada`
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `profesional`
 --
 ALTER TABLE `profesional`
-  MODIFY `idProfesional` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idProfesional` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `servicios`
 --
